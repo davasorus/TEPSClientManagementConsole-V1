@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>TEPSClientManagementConsole_V1</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <UseWindowsForms>False</UseWindowsForms>
+    <ApplicationIcon>G5L9qP30_400x400.ico</ApplicationIcon>
+	<SignAssembly>False</SignAssembly>
+    <Authors>Sean Davitt</Authors>
+    <Company>Tyler Technologies</Company>
+    <Description>Console for interacting with the TEPS Client Management System</Description>
+    <AssemblyVersion>1.22.10.01</AssemblyVersion>
+    <UseWindowsForms>True</UseWindowsForms>
+    <AssemblyName>TEPS Client Management Console</AssemblyName>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <NeutralLanguage>en</NeutralLanguage>
+	<LangVersion>10.0</LangVersion>
+	<FileVersion>$(AssemblyVersion)</FileVersion>
+	<Version>$(AssemblyVersion)</Version>
+	<PlatformTarget>x64</PlatformTarget>
+	<Platforms>AnyCPU;x64</Platforms>
+	<Copyright>Tyler Technologies</Copyright>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <Content Include="G5L9qP30_400x400.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Classes\" />
+    <Folder Include="MVVM\Classes\" />
+    <Folder Include="MVVM\Model\" />
+    <Folder Include="MVVM\View\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.0.9" />
+    <PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
+  </ItemGroup>
+
+</Project>
