@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TEPSClientManagementConsole_V1.Core;
+﻿using TEPSClientManagementConsole_V1.Core;
 
 namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
 {
@@ -30,7 +25,6 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             //somethingVM = new somethingViewModel();
 
             //CurrentView = somethingVM; //this is the default page
-
 
             //somethingViewCommand = new relayCommand(o =>
             //{
