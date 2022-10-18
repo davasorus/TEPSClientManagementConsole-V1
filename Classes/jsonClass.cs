@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using System.Xml;
-using System.Windows.Controls;
-using Newtonsoft.Json;
-using System.IO;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace TEPSClientManagementConsole_V1.Classes
@@ -54,7 +50,6 @@ namespace TEPSClientManagementConsole_V1.Classes
         //When the XML is modified once it is changed for all other uses with that XML.
         public async void saveStartupSettings()
         {
-            
         }
 
         //this will remove ORI entries from the Mobile Install App XML
@@ -222,7 +217,6 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     try
                     {
-                    
                     }
                     catch (Exception ex)
                     {
@@ -257,7 +251,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                             loggingClass.logEntryWriter(logEntry1, "error");
 
-                           // await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+                            // await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
 
                             createConfigJSON();
                         }
@@ -431,4 +425,3 @@ internal class jsonConfigFileFDIDObj
 
     public string FDID { get; set; }
 }
-

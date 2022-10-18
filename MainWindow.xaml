@@ -1,10 +1,10 @@
 ﻿<Window x:Class="TEPSClientManagementConsole_V1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:viewModel="clr-namespace:TEPSClientManagementConsole_V1.MVVM.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:TEPSClientManagementConsole_V1.MVVM.ViewModel"
         mc:Ignorable="d" Height="1080" Width="1920" WindowStyle="None"
         AllowsTransparency="True"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -60,7 +60,7 @@
                         <Button Command="{Binding customOptionsViewCommand}"
                         Click="Button_Click_1" Height="50" FontSize="18" Content="Deployments"
                         ToolTip="Allows for managing software and pre reqs on remote machines"
-                        ToolTipService.InitialShowDelay="450" IsEnabled="False"/>
+                        ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Content="Configuration" Height="50" FontSize="18"
@@ -72,7 +72,7 @@
                         <Button Content="Something" Height="50" FontSize="18"
                             Command="{Binding preReqCheckViewCommand}" Click="Button_Click_3"
                             ToolTip="Allows the checking of Pre Req Status (Installed or Uninstalled)"
-                            ToolTipService.InitialShowDelay="450" IsEnabled="False"/>
+                            ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button x:Name="utilityUpdateBtn" Content="Update History" Height="50" FontSize="18"

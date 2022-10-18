@@ -4,11 +4,11 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
 {
     internal class mainViewModel : observableObject
     {
-        public relayCommand dashboardViewCommand {get; set;}
+        public relayCommand dashboardViewCommand { get; set; }
 
-        public relayCommand configurationViewCommand { get; set;}
+        public relayCommand configurationViewCommand { get; set; }
 
-        public dashboardViewModel dashboardVM {get; set;}
+        public dashboardViewModel dashboardVM { get; set; }
 
         public configurationViewModel configurationVM { get; set; }
 
@@ -29,11 +29,11 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             dashboardVM = new dashboardViewModel();
             configurationVM = new configurationViewModel();
 
-            CurrentView = dashboardVM; 
+            CurrentView = dashboardVM;
 
             dashboardViewCommand = new relayCommand(o =>
             {
-               CurrentView = dashboardVM;
+                CurrentView = dashboardVM;
             });
 
             configurationViewCommand = new relayCommand(o =>
