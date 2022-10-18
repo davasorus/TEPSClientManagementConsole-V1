@@ -4,9 +4,13 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
 {
     internal class mainViewModel : observableObject
     {
-        //public relayCommand somethingViewCommand {get; set;}
+        public relayCommand dashboardViewCommand { get; set; }
 
-        //public somethingViewModel somethingVM {get; set;}
+        public relayCommand configurationViewCommand { get; set; }
+
+        public dashboardViewModel dashboardVM { get; set; }
+
+        public configurationViewModel configurationVM { get; set; }
 
         private object _currentView;
 
@@ -22,14 +26,20 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
 
         public mainViewModel()
         {
-            //somethingVM = new somethingViewModel();
+            dashboardVM = new dashboardViewModel();
+            configurationVM = new configurationViewModel();
 
-            //CurrentView = somethingVM; //this is the default page
+            CurrentView = dashboardVM;
 
-            //somethingViewCommand = new relayCommand(o =>
-            //{
-            //   CurrentView = somethingVM;
-            //});
+            dashboardViewCommand = new relayCommand(o =>
+            {
+                CurrentView = dashboardVM;
+            });
+
+            configurationViewCommand = new relayCommand(o =>
+            {
+                CurrentView = configurationVM;
+            });
         }
     }
 }
