@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Height="476" Width="920" WindowStyle="None"
+        xmlns:viewModel="clr-namespace:TEPSClientManagementConsole_V1.MVVM.ViewModel"
+        mc:Ignorable="d" Height="1080" Width="1920" WindowStyle="None"
         AllowsTransparency="True"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -12,6 +13,121 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         Title="TEPS Client Management Console">
-    <Grid>
-    </Grid>
+    <Window.DataContext>
+        <viewModel:mainViewModel />
+    </Window.DataContext>
+
+    <materialDesign:DialogHost>
+
+        <Border>
+
+            <Grid Margin="-1,0,1,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="260" />
+                    <ColumnDefinition Width="89*" />
+                    <ColumnDefinition Width="45*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <materialDesign:ColorZone materialDesign:ColorZoneAssist.Foreground="DarkGray" Height="67">
+                    <materialDesign:ColorZone Mode="PrimaryDark" Height="68" VerticalAlignment="Center">
+                        <StackPanel>
+                            <TextBlock x:Name="appNameLbl" Text="Application Name"
+                   HorizontalAlignment="Center"
+                   FontSize="22"
+                   Margin="50,8,0,0" Width="178" />
+
+                            <TextBlock x:Name="appVersionLbl" Text="Application Version"
+                   HorizontalAlignment="Center"
+                   FontSize="16"
+                   Margin="25,8,0,0" />
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                </materialDesign:ColorZone>
+
+                <StackPanel Grid.Row="1">
+                    <materialDesign:Card  Margin="5,1,1,1">
+                        <Button Content="Dashboard" Height="50" FontSize="18"
+                             Command="{Binding dashboardViewCommand}" Click="Button_Click"
+                                ToolTip="Shows a general overview of current deployments"
+                                              ToolTipService.InitialShowDelay="450" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Command="{Binding customOptionsViewCommand}"
+                        Click="Button_Click_1" Height="50" FontSize="18" Content="Deployments"
+                        ToolTip="Allows for managing software and pre reqs on remote machines"
+                        ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Content="Configuration" Height="50" FontSize="18"
+                            Command="{Binding configurationViewCommand}" Click="Button_Click_2"
+                                ToolTip="Allows for configuring information about each environment"
+                                               ToolTipService.InitialShowDelay="450" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Content="Something" Height="50" FontSize="18"
+                            Command="{Binding preReqCheckViewCommand}" Click="Button_Click_3"
+                            ToolTip="Allows the checking of Pre Req Status (Installed or Uninstalled)"
+                            ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button x:Name="utilityUpdateBtn" Content="Update History" Height="50" FontSize="18"
+                        Command="{Binding utilityUpdaterViewCommand}" Click="Button_Click_4" IsEnabled="False"
+                        ToolTip="View/download utility updates" ToolTipService.InitialShowDelay="450" />
+                    </materialDesign:Card>
+                </StackPanel>
+                <materialDesign:DialogHost SnackbarMessageQueue="{Binding ElementName= snackBar, Path=MessageQueue}"
+                                           Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1">
+                    <materialDesign:Snackbar x:Name="snackBar"
+                                                     MessageQueue="{materialDesign:MessageQueue}">
+                        <materialDesign:SnackbarMessage />
+                    </materialDesign:Snackbar>
+                </materialDesign:DialogHost>
+                <ContentControl Grid.Row="1" Grid.Column="1"
+                                Margin="5,5,5,5"
+                            Content="{Binding CurrentView}" Grid.ColumnSpan="2" />
+
+                <materialDesign:ColorZone materialDesign:ColorZoneAssist.Foreground="DarkGray"
+                                      Grid.Column="1" Grid.ColumnSpan="2">
+                    <materialDesign:ColorZone x:Name="titleZone" Mode="SecondaryDark" Height="67"
+                                              MouseLeftButtonDown="mouseLeftButtonDown"
+                                              VerticalAlignment="Center">
+                        <TextBlock x:Name="formNameLbl" Text="Dashboard"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="24" />
+                    </materialDesign:ColorZone>
+                </materialDesign:ColorZone>
+
+                <Button x:Name="closeBtn" Grid.Column="2"
+                    Content="{materialDesign:PackIcon close,Size=24}" HorizontalAlignment="Left"
+                    Margin="400,-1,0,0" VerticalAlignment="Top"
+                    Background="{x:Null}" BorderBrush="{x:Null}"
+                    Foreground="White" Click="closeBtn_Click"
+                        ToolTip="Close" ToolTipService.InitialShowDelay="450" />
+                <Button x:Name="minButton" Grid.Column="2"
+                    Content="{materialDesign:PackIcon WindowMinimize ,Size=24}"
+                    HorizontalAlignment="Left"
+                    Margin="353,0,0,0" VerticalAlignment="Top"
+                    Background="{x:Null}" BorderBrush="{x:Null}"
+                    Foreground="White" Click="minButton_Click" Height="30" Width="48"
+                        ToolTip="Minimize" ToolTipService.InitialShowDelay="450" />
+                <Image HorizontalAlignment="Left" Height="59" Margin="0,6,0,0"
+                   VerticalAlignment="Top" Width="47"
+                   Source="/G5L9qP30_400x400.ico" />
+                <Button x:Name="updateBtn" Grid.Column="2"
+                    Content="{materialDesign:PackIcon BellCircle,Size=36}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" Background="{x:Null}"
+                    BorderBrush="{x:Null}" Height="44"
+                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                    Margin="400,-6,0,0" ToolTip="Display Notification"
+                                      ToolTipService.InitialShowDelay="450" />
+            </Grid>
+        </Border>
+    </materialDesign:DialogHost>
 </Window>
