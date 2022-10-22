@@ -5,12 +5,12 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
     internal class mainViewModel : observableObject
     {
         public relayCommand dashboardViewCommand { get; set; }
-
         public relayCommand configurationViewCommand { get; set; }
+        public relayCommand inAppLogReaderViewCommand { get; set; }
 
         public dashboardViewModel dashboardVM { get; set; }
-
         public configurationViewModel configurationVM { get; set; }
+        public inAppLogReaderViewModel inAppLogReaderVM { get; set; }
 
         private object _currentView;
 
@@ -28,6 +28,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
         {
             dashboardVM = new dashboardViewModel();
             configurationVM = new configurationViewModel();
+            inAppLogReaderVM = new inAppLogReaderViewModel();
 
             CurrentView = dashboardVM;
 
@@ -39,6 +40,11 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             configurationViewCommand = new relayCommand(o =>
             {
                 CurrentView = configurationVM;
+            });
+
+            inAppLogReaderViewCommand = new relayCommand(o =>
+            {
+                CurrentView = inAppLogReaderVM;
             });
         }
     }

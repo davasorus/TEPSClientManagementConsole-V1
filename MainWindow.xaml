@@ -5,7 +5,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:TEPSClientManagementConsole_V1.MVVM.ViewModel"
-        mc:Ignorable="d" Height="1080" Width="1920" WindowStyle="None"
+        mc:Ignorable="d" Height="580" Width="1520" WindowStyle="None"
         AllowsTransparency="True"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -18,6 +18,9 @@
     </Window.DataContext>
 
     <materialDesign:DialogHost>
+        <materialDesign:DialogHost.DialogContent>
+            <viewModel:inAppLogReaderViewModel />
+        </materialDesign:DialogHost.DialogContent>
 
         <Border>
 
@@ -105,14 +108,14 @@
 
                 <Button x:Name="closeBtn" Grid.Column="2"
                     Content="{materialDesign:PackIcon close,Size=24}" HorizontalAlignment="Left"
-                    Margin="400,-1,0,0" VerticalAlignment="Top"
+                    Margin="350,-1,0,0" VerticalAlignment="Top"
                     Background="{x:Null}" BorderBrush="{x:Null}"
                     Foreground="White" Click="closeBtn_Click"
                         ToolTip="Close" ToolTipService.InitialShowDelay="450" />
                 <Button x:Name="minButton" Grid.Column="2"
                     Content="{materialDesign:PackIcon WindowMinimize ,Size=24}"
                     HorizontalAlignment="Left"
-                    Margin="353,0,0,0" VerticalAlignment="Top"
+                    Margin="303,0,0,0" VerticalAlignment="Top"
                     Background="{x:Null}" BorderBrush="{x:Null}"
                     Foreground="White" Click="minButton_Click" Height="30" Width="48"
                         ToolTip="Minimize" ToolTipService.InitialShowDelay="450" />
@@ -125,7 +128,7 @@
                     VerticalAlignment="Top" Background="{x:Null}"
                     BorderBrush="{x:Null}" Height="44"
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                    Margin="400,-6,0,0" ToolTip="Display Notification"
+                    Margin="100,-6,0,0" ToolTip="Display Notification"
                                       ToolTipService.InitialShowDelay="450" />
             </Grid>
         </Border>

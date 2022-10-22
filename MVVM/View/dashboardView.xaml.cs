@@ -10,6 +10,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
         public dashboardView()
         {
             InitializeComponent();
+
         }
     }
 }

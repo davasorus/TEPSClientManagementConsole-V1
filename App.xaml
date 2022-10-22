@@ -20,6 +20,10 @@
             <DataTemplate DataType="{x:Type viewModel:configurationViewModel}">
                 <view:configurationView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:inAppLogReaderViewModel}">
+                <view:inAppLogReaderView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
