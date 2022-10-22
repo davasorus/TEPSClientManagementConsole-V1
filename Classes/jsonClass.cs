@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using TEPSClientManagementConsole_V1.MVVM.ViewModel;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace TEPSClientManagementConsole_V1.Classes
@@ -13,7 +14,7 @@ namespace TEPSClientManagementConsole_V1.Classes
     internal class jsonClass : UserControl
     {
         private loggingClass loggingClass = new loggingClass();
-        private readonly string jsonFile = "ClientAdminAppsettings.json";
+        private readonly string jsonFile = "TepsConsoleAppSettings.json";
 
         #region creates JSON
 
@@ -21,24 +22,22 @@ namespace TEPSClientManagementConsole_V1.Classes
         {
             jsonConfigFileObj _data = new jsonConfigFileObj();
 
-            _data.MobileServerName = "";
-            _data.PreReqPath = @"\\MSPServerName\";
-            _data.GenerateNumber = "0";
-            _data.PoliceClient = "False";
-            _data.FireClient = "False";
-            _data.MergeClient = "False";
-            _data.Version212HigherSelector = "2";
-            _data.AutomatedErrorReportingNotified = "False";
-            _data.MMSPingName = " ";
-            _data.ESSPingName = " ";
-            _data.MSPPingName = " ";
-            _data.CADPingName = " ";
-            _data.RMSPingName = " ";
+            _data.prodAppServerName = "";
+            _data.prodEssServerName = "";
+            _data.prodCADServerName = "";
+            _data.prodGISServerName = "";
+            _data.prodGISInstanceName = "";
+            _data.prodMobileServerName = "";
+            _data.prodMasterServiceServerName = "";
+            _data.prodClientInstallServerName = "";
+            _data.TrelloKey = "";
+            _data.TrelloToken = "";
+            _data.TrelloError = "";
 
-            var jsonPackage = JsonConvert.SerializeObject(_data, Newtonsoft.Json.Formatting.Indented);
+            var jsonPackage = JsonConvert.SerializeObject(_data, Formatting.Indented);
             File.WriteAllText(jsonFile, jsonPackage);
 
-            string logEntry = "A new Client Admin Tool Settings XML was created.";
+            string logEntry = "A new config file was created.";
 
             loggingClass.logEntryWriter(logEntry, "info");
         }
@@ -50,6 +49,78 @@ namespace TEPSClientManagementConsole_V1.Classes
         //When the XML is modified once it is changed for all other uses with that XML.
         public async void saveStartupSettings()
         {
+            try
+            {
+                string json = File.ReadAllText(jsonFile);
+
+                dynamic jsonObj = JsonConvert.DeserializeObject(json);
+
+                jsonObj["TrelloKey"] = configurationViewModel._trelloKey;
+                jsonObj["TrelloToken"] = configurationViewModel._trelloToken;
+                jsonObj["TrelloError"] = configurationViewModel._trelloErrorID;
+
+                jsonObj["prodAppServerName"] = configurationViewModel._prodAppServerName;
+                jsonObj["prodEssServerName"] = configurationViewModel._prodEssServerName;
+                jsonObj["prodCADServerName"] = configurationViewModel._prodCadServerName;
+                jsonObj["prodGISServerName"] = configurationViewModel._prodGisServerName;
+                jsonObj["prodGISInstanceName"] = configurationViewModel._prodGisInstanceName;
+                jsonObj["prodMobileServerName"] = configurationViewModel._prodMobileServerName;
+                jsonObj["prodMasterServiceServerName"] = configurationViewModel._prodMasterServiceServer;
+                jsonObj["prodClientInstallServerName"] = configurationViewModel._prodClientInstallServerName;
+
+                string output = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
+                File.WriteAllText(jsonFile, output);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("Could not find file"))
+                {
+                    createConfigJSON();
+                    saveStartupSettings();
+
+                    string message = "There was an error saving configuration to file, config file was re-created";
+
+                    loggingClass.logEntryWriter(message, "info");
+                    loggingClass.queEntrywriter(message);
+                }
+                else if (ex.Message.Contains("The process cannot access the file"))
+                {
+                }
+                else if (ex.Message.Contains("Could not find a part of the path"))
+                {
+                    createConfigJSON();
+                    saveStartupSettings();
+
+                    string message = "There was an error saving configuration to file, config file was re-created";
+
+                    loggingClass.logEntryWriter(message, "info");
+                    loggingClass.queEntrywriter(message);
+                }
+                else if (ex.Message.Contains("is denied"))
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                    loggingClass.logEntryWriter("Please make sure your use can modify files wherever the Client Admin Tool is running", "error");
+                    loggingClass.queEntrywriter("The client admin tool could not update the config file. Please see log for more information");
+                }
+                else if (ex.Message.Contains("Unexpected character encountered while parsing value"))
+                {
+                    createConfigJSON();
+                    saveStartupSettings();
+
+                    string message = "There was an error saving configuration to file, config file was re-created";
+
+                    loggingClass.logEntryWriter(message, "info");
+                    loggingClass.queEntrywriter(message);
+                }
+                else
+                {
+                    string logEntry1 = ex.ToString();
+
+                    loggingClass.logEntryWriter(logEntry1, "error");
+
+                    //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+                }
+            }
         }
 
         //this will remove ORI entries from the Mobile Install App XML
@@ -217,6 +288,59 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     try
                     {
+                        try
+                        {
+                            configurationViewModel._trelloKey = jsonFilePackage.TrelloKey;
+                            configurationViewModel._trelloToken = jsonFilePackage.TrelloToken;
+                            configurationViewModel._trelloErrorID = jsonFilePackage.TrelloError;
+
+                            configurationViewModel._prodAppServerName = jsonFilePackage.prodAppServerName;
+                            configurationViewModel._prodEssServerName = jsonFilePackage.prodEssServerName;
+                            configurationViewModel._prodCadServerName = jsonFilePackage.prodCADServerName;
+                            configurationViewModel._prodGisServerName = jsonFilePackage.prodGISServerName;
+                            configurationViewModel._prodGisInstanceName = jsonFilePackage.prodGISInstanceName;
+                            configurationViewModel._prodMobileServerName = jsonFilePackage.prodMobileServerName;
+                            configurationViewModel._prodMasterServiceServer = jsonFilePackage.prodMasterServiceServerName;
+                            configurationViewModel._prodClientInstallServerName = jsonFilePackage.prodClientInstallServerName;
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex.Message.Contains("Object reference not set to an instance of an object"))
+                            {
+                                string logEntry1 = "there was an error reading from JSON. It will be reset to default. Error Message: " + ex.Message;
+
+                                loggingClass.logEntryWriter(logEntry1, "error");
+
+                                createConfigJSON();
+                            }
+                            else if (ex.Message.Contains("Bad JSON escape sequence"))
+                            {
+                                string logEntry1 = "there was an error reading from JSON. It will be reset to default. Error Message: " + ex.Message;
+
+                                loggingClass.logEntryWriter(logEntry1, "error");
+
+                                createConfigJSON();
+                            }
+                            else if (ex.Message.Contains("Bad JSON escape sequence"))
+                            {
+                                string logEntry1 = "there was an error reading from JSON. It will be reset to default. Error Message: " + ex.ToString();
+
+                                loggingClass.logEntryWriter(logEntry1, "error");
+
+                                File.Delete(jsonFile);
+                                createConfigJSON();
+                            }
+                            else
+                            {
+                                string logEntry1 = "there was an error reading from JSON. It will be reset to default. Error Message: " + ex.ToString();
+
+                                loggingClass.logEntryWriter(logEntry1, "error");
+
+                                //await loggingClass.remoteErrorReporting("Client Admin Tool", Assembly.GetExecutingAssembly().GetName().Version.ToString(), ex.ToString(), "Automated Error Reported by " + Environment.UserName);
+
+                                createConfigJSON();
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -382,6 +506,35 @@ namespace TEPSClientManagementConsole_V1.Classes
 
 internal class jsonConfigFileObj
 {
+    public string prodAppServerName { get; set; }
+    public string prodEssServerName { get; set; }
+    public string prodCADServerName { get; set; }
+    public string prodGISServerName { get; set; }
+    public string prodGISInstanceName { get; set; }
+    public string prodMobileServerName { get; set; }
+    public string prodMasterServiceServerName { get; set; }
+    public string prodClientInstallServerName { get; set; }
+    public string TrelloKey { get; set; }
+    public string TrelloToken { get; set; }
+    public string TrelloError { get; set; }
+}
+
+internal class jsonConfigFileORIObj
+{
+    public string FieldName { get; set; }
+
+    public string ORI { get; set; }
+}
+
+internal class jsonConfigFileFDIDObj
+{
+    public string FieldName { get; set; }
+
+    public string FDID { get; set; }
+}
+
+internal class jsonConfigFileObjBackUp
+{
     public string MobileServerName { get; set; }
 
     public string PreReqPath { get; set; }
@@ -412,14 +565,14 @@ internal class jsonConfigFileObj
     public List<jsonConfigFileFDIDObj> FireList = new List<jsonConfigFileFDIDObj>();
 }
 
-internal class jsonConfigFileORIObj
+internal class jsonConfigFileORIObjBackUp
 {
     public string FieldName { get; set; }
 
     public string ORI { get; set; }
 }
 
-internal class jsonConfigFileFDIDObj
+internal class jsonConfigFileFDIDObjBackUp
 {
     public string FieldName { get; set; }
 

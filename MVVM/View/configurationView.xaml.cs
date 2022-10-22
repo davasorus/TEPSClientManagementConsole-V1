@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using TEPSClientManagementConsole_V1.Classes;
 
 namespace TEPSClientManagementConsole_V1.MVVM.View
 {
@@ -7,35 +8,23 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
     /// </summary>
     public partial class configurationView : UserControl
     {
+        private jsonClass jsonClass = new jsonClass();
+
         public configurationView()
         {
             InitializeComponent();
         }
 
-        private void appServerNameProd_TextChanged(object sender, TextChangedEventArgs e)
+        private void prodEnvironmentConfigBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(appServerNameProd.Text))
-            {
-            }
+            jsonClass.saveStartupSettings();
         }
 
-        private void essServerNameProd_TextChanged(object sender, TextChangedEventArgs e)
+        private void TrainEnvironmentConfigBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
         }
 
-        private void cadServerNameProd_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
-        private void gisServerNameProd_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
-        private void gisInstanceNameProd_TextChanged(object sender, TextChangedEventArgs e)
-        {
-        }
-
-        private void mobileServerNameProd_TextChanged(object sender, TextChangedEventArgs e)
+        private void TestEnvironmentConfigBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
         }
     }

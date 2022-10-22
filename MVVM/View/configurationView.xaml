@@ -34,8 +34,8 @@
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
                                     <TextBox x:Name="appServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwappprd"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding prodAppServerName}"
-                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" TextChanged="appServerNameProd_TextChanged" />
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding prodAppServerName}"
+                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="ESS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-139,5,1,1" />
@@ -45,7 +45,7 @@
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
                                 ToolTip="Name of the ESS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="essServerNameProd_TextChanged" Text="{Binding prodEssServerName}" />
+                                MaxWidth="230" Text="{Binding prodEssServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="CAD/Load balancer Server Name" HorizontalAlignment="Center" FontSize="16" Margin="-28,5,1,1" />
@@ -54,7 +54,7 @@
                                     <TextBox x:Name="cadServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwcadprd"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the CAD Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="cadServerNameProd_TextChanged" Text="{Binding prodCadServerName}" />
+                                MaxWidth="230" Text="{Binding prodCadServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="GIS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-143,5,1,1" />
@@ -62,7 +62,7 @@
                                     <TextBox x:Name="gisServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwgis"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="gisServerNameProd_TextChanged" Text="{Binding prodGisServerName}" />
+                                Text="{Binding prodGisServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="GIS Instance Name" HorizontalAlignment="Center" FontSize="16"  Margin="-127,5,1,1" />
@@ -71,7 +71,7 @@
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
                                 ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450" MaxWidth="230"
-                                TextChanged="gisInstanceNameProd_TextChanged" Text="{Binding prodGisInstanceName}" />
+                                Text="{Binding prodGisInstanceName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="Mobile Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-119,5,1,1" />
@@ -79,20 +79,72 @@
                                     <TextBox x:Name="mobileServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwmmsprd"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="mobileServerNameProd_TextChanged" Text="{Binding prodMobileServername}" />
+                                MaxWidth="230" Text="{Binding prodMobileServerName}" />
                                 </materialDesign:ColorZone>
                             </StackPanel>
                         </StackPanel>
-
-                        <materialDesign:Card HorizontalAlignment="Right">
-                            <Button x:Name="prodEnvironmentConfigBtn" Content="Submit"
-                                FontSize="18" />
-                        </materialDesign:Card>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
 
-                        <Label Content="Environment Configuration" HorizontalAlignment="Center" FontSize="16" />
+                        <Label Content="Service Configuration" HorizontalAlignment="Center" FontSize="16" />
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <StackPanel Orientation="Vertical">
+
+                                <Label Content="Master Service - Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-155,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="masterServiceServerNamePrd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="NWESSPRD"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450" MaxWidth="230"
+                                Text="{Binding prodMasterServiceServer}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Client Install Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-180,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="clientInstallServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="NWCADPRD"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="The server that contains the _client-installation folder, remote path to a different Tyler pre req folder directory" ToolTipService.InitialShowDelay="450"
+                                Text="{Binding prodClientInstallServerName}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Automated Error Reporting Config" HorizontalAlignment="Center" FontSize="16" Margin="5,5,1,1" />
+                                <Label Content="Note: by filling these fields out you are agreeing to data" HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="from/about your environment to be submitted to development" HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="to aide in the continuous development of this and other applications." HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="If you would like to opt in. please reach out to your PM/CSAM." HorizontalAlignment="Center" FontSize="12" />
+
+                                <Label Content="Trello Key" HorizontalAlignment="Center" FontSize="16" Margin="-297,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloKeyProd" HorizontalAlignment="Center"  FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding trelloKey}"
+                                ToolTip="Trello API Key" ToolTipService.InitialShowDelay="450" MinWidth="100" MaxWidth="230" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Trello Token" HorizontalAlignment="Center" FontSize="16"  Margin="-280,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloTokenProd" HorizontalAlignment="Center" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Trello API Token" ToolTipService.InitialShowDelay="450" MinWidth="100"
+                                MaxWidth="230" Text="{Binding trelloToken}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Trello Error ID" HorizontalAlignment="Center" FontSize="16" Margin="-270,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloErrorIDProd" HorizontalAlignment="Center" MinWidth="100"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Trello Error Table ID" ToolTipService.InitialShowDelay="450"
+                                MaxWidth="230" Text="{Binding trelloErrorID}" />
+                                </materialDesign:ColorZone>
+
+                                <materialDesign:Card HorizontalAlignment="Right">
+                                    <Button x:Name="prodEnvironmentConfigBtn" Content="Submit"
+                                FontSize="18" Click="prodEnvironmentConfigBtn_Click" />
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -110,29 +162,29 @@
                                 <Label Content="Records/Load balancer Server Name" HorizontalAlignment="Center" FontSize="16" Margin="0,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="appServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwappprd"
+                                    <TextBox x:Name="appServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwappTst"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding testAppServerName}"
-                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" TextChanged="appServerNameProd_TextChanged" />
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding testAppServerName}"
+                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="ESS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-139,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="essServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwessprd"
+                                    <TextBox x:Name="essServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwessTst"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
                                 ToolTip="Name of the ESS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="essServerNameProd_TextChanged" Text="{Binding testEssServerName}" />
+                                MaxWidth="230" Text="{Binding testEssServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="CAD/Load balancer Server Name" HorizontalAlignment="Center" FontSize="16" Margin="-28,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="cadServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwcadprd"
+                                    <TextBox x:Name="cadServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwcadTst"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the CAD Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="cadServerNameProd_TextChanged" Text="{Binding testCadServerName}" />
+                                MaxWidth="230" Text="{Binding testCadServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="GIS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-143,5,1,1" />
@@ -140,37 +192,89 @@
                                     <TextBox x:Name="gisServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwgis"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="gisServerNameProd_TextChanged" Text="{Binding testGisServerName}" />
+                                Text="{Binding testGisServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="GIS Instance Name" HorizontalAlignment="Center" FontSize="16"  Margin="-127,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="gisInstanceNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Prod"
+                                    <TextBox x:Name="gisInstanceNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Test"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
                                 ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450" MaxWidth="230"
-                                TextChanged="gisInstanceNameProd_TextChanged" Text="{Binding testGisInstanceName}" />
+                                Text="{Binding testGisInstanceName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="Mobile Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-119,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="mobileServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwmmsprd"
+                                    <TextBox x:Name="mobileServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwmmsTst"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="mobileServerNameProd_TextChanged" Text="{Binding testMobileServername}" />
+                                MaxWidth="230" Text="{Binding testMobileServerName}" />
                                 </materialDesign:ColorZone>
                             </StackPanel>
                         </StackPanel>
-
-                        <materialDesign:Card HorizontalAlignment="Right">
-                            <Button x:Name="testEnvironmentConfigBtn" Content="Submit"
-                                FontSize="18" />
-                        </materialDesign:Card>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
 
-                        <Label Content="Environment Configuration" HorizontalAlignment="Center" FontSize="16" />
+                        <Label Content="Service Configuration" HorizontalAlignment="Center" FontSize="16" />
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <StackPanel Orientation="Vertical">
+
+                                <Label Content="Master Service - Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-155,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="masterServiceServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="NWESSTst"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450" MaxWidth="230"
+                                Text="{Binding testMasterServiceServer}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Client Install Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-180,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="clientInstallServerNameTest" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="NWCADTst"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="The server that contains the _client-installation folder, remote path to a different Tyler pre req folder directory" ToolTipService.InitialShowDelay="450"
+                                Text="{Binding testClientInstallServerName}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Automated Error Reporting Config" HorizontalAlignment="Center" FontSize="16" Margin="5,5,1,1" />
+                                <Label Content="Note: by filling these fields out you are agreeing to data" HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="from/about your environment to be submitted to development" HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="to aide in the continuous development of this and other applications." HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="If you would like to opt in. please reach out to your PM/CSAM." HorizontalAlignment="Center" FontSize="12" />
+
+                                <Label Content="Trello Key" HorizontalAlignment="Center" FontSize="16" Margin="-297,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloKeyTest" HorizontalAlignment="Center"  FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding trelloKey}"
+                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MinWidth="100" MaxWidth="230" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Trello Token" HorizontalAlignment="Center" FontSize="16"  Margin="-280,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloTokenTest" HorizontalAlignment="Center" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Name of the ESS Server" ToolTipService.InitialShowDelay="450" MinWidth="100"
+                                MaxWidth="230" Text="{Binding trelloToken}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Trello Error ID" HorizontalAlignment="Center" FontSize="16" Margin="-270,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloErrorIDTest" HorizontalAlignment="Center" MinWidth="100"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the CAD Server" ToolTipService.InitialShowDelay="450"
+                                MaxWidth="230" Text="{Binding trelloErrorID}" />
+                                </materialDesign:ColorZone>
+
+                                <materialDesign:Card HorizontalAlignment="Right">
+                                    <Button x:Name="TestEnvironmentConfigBtn" Content="Submit"
+                                FontSize="18" Click="TestEnvironmentConfigBtn_Click" />
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </TabItem>
@@ -188,29 +292,29 @@
                                 <Label Content="Records/Load balancer Server Name" HorizontalAlignment="Center" FontSize="16" Margin="0,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="appServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwappprd"
+                                    <TextBox x:Name="appServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwappTrn"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding trainAppServerName}"
-                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" TextChanged="appServerNameProd_TextChanged" />
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding trainAppServerName}"
+                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="ESS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-139,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="essServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwessprd"
+                                    <TextBox x:Name="essServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwessTrn"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
                                 ToolTip="Name of the ESS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="essServerNameProd_TextChanged" Text="{Binding trainEssServerName}" />
+                                MaxWidth="230" Text="{Binding trainEssServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="CAD/Load balancer Server Name" HorizontalAlignment="Center" FontSize="16" Margin="-28,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="cadServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwcadprd"
+                                    <TextBox x:Name="cadServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwcadTrn"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the CAD Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="cadServerNameProd_TextChanged" Text="{Binding trainCadServerName}" />
+                                MaxWidth="230" Text="{Binding trainCadServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="GIS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-143,5,1,1" />
@@ -218,37 +322,89 @@
                                     <TextBox x:Name="gisServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwgis"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="gisServerNameProd_TextChanged" Text="{Binding trainGisServerName}" />
+                                Text="{Binding trainGisServerName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="GIS Instance Name" HorizontalAlignment="Center" FontSize="16"  Margin="-127,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="gisInstanceNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Prod"
+                                    <TextBox x:Name="gisInstanceNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Train"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
                                 ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450" MaxWidth="230"
-                                TextChanged="gisInstanceNameProd_TextChanged" Text="{Binding trainGisInstanceName}" />
+                                Text="{Binding trainGisInstanceName}" />
                                 </materialDesign:ColorZone>
 
                                 <Label Content="Mobile Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-119,5,1,1" />
                                 <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                                    <TextBox x:Name="mobileServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwmmsprd"
+                                    <TextBox x:Name="mobileServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwmmsTrn"
                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
                                 FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"
-                                MaxWidth="230" TextChanged="mobileServerNameProd_TextChanged" Text="{Binding trainMobileServername}" />
+                                MaxWidth="230" Text="{Binding trainMobileServerName}" />
                                 </materialDesign:ColorZone>
                             </StackPanel>
                         </StackPanel>
-
-                        <materialDesign:Card HorizontalAlignment="Right">
-                            <Button x:Name="trainEnvironmentConfigBtn" Content="Submit"
-                                FontSize="18" />
-                        </materialDesign:Card>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1">
 
-                        <Label Content="Environment Configuration" HorizontalAlignment="Center" FontSize="16" />
+                        <Label Content="Service Configuration" HorizontalAlignment="Center" FontSize="16" />
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <StackPanel Orientation="Vertical">
+
+                                <Label Content="Master Service - Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-155,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="masterServiceServerNameTrn" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="NWESSTrn"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450" MaxWidth="230"
+                                Text="{Binding trainMasterServiceServer}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Client Install Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-180,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="clientInstallServerNameTrain" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="NWCADTrn"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="The server that contains the _client-installation folder, remote path to a different Tyler pre req folder directory" ToolTipService.InitialShowDelay="450"
+                                Text="{Binding trainClientInstallServerName}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Automated Error Reporting Config" HorizontalAlignment="Center" FontSize="16" Margin="5,5,1,1" />
+                                <Label Content="Note: by filling these fields out you are agreeing to data" HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="from/about your environment to be submitted to development" HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="to aide in the continuous development of this and other applications." HorizontalAlignment="Center" FontSize="12" />
+                                <Label Content="If you would like to opt in. please reach out to your PM/CSAM." HorizontalAlignment="Center" FontSize="12" />
+
+                                <Label Content="Trello Key" HorizontalAlignment="Center" FontSize="16" Margin="-297,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloKeyTrain" HorizontalAlignment="Center"  FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding trelloKey}"
+                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MinWidth="100" MaxWidth="230" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Trello Token" HorizontalAlignment="Center" FontSize="16"  Margin="-280,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloTokenTrain" HorizontalAlignment="Center" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Name of the ESS Server" ToolTipService.InitialShowDelay="450" MinWidth="100"
+                                MaxWidth="230" Text="{Binding trelloToken}" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Trello Error ID" HorizontalAlignment="Center" FontSize="16" Margin="-270,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="trelloErrorIDTrain" HorizontalAlignment="Center" MinWidth="100"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the CAD Server" ToolTipService.InitialShowDelay="450"
+                                MaxWidth="230" Text="{Binding trelloErrorID}" />
+                                </materialDesign:ColorZone>
+
+                                <materialDesign:Card HorizontalAlignment="Right">
+                                    <Button x:Name="TrainEnvironmentConfigBtn" Content="Submit"
+                                FontSize="18" Click="TrainEnvironmentConfigBtn_Click" />
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </TabItem>
