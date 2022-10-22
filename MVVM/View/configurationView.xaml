@@ -1,12 +1,110 @@
 ﻿<UserControl x:Class="TEPSClientManagementConsole_V1.MVVM.View.configurationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:TEPSClientManagementConsole_V1.MVVM.View"
+             xmlns:viewModel="clr-namespace:TEPSClientManagementConsole_V1.MVVM.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="800"
+              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="{materialDesign:MaterialDesignFont}">
+
+   
+    
     <Grid>
-        <TextBlock Text="Configuration" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140*" />
+            <ColumnDefinition Width="140*" />
+        </Grid.ColumnDefinitions>
+
+        <TabControl Style="{StaticResource MaterialDesignTabControl}" Grid.ColumnSpan="2">
+            <TabItem Header="Prod">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140*" />
+                        <ColumnDefinition Width="140*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Label Content="Environment Configuration" HorizontalAlignment="Center" FontSize="16" />
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                <Label Content="Records/Load balancer Server Name" HorizontalAlignment="Center" FontSize="16" Margin="0,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="appServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwappprd"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow" Text="{Binding prodAppServerName}"
+                                ToolTip="Name of the Records Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" TextChanged="appServerNameProd_TextChanged" />
+                                </materialDesign:ColorZone>
+
+                                <Label Content="ESS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-139,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="essServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwessprd"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Name of the ESS Server" ToolTipService.InitialShowDelay="450"  
+                                MaxWidth="230" TextChanged="essServerNameProd_TextChanged" Text="{Binding prodEssServerName}"/>
+                                </materialDesign:ColorZone>
+
+                                <Label Content="CAD/Load balancer Server Name" HorizontalAlignment="Center" FontSize="16" Margin="-28,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight"
+                                          HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                    <TextBox x:Name="cadServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwcadprd"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the CAD Server" ToolTipService.InitialShowDelay="450"  
+                                MaxWidth="230" TextChanged="cadServerNameProd_TextChanged" Text="{Binding prodCadServerName}"/>
+                                </materialDesign:ColorZone>
+
+                                <Label Content="GIS Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-143,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                <TextBox x:Name="gisServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwgis"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"  
+                                MaxWidth="230" TextChanged="gisServerNameProd_TextChanged" Text="{Binding prodGisServerName}"/>
+                                </materialDesign:ColorZone>
+
+                                <Label Content="GIS Instance Name" HorizontalAlignment="Center" FontSize="16"  Margin="-127,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                <TextBox x:Name="gisInstanceNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Prod"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                materialDesign:HintAssist.IsFloating="True" FontFamily="32" TextWrapping="WrapWithOverflow"
+                                ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450" MaxWidth="230" 
+                                TextChanged="gisInstanceNameProd_TextChanged" Text="{Binding prodGisInstanceName}"/>
+                                </materialDesign:ColorZone>
+
+                                <Label Content="Mobile Server Name" HorizontalAlignment="Center" FontSize="16"  Margin="-119,5,1,1" />
+                                <materialDesign:ColorZone Mode="PrimaryLight" HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
+                                <TextBox x:Name="mobileServerNameProd" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="nwmmsprd"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.IsFloating="True"
+                                FontFamily="32" TextWrapping="WrapWithOverflow" ToolTip="Name of the GIS Server" ToolTipService.InitialShowDelay="450"  
+                                MaxWidth="230" TextChanged="mobileServerNameProd_TextChanged" Text="{Binding prodMobileServername}"/>
+                                </materialDesign:ColorZone>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <materialDesign:Card HorizontalAlignment="Right">
+                            <Button x:Name="prodEnvironmentConfigBtn" Content="Submit"
+                                FontSize="18" />
+                        </materialDesign:Card>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1">
+
+                        <Label Content="Environment Configuration" HorizontalAlignment="Center" FontSize="16" />
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Test">
+            </TabItem>
+
+            <TabItem Header="Train">
+            </TabItem>
+        </TabControl>
     </Grid>
 </UserControl>

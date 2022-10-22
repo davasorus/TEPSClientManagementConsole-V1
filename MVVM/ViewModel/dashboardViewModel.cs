@@ -1,6 +1,5 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
-using System.Collections.Generic;
 
 namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
 {
@@ -35,9 +34,5 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
                 new PieSeries<double> { Values = new double[] { 4 } },
                 new PieSeries<double> { Values = new double[] { 3 } }
             };
-
-
-       
-
     }
 }
