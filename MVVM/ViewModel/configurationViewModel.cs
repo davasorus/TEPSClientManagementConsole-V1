@@ -15,15 +15,12 @@
         public static string testGisServerName { get; set; }
         public static string testGisInstanceName { get; set; }
         public static string testMobileServername { get; set; }
-    }
-}
 
-internal class trainConfig
-{
-    public static string appServerName { get; set; }
-    public static string cadServerName { get; set; }
-    public static string essServerName { get; set; }
-    public static string gisServerName { get; set; }
-    public static string gisInstanceName { get; set; }
-    public static string mobileServername { get; set; }
+        public static string trainAppServerName { get; set; }
+        public static string trainCadServerName { get; set; }
+        public static string trainEssServerName { get; set; }
+        public static string trainGisServerName { get; set; }
+        public static string trainGisInstanceName { get; set; }
+        public static string trainmobileServername { get; set; }
+    }
 }

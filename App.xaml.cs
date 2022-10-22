@@ -26,12 +26,12 @@ namespace TEPSClientManagementConsole_V1
                     // select a theme, default is Light
                     // OPTIONAL
                     .AddDarkTheme()
-                    //.AddLightTheme()
+                //.AddLightTheme()
 
-                    // finally register your own mappers
-                    // you can learn more about mappers at:
-                    // ToDo add website link...
-                    
+                // finally register your own mappers
+                // you can learn more about mappers at:
+                // ToDo add website link...
+
                 );
         }
     }
