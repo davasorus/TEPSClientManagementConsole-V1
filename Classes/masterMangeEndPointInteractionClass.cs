@@ -13,6 +13,8 @@ namespace TEPSClientManagementConsole_V1.Classes
     {
         private loggingClass loggingClass = new loggingClass();
 
+        #region update settings Table
+
         public async Task PostUpdateSettingProd()
         {
             try
@@ -201,6 +203,173 @@ namespace TEPSClientManagementConsole_V1.Classes
                 loggingClass.logEntryWriter(logEntry1, "error");
 
                 throw ex;
+            }
+        }
+
+        #endregion update settings Table
+
+        public async Task GetAllClients()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetAllClients";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
+
+        public async Task GetAllCatalogs()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetAllInstalledCatalogs";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
+
+        public async Task GetTop1000Errors()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/Get1000Errors";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
+
+        public async Task GetInstallLogs()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetAllInstallLogs";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
+
+        public async Task GetuninstallLogs()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetAllUnInstallLogs";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
             }
         }
     }
