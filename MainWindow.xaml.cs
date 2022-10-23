@@ -64,9 +64,9 @@ namespace TEPSClientManagementConsole_V1
 
                 await masterMangeEndPointInteractionClass.GetTop1000Errors();
 
-                //await masterMangeEndPointInteractionClass.GetInstallLogs();
+                await masterMangeEndPointInteractionClass.GetInstallLogs();
 
-                //await masterMangeEndPointInteractionClass.GetuninstallLogs();
+                await masterMangeEndPointInteractionClass.GetuninstallLogs();
             }
         }
 

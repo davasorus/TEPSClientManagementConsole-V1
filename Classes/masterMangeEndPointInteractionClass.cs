@@ -48,7 +48,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                 var stringcontent = new StringContent(package, Encoding.UTF8, "application/json");
 
-                var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/PostUpdateSettingsDB/1";
+                var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/PostUpdateSettingsDB";
 
                 HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringcontent);
 
@@ -112,7 +112,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                 var stringcontent = new StringContent(package, Encoding.UTF8, "application/json");
 
-                var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/PostUpdateSettingsDB/1";
+                var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/PostUpdateSettingsDB";
 
                 HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringcontent);
 
@@ -176,7 +176,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                 var stringcontent = new StringContent(package, Encoding.UTF8, "application/json");
 
-                var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/PostUpdateSettingsDB/1";
+                var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/PostUpdateSettingsDB";
 
                 HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringcontent);
 
@@ -229,7 +229,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+                
             }
             else
             {
@@ -262,7 +262,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+                
             }
             else
             {
@@ -295,6 +295,11 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
+                if (ServerErrorLogs.Collection.Count > 1)
+                {
+                    ServerErrorLogs.Collection.Clear();
+                }
+
                 var json = await response.Content.ReadAsStringAsync();
 
                 var objects = JsonConvert.DeserializeObject<List<serverErrorObj>>(json);
@@ -335,7 +340,39 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+                if (installHistoryLogs.Collection.Count > 1)
+                {
+                    installHistoryLogs.Collection.Clear();
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<installLogObj>>(json);
+
+                try
+                {
+                    foreach (var obj in objects)
+                    {
+                        if (obj.EnrolledInstanceType.Equals(2))
+                        {
+                            this.Dispatcher.Invoke(() => installHistoryLogs.Collection.Add(new installHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Prod", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
+                        }
+                        else if (obj.EnrolledInstanceType.Equals(3))
+                        {
+                            this.Dispatcher.Invoke(() => installHistoryLogs.Collection.Add(new installHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Test", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
+                        }
+                        else if (obj.EnrolledInstanceType.Equals(4))
+                        {
+                            this.Dispatcher.Invoke(() => installHistoryLogs.Collection.Add(new installHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Train", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
+                        }
+
+                        //&& installHistoryLogs.Collection.Where(a => a.Equals(obj.ClientName)
+                    }
+                }
+                catch(Exception ex)
+                {
+
+                }
             }
             else
             {
@@ -368,7 +405,37 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+                if (uninstallHistoryLogs.Collection.Count > 1)
+                {
+                    uninstallHistoryLogs.Collection.Clear();
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<uninstallLogObj>>(json);
+
+                try
+                {
+                    foreach (var obj in objects)
+                    {
+                        if (obj.EnrolledInstanceType.Equals(2))
+                        {
+                            this.Dispatcher.Invoke(() => uninstallHistoryLogs.Collection.Add(new uninstallHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Prod", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
+                        }
+                        else if (obj.EnrolledInstanceType.Equals(3))
+                        {
+                            this.Dispatcher.Invoke(() => uninstallHistoryLogs.Collection.Add(new uninstallHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Test", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
+                        }
+                        else if (obj.EnrolledInstanceType.Equals(4))
+                        {
+                            this.Dispatcher.Invoke(() => uninstallHistoryLogs.Collection.Add(new uninstallHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Train", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
+                        }
+                    }
+                }
+                catch(Exception ex)
+                {
+
+                }
             }
             else
             {
@@ -402,4 +469,20 @@ internal class trelloConfigObj
     public string TrelloKey { get; set; }
     public string TrelloToken { get; set; }
     public string TrelloError { get; set; }
+}
+
+internal class installLogObj
+{
+    public string ClientName { get; set; }
+    public int EnrolledInstanceType { get; set; }
+    public string Action { get; set; }
+    public DateTime TransactionDate_Time { get; set; }
+}
+
+internal class uninstallLogObj
+{
+    public string ClientName { get; set; }
+    public int EnrolledInstanceType { get; set; }
+    public string Action { get; set; }
+    public DateTime TransactionDate_Time { get; set; }
 }

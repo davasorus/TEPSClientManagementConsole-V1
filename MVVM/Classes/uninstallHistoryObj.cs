@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TEPSClientManagementConsole_V1.MVVM.Classes
 {
-    public class installHistoryObj : INotifyPropertyChanged
+    public class uninstallHistoryObj : INotifyPropertyChanged
     {
         private string _clientName;
         private string _enrolledInstance;
