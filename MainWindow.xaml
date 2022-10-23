@@ -61,21 +61,33 @@
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Command="{Binding customOptionsViewCommand}"
-                        Click="Button_Click_1" Height="50" FontSize="18" Content="Deployments"
+                        Height="50" FontSize="18" Content="Deployments"
                         ToolTip="Allows for managing software and pre reqs on remote machines"
                         ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Command="{Binding customOptionsViewCommand}"
+                        Click="Button_Click_1" Height="50" FontSize="18" Content="Deployment History"
+                        ToolTip="Allows for managing software and pre reqs on remote machines"
+                        ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Content="Error History" Height="50" FontSize="18"
+                            Command="{Binding preReqCheckViewCommand}" Click="Button_Click_3"
+                            ToolTip="Allows the checking of Pre Req Status (Installed or Uninstalled)"
+                            ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Command="{Binding clientMaintenanceViewCommand}"
+                        Height="50" FontSize="18" Content="Client Maintenance"
+                        ToolTip="Allows for managing clients"
+                        ToolTipService.InitialShowDelay="450" Click="Button_Click_5" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Content="Configuration" Height="50" FontSize="18"
                             Command="{Binding configurationViewCommand}" Click="Button_Click_2"
                                 ToolTip="Allows for configuring information about each environment"
                                                ToolTipService.InitialShowDelay="450" />
-                    </materialDesign:Card>
-                    <materialDesign:Card Margin="5,1,1,1">
-                        <Button Content="Something" Height="50" FontSize="18"
-                            Command="{Binding preReqCheckViewCommand}" Click="Button_Click_3"
-                            ToolTip="Allows the checking of Pre Req Status (Installed or Uninstalled)"
-                            ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button x:Name="utilityUpdateBtn" Content="Update History" Height="50" FontSize="18"

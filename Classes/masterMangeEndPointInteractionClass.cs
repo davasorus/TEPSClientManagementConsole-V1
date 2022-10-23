@@ -1,15 +1,18 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using TEPSClientManagementConsole_V1.MVVM.Classes;
 using TEPSClientManagementConsole_V1.MVVM.ViewModel;
 
 namespace TEPSClientManagementConsole_V1.Classes
 {
-    internal class masterMangeEndPointInteractionClass
+    internal class masterMangeEndPointInteractionClass : UserControl
     {
         private loggingClass loggingClass = new loggingClass();
 
@@ -292,7 +295,22 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+                //loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<serverErrorObj>>(json);
+
+                foreach (var obj in objects)
+                {
+                    string date = obj.Date.ToString();
+
+                    var parsedDate = DateTime.Parse(date);
+
+                    DateTime jsonDate = parsedDate.ToLocalTime();
+
+                    this.Dispatcher.Invoke(() => ServerErrorLogs.Collection.Add(new serverErrorObj { ClientName = obj.ClientName, Message = obj.Message, Date = jsonDate }));
+                }
             }
             else
             {

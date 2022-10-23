@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using TEPSClientManagementConsole_V1.Classes;
 using TEPSClientManagementConsole_V1.MVVM.Classes;
-using TEPSClientManagementConsole_V1.MVVM.View;
 using TEPSClientManagementConsole_V1.MVVM.ViewModel;
 
 namespace TEPSClientManagementConsole_V1
@@ -98,6 +97,11 @@ namespace TEPSClientManagementConsole_V1
             formNameLbl.Text = "Utility Updater";
         }
 
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            formNameLbl.Text = "Client Maintenance";
+        }
+
         private void mouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             DragMove();
@@ -113,7 +117,7 @@ namespace TEPSClientManagementConsole_V1
             this.WindowState = System.Windows.WindowState.Minimized;
         }
 
-        #endregion
+        #endregion button clicks
 
         #region functions
 
@@ -140,6 +144,6 @@ namespace TEPSClientManagementConsole_V1
             }
         }
 
-        #endregion
+        #endregion functions
     }
 }
