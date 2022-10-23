@@ -9,6 +9,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
     public partial class configurationView : UserControl
     {
         private jsonClass jsonClass = new jsonClass();
+        private masterMangeEndPointInteractionClass masterMangeEndPointInteractionClass = new masterMangeEndPointInteractionClass();
 
         public configurationView()
         {
@@ -18,14 +19,22 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
         private void prodEnvironmentConfigBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             jsonClass.saveStartupSettings();
+
+            masterMangeEndPointInteractionClass.PostUpdateSettingProd();
         }
 
         private void TrainEnvironmentConfigBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            jsonClass.saveStartupSettings();
+
+            //masterMangeEndPointInteractionClass.PostUpdateSettingTest();
         }
 
         private void TestEnvironmentConfigBtn_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            jsonClass.saveStartupSettings();
+
+            //masterMangeEndPointInteractionClass.PostUpdateSettingTrain();
         }
     }
 }
