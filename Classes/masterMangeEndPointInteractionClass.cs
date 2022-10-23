@@ -295,21 +295,13 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                //loggingClass.logEntryWriter(response.Content.ReadAsStringAsync().Result, "info");
-
                 var json = await response.Content.ReadAsStringAsync();
 
                 var objects = JsonConvert.DeserializeObject<List<serverErrorObj>>(json);
 
                 foreach (var obj in objects)
                 {
-                    string date = obj.Date.ToString();
-
-                    var parsedDate = DateTime.Parse(date);
-
-                    DateTime jsonDate = parsedDate.ToLocalTime();
-
-                    this.Dispatcher.Invoke(() => ServerErrorLogs.Collection.Add(new serverErrorObj { ClientName = obj.ClientName, Message = obj.Message, Date = jsonDate }));
+                    this.Dispatcher.Invoke(() => ServerErrorLogs.Collection.Add(new serverErrorObj { ClientName = obj.ClientName, ErrorMessage = obj.ErrorMessage, ErrorDate_Time = obj.ErrorDate_Time }));
                 }
             }
             else

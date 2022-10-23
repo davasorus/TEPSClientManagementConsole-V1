@@ -8,11 +8,13 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
         public relayCommand configurationViewCommand { get; set; }
         public relayCommand inAppLogReaderViewCommand { get; set; }
         public relayCommand clientMaintenanceViewCommand { get; set; }
+        public relayCommand serverErrorLogViewCommand { get; set; }
 
         public dashboardViewModel dashboardVM { get; set; }
         public configurationViewModel configurationVM { get; set; }
         public inAppLogReaderViewModel inAppLogReaderVM { get; set; }
         public clientMaintenenaceViewModel clientMaintenanceVM { get; set; }
+        public serverErrorLogViewModel serverErrorLogVM { get; set; }
 
         private object _currentView;
 
@@ -32,6 +34,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             configurationVM = new configurationViewModel();
             inAppLogReaderVM = new inAppLogReaderViewModel();
             clientMaintenanceVM = new clientMaintenenaceViewModel();
+            serverErrorLogVM = new serverErrorLogViewModel();
 
             CurrentView = dashboardVM;
 
@@ -53,6 +56,11 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             clientMaintenanceViewCommand = new relayCommand(o =>
             {
                 CurrentView = clientMaintenanceVM;
+            });
+
+            serverErrorLogViewCommand = new relayCommand(o =>
+            {
+                CurrentView = serverErrorLogVM;
             });
         }
     }

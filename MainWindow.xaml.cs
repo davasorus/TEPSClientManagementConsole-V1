@@ -102,6 +102,11 @@ namespace TEPSClientManagementConsole_V1
             formNameLbl.Text = "Client Maintenance";
         }
 
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            formNameLbl.Text = "Server Error Log";
+        }
+
         private void mouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             DragMove();

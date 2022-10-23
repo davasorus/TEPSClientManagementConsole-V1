@@ -28,6 +28,10 @@
             <DataTemplate DataType="{x:Type viewModel:clientMaintenenaceViewModel}">
                 <view:clientMaintenanceView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:serverErrorLogViewModel}">
+                <view:serverErrorLogView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

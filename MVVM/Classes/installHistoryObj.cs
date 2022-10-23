@@ -1,14 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TEPSClientManagementConsole_V1.MVVM.Classes
 {
-    public class serverErrorObj : INotifyPropertyChanged
+    public class installHistoryObj : INotifyPropertyChanged
     {
         private string _clientName;
-        private string _logMess;
-        private DateTime _logDateTime;
+        private string _enrolledInstance;
+        private string _action;
+        private DateTime _transactionDate_Time;
 
         public string ClientName
         {
@@ -23,21 +28,21 @@ namespace TEPSClientManagementConsole_V1.MVVM.Classes
 
         public string ErrorMessage
         {
-            get { return _logMess; }
+            get { return _enrolledInstance; }
             set
             {
-                _logMess = value;
+                _enrolledInstance = value;
 
                 OnPropertyChanged();
             }
         }
 
-        public DateTime ErrorDate_Time
+        public DateTime TransactionDate_Time
         {
-            get { return _logDateTime; }
+            get { return _transactionDate_Time; }
             set
             {
-                _logDateTime = value;
+                _transactionDate_Time = value;
 
                 OnPropertyChanged();
             }

@@ -67,15 +67,15 @@
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Command="{Binding customOptionsViewCommand}"
-                        Click="Button_Click_1" Height="50" FontSize="18" Content="Deployment History"
+                        Height="50" FontSize="18" Content="Deployment History"
                         ToolTip="Allows for managing software and pre reqs on remote machines"
-                        ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                        ToolTipService.InitialShowDelay="450" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Content="Error History" Height="50" FontSize="18"
-                            Command="{Binding preReqCheckViewCommand}" Click="Button_Click_3"
+                            Command="{Binding serverErrorLogViewCommand}"
                             ToolTip="Allows the checking of Pre Req Status (Installed or Uninstalled)"
-                            ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                            ToolTipService.InitialShowDelay="450" Click="Button_Click_6" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Command="{Binding clientMaintenanceViewCommand}"
