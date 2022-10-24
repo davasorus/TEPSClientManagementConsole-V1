@@ -20,6 +20,22 @@
             <DataTemplate DataType="{x:Type viewModel:configurationViewModel}">
                 <view:configurationView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:inAppLogReaderViewModel}">
+                <view:inAppLogReaderView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:clientMaintenenaceViewModel}">
+                <view:clientMaintenanceView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:serverErrorLogViewModel}">
+                <view:serverErrorLogView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:deploymentHistoryViewModel}">
+                <view:deploymentHistoryView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

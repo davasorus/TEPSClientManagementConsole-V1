@@ -13,7 +13,7 @@
     <Authors>Sean Davitt</Authors>
     <Company>Tyler Technologies</Company>
     <Description>Console for interacting with the TEPS Client Management System</Description>
-    <AssemblyVersion>1.22.10.01</AssemblyVersion>
+    <AssemblyVersion>1.22.10.02</AssemblyVersion>
     <UseWindowsForms>True</UseWindowsForms>
     <AssemblyName>TEPS Client Management Console</AssemblyName>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
@@ -32,10 +32,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MVVM\Model\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="DataGridExtensions" Version="2.5.14" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-beta.514" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.9" />
     <PackageReference Include="MaterialDesignExtensions" Version="3.3.0" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />

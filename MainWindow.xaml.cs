@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using TEPSClientManagementConsole_V1.Classes;
 using TEPSClientManagementConsole_V1.MVVM.Classes;
+using TEPSClientManagementConsole_V1.MVVM.ViewModel;
 
 namespace TEPSClientManagementConsole_V1
 {
@@ -14,10 +16,13 @@ namespace TEPSClientManagementConsole_V1
     {
         private loggingClass loggingClass = new loggingClass();
         private jsonClass jsonClass = new jsonClass();
+        private masterMangeEndPointInteractionClass masterMangeEndPointInteractionClass = new masterMangeEndPointInteractionClass();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            loggingClass.initializeNLogLogger();
 
             Loaded += MainWindow_Loaded;
 
@@ -38,6 +43,8 @@ namespace TEPSClientManagementConsole_V1
 
             jsonClass.initialLoadofJSON();
 
+            Task task1 = Task.Factory.StartNew(() => apiLoadData());
+
             //preReqStatus.loadDefaultStatuses();
 
             //Task task1 = Task.Factory.StartNew(() => apiClass.updateAPICheck());
@@ -46,6 +53,24 @@ namespace TEPSClientManagementConsole_V1
 
             //Task task3 = Task.Factory.StartNew(() => apiClass.getAll());
         }
+
+        public async Task apiLoadData()
+        {
+            if (!String.IsNullOrEmpty(configurationViewModel._prodMasterServiceServer))
+            {
+                await masterMangeEndPointInteractionClass.GetAllClients();
+
+                await masterMangeEndPointInteractionClass.GetAllCatalogs();
+
+                await masterMangeEndPointInteractionClass.GetTop1000Errors();
+
+                await masterMangeEndPointInteractionClass.GetInstallLogs();
+
+                await masterMangeEndPointInteractionClass.GetuninstallLogs();
+            }
+        }
+
+        #region button clicks
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -72,6 +97,16 @@ namespace TEPSClientManagementConsole_V1
             formNameLbl.Text = "Utility Updater";
         }
 
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            formNameLbl.Text = "Client Maintenance";
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            formNameLbl.Text = "Server Error Log";
+        }
+
         private void mouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             DragMove();
@@ -86,6 +121,10 @@ namespace TEPSClientManagementConsole_V1
         {
             this.WindowState = System.Windows.WindowState.Minimized;
         }
+
+        #endregion button clicks
+
+        #region functions
 
         private void updateSnackBar(string message)
         {
@@ -109,5 +148,7 @@ namespace TEPSClientManagementConsole_V1
                 snackbarQues.Collection.RemoveAt(medina);
             }
         }
+
+        #endregion functions
     }
 }
