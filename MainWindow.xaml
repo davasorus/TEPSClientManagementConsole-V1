@@ -5,7 +5,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:TEPSClientManagementConsole_V1.MVVM.ViewModel"
-        mc:Ignorable="d" Height="1080" Width="1920" WindowStyle="None"
+        mc:Ignorable="d" Height="680" Width="1520" WindowStyle="None"
         AllowsTransparency="True"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -18,6 +18,9 @@
     </Window.DataContext>
 
     <materialDesign:DialogHost>
+        <materialDesign:DialogHost.DialogContent>
+            <viewModel:inAppLogReaderViewModel />
+        </materialDesign:DialogHost.DialogContent>
 
         <Border>
 
@@ -58,21 +61,33 @@
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Command="{Binding customOptionsViewCommand}"
-                        Click="Button_Click_1" Height="50" FontSize="18" Content="Deployments"
+                        Height="50" FontSize="18" Content="Deployments"
                         ToolTip="Allows for managing software and pre reqs on remote machines"
                         ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Command="{Binding deploymentHistoryViewCommand}"
+                        Height="50" FontSize="18" Content="Deployment History"
+                        ToolTip="Allows for managing software and pre reqs on remote machines"
+                        ToolTipService.InitialShowDelay="450" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Content="Error History" Height="50" FontSize="18"
+                            Command="{Binding serverErrorLogViewCommand}"
+                            ToolTip="Allows the checking of Pre Req Status (Installed or Uninstalled)"
+                            ToolTipService.InitialShowDelay="450" Click="Button_Click_6" />
+                    </materialDesign:Card>
+                    <materialDesign:Card Margin="5,1,1,1">
+                        <Button Command="{Binding clientMaintenanceViewCommand}"
+                        Height="50" FontSize="18" Content="Client Maintenance"
+                        ToolTip="Allows for managing clients"
+                        ToolTipService.InitialShowDelay="450" Click="Button_Click_5" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Content="Configuration" Height="50" FontSize="18"
                             Command="{Binding configurationViewCommand}" Click="Button_Click_2"
                                 ToolTip="Allows for configuring information about each environment"
                                                ToolTipService.InitialShowDelay="450" />
-                    </materialDesign:Card>
-                    <materialDesign:Card Margin="5,1,1,1">
-                        <Button Content="Something" Height="50" FontSize="18"
-                            Command="{Binding preReqCheckViewCommand}" Click="Button_Click_3"
-                            ToolTip="Allows the checking of Pre Req Status (Installed or Uninstalled)"
-                            ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button x:Name="utilityUpdateBtn" Content="Update History" Height="50" FontSize="18"
@@ -105,14 +120,14 @@
 
                 <Button x:Name="closeBtn" Grid.Column="2"
                     Content="{materialDesign:PackIcon close,Size=24}" HorizontalAlignment="Left"
-                    Margin="400,-1,0,0" VerticalAlignment="Top"
+                    Margin="350,-1,0,0" VerticalAlignment="Top"
                     Background="{x:Null}" BorderBrush="{x:Null}"
                     Foreground="White" Click="closeBtn_Click"
                         ToolTip="Close" ToolTipService.InitialShowDelay="450" />
                 <Button x:Name="minButton" Grid.Column="2"
                     Content="{materialDesign:PackIcon WindowMinimize ,Size=24}"
                     HorizontalAlignment="Left"
-                    Margin="353,0,0,0" VerticalAlignment="Top"
+                    Margin="303,0,0,0" VerticalAlignment="Top"
                     Background="{x:Null}" BorderBrush="{x:Null}"
                     Foreground="White" Click="minButton_Click" Height="30" Width="48"
                         ToolTip="Minimize" ToolTipService.InitialShowDelay="450" />
@@ -125,7 +140,7 @@
                     VerticalAlignment="Top" Background="{x:Null}"
                     BorderBrush="{x:Null}" Height="44"
                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                    Margin="400,-6,0,0" ToolTip="Display Notification"
+                    Margin="100,-6,0,0" ToolTip="Display Notification"
                                       ToolTipService.InitialShowDelay="450" />
             </Grid>
         </Border>
