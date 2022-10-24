@@ -327,6 +327,9 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
+                var json = await response.Content.ReadAsStringAsync();
+
+                //var objects = JsonConvert.DeserializeObject<List<clientConfigObj>>(json);
             }
             else
             {
@@ -429,8 +432,6 @@ namespace TEPSClientManagementConsole_V1.Classes
                         {
                             this.Dispatcher.Invoke(() => installHistoryLogs.Collection.Add(new installHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Train", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
                         }
-
-                        //&& installHistoryLogs.Collection.Where(a => a.Equals(obj.ClientName)
                     }
                 }
                 catch (Exception ex)
@@ -559,5 +560,5 @@ internal class clientConfigObj
     public object MostRecentInstallDate_Time { get; set; }
     public int EnrolledInstanceType_ID { get; set; }
     public DateTime InitialCreationDate_Time { get; set; }
-    public DateTime Date_TimeModified { get; set; }
+    public DateTime? Date_TimeModified { get; set; }
 }
