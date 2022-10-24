@@ -265,7 +265,6 @@ namespace TEPSClientManagementConsole_V1.Classes
                         }
                         catch (Exception ex)
                         {
-
                         }
 
                         if (obj.EnrolledInstanceType_ID.Equals(2))

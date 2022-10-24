@@ -30,11 +30,11 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:serverErrorLogViewModel}">
-                <view:serverErrorLogView/>
+                <view:serverErrorLogView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:deploymentHistoryViewModel}">
-                <view:deploymentHistoryView/>
+                <view:deploymentHistoryView />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
