@@ -1,6 +1,7 @@
 ﻿using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using TEPSClientManagementConsole_V1.MVVM.Classes;
@@ -18,7 +19,7 @@ namespace TEPSClientManagementConsole_V1.Classes
         //adds log messages to log collection (which is then seen via the internal log viewer view
         public void logEntryWriter(string logMessage, string level)
         {
-            //this.Dispatcher.Invoke(() => logs.Collection.Add(new loggingObj { Message = logMessage, Date = DateTime.Now }));
+            this.Dispatcher.Invoke(() => logs.Collection.Add(new loggingObj { Message = logMessage, Date = DateTime.Now }));
 
             nLogLogger(logMessage, level);
         }
