@@ -229,9 +229,19 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                if (installHistoryLogs.Collection.Count > 1)
+                if (prodClientConfigObjs.Collection.Count > 1)
                 {
-                    installHistoryLogs.Collection.Clear();
+                    prodClientConfigObjs.Collection.Clear();
+                }
+
+                if (testClientConfigObjs.Collection.Count > 1)
+                {
+                    testClientConfigObjs.Collection.Clear();
+                }
+
+                if (prodClientConfigObjs.Collection.Count > 1)
+                {
+                    trainClientConfigObjs.Collection.Clear();
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
