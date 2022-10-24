@@ -229,7 +229,63 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                
+                if (installHistoryLogs.Collection.Count > 1)
+                {
+                    installHistoryLogs.Collection.Clear();
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<clientConfigObj>>(json);
+
+                foreach (var obj in objects)
+                {
+                    try
+                    {
+                        string lastHeathTime = "";
+                        string InstalledCatalog_ID = "";
+                        string DateTimeModified = "";
+
+                        try
+                        {
+                            if (obj.MostRecentHealthCheckDate_Time != null)
+                            {
+                                lastHeathTime = obj.MostRecentHealthCheckDate_Time.ToString();
+                            }
+
+                            if (!String.IsNullOrEmpty(obj.InstalledCatalog_ID.ToString()))
+                            {
+                                InstalledCatalog_ID = obj.InstalledCatalog_ID.ToString();
+                            }
+
+                            if (!String.IsNullOrEmpty(obj.Date_TimeModified.ToString()))
+                            {
+                                DateTimeModified = obj.Date_TimeModified.ToString();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
+                        if (obj.EnrolledInstanceType_ID.Equals(2))
+                        {
+                            this.Dispatcher.Invoke(() => prodClientConfigObjs.Collection.Add(new prodClientConfigObj { ClientName = obj.ClientName, PassedHeathCheck = obj.PassedHealthCheck, LastHeathCheckDate_Time = lastHeathTime, InstalledCatalog_ID = InstalledCatalog_ID, EnrolledInstanceType_ID = "Prod", Date_TimeModified = DateTimeModified }));
+                        }
+                        else if (obj.EnrolledInstanceType_ID.Equals(3))
+                        {
+                            this.Dispatcher.Invoke(() => testClientConfigObjs.Collection.Add(new testClientConfigObj { ClientName = obj.ClientName, PassedHeathCheck = obj.PassedHealthCheck, LastHeathCheckDate_Time = lastHeathTime, InstalledCatalog_ID = InstalledCatalog_ID, EnrolledInstanceType_ID = "Test", Date_TimeModified = DateTimeModified }));
+                        }
+                        else if (obj.EnrolledInstanceType_ID.Equals(4))
+                        {
+                            this.Dispatcher.Invoke(() => trainClientConfigObjs.Collection.Add(new trainClientConfigObj { ClientName = obj.ClientName, PassedHeathCheck = obj.PassedHealthCheck, LastHeathCheckDate_Time = lastHeathTime, InstalledCatalog_ID = InstalledCatalog_ID, EnrolledInstanceType_ID = "Train", Date_TimeModified = DateTimeModified }));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        loggingClass.logEntryWriter(ex.ToString(), "error");
+                    }
+                }
             }
             else
             {
@@ -262,7 +318,6 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                
             }
             else
             {
@@ -369,9 +424,8 @@ namespace TEPSClientManagementConsole_V1.Classes
                         //&& installHistoryLogs.Collection.Where(a => a.Equals(obj.ClientName)
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-
                 }
             }
             else
@@ -432,9 +486,8 @@ namespace TEPSClientManagementConsole_V1.Classes
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-
                 }
             }
             else
@@ -485,4 +538,17 @@ internal class uninstallLogObj
     public int EnrolledInstanceType { get; set; }
     public string Action { get; set; }
     public DateTime TransactionDate_Time { get; set; }
+}
+
+internal class clientConfigObj
+{
+    public int Id { get; set; }
+    public string ClientName { get; set; }
+    public bool PassedHealthCheck { get; set; }
+    public object MostRecentHealthCheckDate_Time { get; set; }
+    public object InstalledCatalog_ID { get; set; }
+    public object MostRecentInstallDate_Time { get; set; }
+    public int EnrolledInstanceType_ID { get; set; }
+    public DateTime InitialCreationDate_Time { get; set; }
+    public DateTime Date_TimeModified { get; set; }
 }

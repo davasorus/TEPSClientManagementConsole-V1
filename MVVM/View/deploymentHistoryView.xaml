@@ -5,6 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:TEPSClientManagementConsole_V1.MVVM.Model"
+             xmlns:dgx="clr-namespace:DataGridExtensions;assembly=DataGridExtensions"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -25,7 +26,7 @@
                       VerticalScrollBarVisibility="Auto">
                         <DataGrid ItemsSource="{Binding logsCollection}"
                           CanUserAddRows="False" SelectionUnit="FullRow"
-                          SelectionMode="Extended" FontSize="16" />
+                          SelectionMode="Extended" FontSize="16" dgx:DataGridFilter.IsAutoFilterEnabled="True"/>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
@@ -35,7 +36,7 @@
                       VerticalScrollBarVisibility="Auto">
                         <DataGrid ItemsSource="{Binding logsCollection}"
                           CanUserAddRows="False" SelectionUnit="FullRow"
-                          SelectionMode="Extended" FontSize="16" />
+                          SelectionMode="Extended" FontSize="16" dgx:DataGridFilter.IsAutoFilterEnabled="True"/>
                     </ScrollViewer>
                 </Grid>
             </TabItem>
