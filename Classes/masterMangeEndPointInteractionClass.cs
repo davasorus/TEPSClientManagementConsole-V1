@@ -330,6 +330,11 @@ namespace TEPSClientManagementConsole_V1.Classes
                 var json = await response.Content.ReadAsStringAsync();
 
                 var objects = JsonConvert.DeserializeObject<List<installCatalogObj>>(json);
+
+                foreach(var obj in objects)
+                {
+
+                }
             }
             else
             {
