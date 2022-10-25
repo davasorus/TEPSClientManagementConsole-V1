@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using TEPSClientManagementConsole_V1.Classes;
 using TEPSClientManagementConsole_V1.MVVM.ViewModel;
+using System;
 
 namespace TEPSClientManagementConsole_V1.MVVM.View
 {
