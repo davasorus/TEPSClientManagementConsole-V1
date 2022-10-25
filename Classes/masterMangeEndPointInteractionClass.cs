@@ -329,7 +329,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 var json = await response.Content.ReadAsStringAsync();
 
-                //var objects = JsonConvert.DeserializeObject<List<clientConfigObj>>(json);
+                var objects = JsonConvert.DeserializeObject<List<installCatalogObj>>(json);
             }
             else
             {
@@ -561,4 +561,32 @@ internal class clientConfigObj
     public int EnrolledInstanceType_ID { get; set; }
     public DateTime InitialCreationDate_Time { get; set; }
     public DateTime? Date_TimeModified { get; set; }
+}
+
+internal class installCatalogObj
+{
+    public int Id {get; set;}
+    public INT Client_ID {get; set;} 
+    public INT SQLCompact3532_Installed  {get; set;} 
+    public INT SQLCompact3564_Installed  {get; set;} 
+    public INT SQLCompact0464_Installed  {get; set;} 
+    public INT SQLCLR200832_Installed  {get; set;} 
+    public INT SQLCLR200864_Installed  {get; set;} 
+    public INT ScenePD_Installed  {get; set;} 
+    public INT Updater_Installed  {get; set;} 
+    public INT GISComponents32_Installed  {get; set;} 
+    public INT GISComponents64_Installed  {get; set;} 
+    public INT DotNet_Installed  {get; set;} 
+    public INT SQLCLR201232_Installed   {get; set;} 
+    public INT SQLCLR201264_Installed  {get; set;} 
+    public INT DBProvider_Installed  {get; set;} 
+    public INT LERMS_Installed  {get; set;} 
+    public INT CAD_Installed  {get; set;} 
+    public INT CADObserver_Installed  {get; set;} 
+    public INT FireMobile_Installed  {get; set;} 
+    public INT LEMobile_Installed  {get; set;} 
+    public INT MobileMerge_Installed  {get; set;} 
+    public string MobileAgencyConfiguration  {get; set;}  
+    public DateTime? InitialInstallDate_Time  {get; set;}  
+    public DateTime? ModifiedDate_time  {get; set;} 
 }
