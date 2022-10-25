@@ -21,18 +21,18 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             jsonClass.saveStartupSettings();
 
             masterMangeEndPointInteractionClass.PostUpdateSettingProd();
-            
+
             if (!String.IsNullOrEmpty(configurationViewModel._prodMasterServiceServer))
             {
-                await masterMangeEndPointInteractionClass.GetAllClients();
+                masterMangeEndPointInteractionClass.GetAllClients();
 
-                await masterMangeEndPointInteractionClass.GetAllCatalogs();
+                 masterMangeEndPointInteractionClass.GetAllCatalogs();
 
-                await masterMangeEndPointInteractionClass.GetTop1000Errors();
+                 masterMangeEndPointInteractionClass.GetTop1000Errors();
 
-                await masterMangeEndPointInteractionClass.GetInstallLogs();
+                 masterMangeEndPointInteractionClass.GetInstallLogs();
 
-                await masterMangeEndPointInteractionClass.GetuninstallLogs();
+                 masterMangeEndPointInteractionClass.GetuninstallLogs();
             }
         }
 
