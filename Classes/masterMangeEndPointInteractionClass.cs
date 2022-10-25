@@ -566,26 +566,26 @@ internal class clientConfigObj
 internal class installCatalogObj
 {
     public int Id {get; set;}
-    public INT Client_ID {get; set;} 
-    public INT SQLCompact3532_Installed  {get; set;} 
-    public INT SQLCompact3564_Installed  {get; set;} 
-    public INT SQLCompact0464_Installed  {get; set;} 
-    public INT SQLCLR200832_Installed  {get; set;} 
-    public INT SQLCLR200864_Installed  {get; set;} 
-    public INT ScenePD_Installed  {get; set;} 
-    public INT Updater_Installed  {get; set;} 
-    public INT GISComponents32_Installed  {get; set;} 
-    public INT GISComponents64_Installed  {get; set;} 
-    public INT DotNet_Installed  {get; set;} 
-    public INT SQLCLR201232_Installed   {get; set;} 
-    public INT SQLCLR201264_Installed  {get; set;} 
-    public INT DBProvider_Installed  {get; set;} 
-    public INT LERMS_Installed  {get; set;} 
-    public INT CAD_Installed  {get; set;} 
-    public INT CADObserver_Installed  {get; set;} 
-    public INT FireMobile_Installed  {get; set;} 
-    public INT LEMobile_Installed  {get; set;} 
-    public INT MobileMerge_Installed  {get; set;} 
+    public int Client_ID {get; set;} 
+    public int SQLCompact3532_Installed  {get; set;} 
+    public int SQLCompact3564_Installed  {get; set;} 
+    public int SQLCompact0464_Installed  {get; set;} 
+    public int SQLCLR200832_Installed  {get; set;} 
+    public int SQLCLR200864_Installed  {get; set;} 
+    public int ScenePD_Installed  {get; set;} 
+    public int Updater_Installed  {get; set;} 
+    public int GISComponents32_Installed  {get; set;} 
+    public int GISComponents64_Installed  {get; set;} 
+    public int DotNet_Installed  {get; set;} 
+    public int SQLCLR201232_Installed   {get; set;} 
+    public int SQLCLR201264_Installed  {get; set;} 
+    public int DBProvider_Installed  {get; set;} 
+    public int LERMS_Installed  {get; set;} 
+    public int CAD_Installed  {get; set;} 
+    public int CADObserver_Installed  {get; set;} 
+    public int FireMobile_Installed  {get; set;} 
+    public int LEMobile_Installed  {get; set;} 
+    public int MobileMerge_Installed  {get; set;} 
     public string MobileAgencyConfiguration  {get; set;}  
     public DateTime? InitialInstallDate_Time  {get; set;}  
     public DateTime? ModifiedDate_time  {get; set;} 
