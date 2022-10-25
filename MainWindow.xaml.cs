@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Timers;
 using TEPSClientManagementConsole_V1.Classes;
 using TEPSClientManagementConsole_V1.MVVM.Classes;
 using TEPSClientManagementConsole_V1.MVVM.ViewModel;
@@ -44,6 +45,14 @@ namespace TEPSClientManagementConsole_V1
             jsonClass.initialLoadofJSON();
 
             Task task1 = Task.Factory.StartNew(() => apiLoadData());
+
+             Timer updateCheckTimer = new Timer
+            {
+                Interval = 60000
+            };
+            updateCheckTimer.Start();
+
+            updateCheckTimer.Elapsed += updateCheckTimer_Elapsed;
 
             //preReqStatus.loadDefaultStatuses();
 
@@ -125,6 +134,11 @@ namespace TEPSClientManagementConsole_V1
         #endregion button clicks
 
         #region functions
+
+        private void updateCheckTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Task task1 = Task.Factory.StartNew(() => apiLoadData());
+        }
 
         private void updateSnackBar(string message)
         {
