@@ -10,3 +10,8 @@
  - CAD
  - LERMS
  - CAD Indcident Obvserver
+
+ ## Specifically interacts with the [Master Service](https://github.com/davasorus/TEPSClientInstallMasterService) which will forward messages onto the [Agent Service](https://github.com/davasorus/TEPSClientInstallServiceAgent) per machine
+  - The agent service will need to be deployed onto each machine on the customer environment. This can be done VIA group policy, manual install, or a pending automated process.
+  - The master service currently (as of 11/25/22) will need to be deployed manually, this should change to TEPS normal automated install/update process.
+  - The agent and master services have the ability to update themselves once deployed.
