@@ -362,17 +362,16 @@ namespace TEPSClientManagementConsole_V1.Classes
                     {
                         var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ID == obj.Id);
 
-                        if(client != null)
+                        if (client != null)
                         {
                             string machineName = client.ClientName;
 
                             string DateTimeModified = "";
 
-                            if (!String.IsNullOrEmpty(obj.ModifiedDate_time.ToString()))
+                            if (obj.ModifiedDate_time != null)
                             {
                                 DateTimeModified = obj.ModifiedDate_time.ToString();
                             }
-
 
                             this.Dispatcher.Invoke(() => installedCatalogObjs.Collection.Add(new installedCatalogObj
                             {
@@ -404,10 +403,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 }
                 catch (Exception ex)
                 {
-
                 }
-
-               
             }
             else
             {
@@ -643,28 +639,28 @@ internal class clientConfigObj
 
 internal class installCatalogObj
 {
-    public int Id {get; set;}
-    public int Client_ID {get; set;} 
-    public bool SQLCompact3532_Installed  {get; set;} 
-    public bool SQLCompact3564_Installed  {get; set;} 
-    public bool SQLCompact0464_Installed  {get; set;} 
-    public bool SQLCLR200832_Installed  {get; set;} 
-    public bool SQLCLR200864_Installed  {get; set;} 
-    public bool ScenePD_Installed  {get; set;} 
-    public bool Updater_Installed  {get; set;} 
-    public bool GISComponents32_Installed  {get; set;} 
-    public bool GISComponents64_Installed  {get; set;} 
-    public bool DotNet_Installed  {get; set;} 
-    public bool SQLCLR201232_Installed   {get; set;} 
-    public bool SQLCLR201264_Installed  {get; set;} 
-    public bool DBProvider_Installed  {get; set;} 
-    public bool LERMS_Installed  {get; set;} 
-    public bool CAD_Installed  {get; set;} 
-    public bool CADObserver_Installed  {get; set;} 
-    public bool FireMobile_Installed  {get; set;} 
-    public bool LEMobile_Installed  {get; set;} 
-    public bool MobileMerge_Installed  {get; set;} 
-    public string? MobileAgencyConfiguration  {get; set;}  
-    public DateTime? InitialInstallDate_Time  {get; set;}  
-    public DateTime? ModifiedDate_time  {get; set;} 
+    public int Id { get; set; }
+    public int Client_ID { get; set; }
+    public bool SQLCompact3532_Installed { get; set; }
+    public bool SQLCompact3564_Installed { get; set; }
+    public bool SQLCompact0464_Installed { get; set; }
+    public bool SQLCLR200832_Installed { get; set; }
+    public bool SQLCLR200864_Installed { get; set; }
+    public bool ScenePD_Installed { get; set; }
+    public bool Updater_Installed { get; set; }
+    public bool GISComponents32_Installed { get; set; }
+    public bool GISComponents64_Installed { get; set; }
+    public bool DotNet_Installed { get; set; }
+    public bool SQLCLR201232_Installed { get; set; }
+    public bool SQLCLR201264_Installed { get; set; }
+    public bool DBProvider_Installed { get; set; }
+    public bool LERMS_Installed { get; set; }
+    public bool CAD_Installed { get; set; }
+    public bool CADObserver_Installed { get; set; }
+    public bool FireMobile_Installed { get; set; }
+    public bool LEMobile_Installed { get; set; }
+    public bool MobileMerge_Installed { get; set; }
+    public string? MobileAgencyConfiguration { get; set; }
+    public DateTime? InitialInstallDate_Time { get; set; }
+    public DateTime? ModifiedDate_time { get; set; }
 }
