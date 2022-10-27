@@ -329,12 +329,21 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 var json = await response.Content.ReadAsStringAsync();
 
-                var objects = JsonConvert.DeserializeObject<List<installCatalogObj>>(json);
+                try
+                {
+                    var objects = JsonConvert.DeserializeObject<List<installCatalogObj>>(json);
 
-                foreach(var obj in objects)
+                    foreach (var obj in objects)
+                    {
+
+                    }
+                }
+                catch (Exception ex)
                 {
 
                 }
+
+               
             }
             else
             {
@@ -572,25 +581,25 @@ internal class installCatalogObj
 {
     public int Id {get; set;}
     public int Client_ID {get; set;} 
-    public int SQLCompact3532_Installed  {get; set;} 
-    public int SQLCompact3564_Installed  {get; set;} 
-    public int SQLCompact0464_Installed  {get; set;} 
-    public int SQLCLR200832_Installed  {get; set;} 
-    public int SQLCLR200864_Installed  {get; set;} 
-    public int ScenePD_Installed  {get; set;} 
-    public int Updater_Installed  {get; set;} 
-    public int GISComponents32_Installed  {get; set;} 
-    public int GISComponents64_Installed  {get; set;} 
-    public int DotNet_Installed  {get; set;} 
-    public int SQLCLR201232_Installed   {get; set;} 
-    public int SQLCLR201264_Installed  {get; set;} 
-    public int DBProvider_Installed  {get; set;} 
-    public int LERMS_Installed  {get; set;} 
-    public int CAD_Installed  {get; set;} 
-    public int CADObserver_Installed  {get; set;} 
-    public int FireMobile_Installed  {get; set;} 
-    public int LEMobile_Installed  {get; set;} 
-    public int MobileMerge_Installed  {get; set;} 
+    public bool SQLCompact3532_Installed  {get; set;} 
+    public bool SQLCompact3564_Installed  {get; set;} 
+    public bool SQLCompact0464_Installed  {get; set;} 
+    public bool SQLCLR200832_Installed  {get; set;} 
+    public bool SQLCLR200864_Installed  {get; set;} 
+    public bool ScenePD_Installed  {get; set;} 
+    public bool Updater_Installed  {get; set;} 
+    public bool GISComponents32_Installed  {get; set;} 
+    public bool GISComponents64_Installed  {get; set;} 
+    public bool DotNet_Installed  {get; set;} 
+    public bool SQLCLR201232_Installed   {get; set;} 
+    public bool SQLCLR201264_Installed  {get; set;} 
+    public bool DBProvider_Installed  {get; set;} 
+    public bool LERMS_Installed  {get; set;} 
+    public bool CAD_Installed  {get; set;} 
+    public bool CADObserver_Installed  {get; set;} 
+    public bool FireMobile_Installed  {get; set;} 
+    public bool LEMobile_Installed  {get; set;} 
+    public bool MobileMerge_Installed  {get; set;} 
     public string MobileAgencyConfiguration  {get; set;}  
     public DateTime? InitialInstallDate_Time  {get; set;}  
     public DateTime? ModifiedDate_time  {get; set;} 
