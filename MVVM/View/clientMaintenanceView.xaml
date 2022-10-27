@@ -22,7 +22,7 @@
 
     <materialDesign:DialogHost>
         <materialDesign:DialogHost.DialogContent>
-            <viewModel1:clientMaintenance_InstalledProductSubViewModel/>
+            <viewModel1:clientMaintenance_InstalledProductSubViewModel />
         </materialDesign:DialogHost.DialogContent>
 
         <Border>

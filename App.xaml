@@ -38,7 +38,7 @@
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type viewModel:clientMaintenance_InstalledProductSubViewModel}">
-                <view:clientMaintenance_InstalledProductSubView/>
+                <view:clientMaintenance_InstalledProductSubView />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

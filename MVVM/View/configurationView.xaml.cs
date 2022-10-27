@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using TEPSClientManagementConsole_V1.Classes;
 using TEPSClientManagementConsole_V1.MVVM.ViewModel;
-using System;
 
 namespace TEPSClientManagementConsole_V1.MVVM.View
 {
@@ -28,13 +28,13 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             {
                 masterMangeEndPointInteractionClass.GetAllClients();
 
-                 masterMangeEndPointInteractionClass.GetAllCatalogs();
+                masterMangeEndPointInteractionClass.GetAllCatalogs();
 
-                 masterMangeEndPointInteractionClass.GetTop1000Errors();
+                masterMangeEndPointInteractionClass.GetTop1000Errors();
 
-                 masterMangeEndPointInteractionClass.GetInstallLogs();
+                masterMangeEndPointInteractionClass.GetInstallLogs();
 
-                 masterMangeEndPointInteractionClass.GetuninstallLogs();
+                masterMangeEndPointInteractionClass.GetuninstallLogs();
             }
         }
 

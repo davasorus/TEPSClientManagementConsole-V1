@@ -2,10 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:TEPSClientManagementConsole_V1.MVVM.View"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
               TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              Background="{DynamicResource MaterialDesignPaper}"
@@ -16,8 +16,8 @@
         <Grid Margin="-1,0,1,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75" />
-                <RowDefinition Height="15*"/>
-                <RowDefinition Height="64*"/>
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="64*" />
             </Grid.RowDefinitions>
             <materialDesign:ColorZone materialDesign:ColorZoneAssist.Foreground="DarkGray"
                                       Grid.Column="1" Grid.ColumnSpan="2">
@@ -65,111 +65,111 @@
             </StackPanel>
             <StackPanel Grid.Row="2">
                 <TextBlock Text="Below are the known installed TEPS products on the above machine any sliders to the right are installed." HorizontalAlignment="Center"
-                           Margin="1,5,1,5"/>
+                           Margin="1,5,1,5" />
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical" Margin="5,1,1,1">
                         <Label Content="SQL Compact 3.5 32 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodSQL3532CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodSQL3532CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="SQL Compact 3.5 64 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodSQL3564CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodSQL3564CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="SQL Compact 4.0 64 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodSQL0464CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodSQL0464CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="GIS Components 32 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodGISComp32CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodGISComp32CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="GIS Components 64 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodGISComp64CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodGISComp64CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="5,1,1,1">
                         <Label Content="SQL SQL CLR 2008 32 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodSQLCLR0832CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodSQLCLR0832CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="SQL CLR 2008 64 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodSQLCLR0864CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodSQLCLR0864CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="SQL SQL CLR 2012 32 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodSQLCLR1232CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodSQLCLR1232CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="SQL CLR 2012 64 Bit" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodSQLCLR1264CompactState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodSQLCLR1264CompactState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="5,1,1,1">
                         <Label Content="DotNet" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodDotNetState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodDotNetState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="Updater" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodUpdaterState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodUpdaterState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="DB Provider" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodDBProviderState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodDBProviderState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="ScenePD" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodScenePDState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodScenePDState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="5,1,1,1">
                         <Label Content="LERMS" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodLERMSState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodLERMSState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="CAD" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodCADState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodCADState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="Fire Mobile" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodFireMobileState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodFireMobileState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="LE Mobile" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodLEMobilePDState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodLEMobilePDState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="Mobile Merge" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodMobileMergePDState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodMobileMergePDState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                     </StackPanel>
                     <StackPanel Orientation="Vertical" Margin="5,1,1,1">
                         <Label Content="CAD Incident Observer" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"
                                           HorizontalAlignment="Left" FontSize="16" Margin="5,1,1,1">
-                            <ToggleButton IsChecked="{Binding prodCADObserverState}" IsEnabled="False"/>
+                            <ToggleButton IsChecked="{Binding prodCADObserverState}" IsEnabled="False" />
                         </materialDesign:ColorZone>
                         <Label Content="Machine Name" HorizontalAlignment="Left" FontSize="16" Margin="0,5,1,1" />
                         <materialDesign:ColorZone Mode="PrimaryLight"

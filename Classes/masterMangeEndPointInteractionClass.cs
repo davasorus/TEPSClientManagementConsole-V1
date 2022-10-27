@@ -16,7 +16,7 @@ namespace TEPSClientManagementConsole_V1.Classes
     {
         private loggingClass loggingClass = new loggingClass();
 
-        #region update settings Table
+        #region update DB values
 
         public async Task PostUpdateSettingProd()
         {
@@ -209,7 +209,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             }
         }
 
-        #endregion update settings Table
+        #endregion update DB values
 
         public async Task GetAllClients()
         {

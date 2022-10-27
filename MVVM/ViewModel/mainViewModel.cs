@@ -1,5 +1,4 @@
 ﻿using TEPSClientManagementConsole_V1.Core;
-using TEPSClientManagementConsole_V1.MVVM.View;
 
 namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
 {

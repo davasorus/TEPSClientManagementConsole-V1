@@ -24,9 +24,9 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             this.Dispatcher.Invoke(new Action(() => prodClientHealthCheckDate.Text = clientMaintenenaceViewModel._healthCheckDateTime.ToString()));
             this.Dispatcher.Invoke(new Action(() => prodClientModifiedDateTime.Text = clientMaintenenaceViewModel._dateTimeModified.ToString()));
 
-            if(clientMaintenenaceViewModel._installedCatalogID.ToString() != null)
+            if (clientMaintenenaceViewModel._installedCatalogID.ToString() != null)
             {
-                prodClientInstallHistory.IsEnabled= true;
+                prodClientInstallHistory.IsEnabled = true;
             }
         }
 
@@ -82,7 +82,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
         {
             var catalog = installedCatalogObjs.Collection.FirstOrDefault(o => o.ClientName == prodClientMachineName.Text);
 
-            if(catalog != null)
+            if (catalog != null)
             {
                 if (!string.IsNullOrEmpty(catalog.ModifiedDate_time))
                 {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Timers;
+using System.Windows;
 using TEPSClientManagementConsole_V1.Classes;
 using TEPSClientManagementConsole_V1.MVVM.Classes;
 using TEPSClientManagementConsole_V1.MVVM.ViewModel;
@@ -46,7 +46,7 @@ namespace TEPSClientManagementConsole_V1
 
             Task task1 = Task.Factory.StartNew(() => apiLoadData());
 
-             Timer updateCheckTimer = new Timer
+            Timer updateCheckTimer = new Timer
             {
                 Interval = 60000
             };
