@@ -5,12 +5,24 @@ namespace TEPSClientManagementConsole_V1.MVVM.Classes
 {
     public class prodClientConfigObj : INotifyPropertyChanged
     {
+        private int _id;
         private string _clientName;
         private bool _passedHeathCheck;
         private string _lastHeathCheck;
         private string _installedCatalog_ID;
         private string _enrolledInstanceType_ID;
         private string _date_TimeModified;
+
+        public int ID
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+
+                OnPropertyChanged();
+            }
+        }
 
         public string ClientName
         {
