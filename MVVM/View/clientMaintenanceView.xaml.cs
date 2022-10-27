@@ -44,9 +44,21 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             {
                 clientName = prod.ClientName;
                 healthCheck = prod.PassedHeathCheck;
-                heathCheckDateTime = DateTime.Parse(prod.LastHeathCheckDate_Time);
-                modifiedDateTime = DateTime.Parse(prod.Date_TimeModified);
-                catalogID = int.Parse(prod.InstalledCatalog_ID);
+
+                if (!string.IsNullOrEmpty(prod.LastHeathCheckDate_Time))
+                {
+                    heathCheckDateTime = DateTime.Parse(prod.LastHeathCheckDate_Time);
+                }
+
+                if (!string.IsNullOrEmpty(prod.Date_TimeModified))
+                {
+                    modifiedDateTime = DateTime.Parse(prod.Date_TimeModified);
+                }
+
+                if (!string.IsNullOrEmpty(prod.InstalledCatalog_ID))
+                {
+                    catalogID = int.Parse(prod.InstalledCatalog_ID);
+                }
             }
             catch (Exception ex)
             {
@@ -84,16 +96,15 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
 
             if (catalog != null)
             {
+                DateTime dt = DateTime.MinValue;
+
                 if (!string.IsNullOrEmpty(catalog.ModifiedDate_time))
                 {
-                    clientMaintenance_InstalledProductSubViewModel._dateTimeModified = DateTime.Parse(catalog.ModifiedDate_time);
-                }
-                else
-                {
-                    clientMaintenance_InstalledProductSubViewModel._dateTimeModified = DateTime.MinValue;
+                    dt = DateTime.Parse(catalog.ModifiedDate_time);
                 }
 
                 clientMaintenance_InstalledProductSubViewModel._prodClientName = catalog.ClientName;
+                clientMaintenance_InstalledProductSubViewModel._dateTimeModified = dt;
                 clientMaintenance_InstalledProductSubViewModel._prodSQL3532CompactState = catalog.SQLCompact3532_Installed;
                 clientMaintenance_InstalledProductSubViewModel._prodSQL3564CompactState = catalog.SQLCompact3564_Installed;
                 clientMaintenance_InstalledProductSubViewModel._prodSQL0464CompactState = catalog.SQLCompact0464_Installed;
