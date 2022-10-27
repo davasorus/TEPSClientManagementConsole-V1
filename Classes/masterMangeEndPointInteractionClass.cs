@@ -263,12 +263,12 @@ namespace TEPSClientManagementConsole_V1.Classes
                                 lastHeathTime = obj.MostRecentHealthCheckDate_Time.ToString();
                             }
 
-                            if (!String.IsNullOrEmpty(obj.InstalledCatalog_ID.ToString()))
+                            if (obj.InstalledCatalog_ID != null)
                             {
                                 InstalledCatalog_ID = obj.InstalledCatalog_ID.ToString();
                             }
 
-                            if (!String.IsNullOrEmpty(obj.Date_TimeModified.ToString()))
+                            if (obj.Date_TimeModified != null)
                             {
                                 DateTimeModified = obj.Date_TimeModified.ToString();
                             }
