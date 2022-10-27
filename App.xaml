@@ -36,6 +36,10 @@
             <DataTemplate DataType="{x:Type viewModel:deploymentHistoryViewModel}">
                 <view:deploymentHistoryView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:clientMaintenance_InstalledProductSubViewModel}">
+                <view:clientMaintenance_InstalledProductSubView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

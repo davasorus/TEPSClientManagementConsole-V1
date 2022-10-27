@@ -1,4 +1,5 @@
 ﻿using TEPSClientManagementConsole_V1.Core;
+using TEPSClientManagementConsole_V1.MVVM.View;
 
 namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
 {
@@ -10,6 +11,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
         public relayCommand clientMaintenanceViewCommand { get; set; }
         public relayCommand serverErrorLogViewCommand { get; set; }
         public relayCommand deploymentHistoryViewCommand { get; set; }
+        public relayCommand clientMaintenance_InstalledProductSubViewCommand { get; set; }
 
         public dashboardViewModel dashboardVM { get; set; }
         public configurationViewModel configurationVM { get; set; }
@@ -17,6 +19,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
         public clientMaintenenaceViewModel clientMaintenanceVM { get; set; }
         public serverErrorLogViewModel serverErrorLogVM { get; set; }
         public deploymentHistoryViewModel deploymentHistoryVM { get; set; }
+        public clientMaintenance_InstalledProductSubViewModel clientMaintenance_InstalledProductSubVM { get; set; }
 
         private object _currentView;
 
@@ -38,6 +41,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             clientMaintenanceVM = new clientMaintenenaceViewModel();
             serverErrorLogVM = new serverErrorLogViewModel();
             deploymentHistoryVM = new deploymentHistoryViewModel();
+            clientMaintenance_InstalledProductSubVM = new clientMaintenance_InstalledProductSubViewModel();
 
             CurrentView = dashboardVM;
 
@@ -69,6 +73,11 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             deploymentHistoryViewCommand = new relayCommand(o =>
             {
                 CurrentView = deploymentHistoryVM;
+            });
+
+            clientMaintenance_InstalledProductSubViewCommand = new relayCommand(o =>
+            {
+                CurrentView = clientMaintenance_InstalledProductSubVM;
             });
         }
     }

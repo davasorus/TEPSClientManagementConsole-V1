@@ -279,15 +279,40 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                         if (obj.EnrolledInstanceType_ID.Equals(2))
                         {
-                            this.Dispatcher.Invoke(() => prodClientConfigObjs.Collection.Add(new prodClientConfigObj { ClientName = obj.ClientName, PassedHeathCheck = obj.PassedHealthCheck, LastHeathCheckDate_Time = lastHeathTime, InstalledCatalog_ID = InstalledCatalog_ID, EnrolledInstanceType_ID = "Prod", Date_TimeModified = DateTimeModified }));
+                            this.Dispatcher.Invoke(() => prodClientConfigObjs.Collection.Add(new prodClientConfigObj
+                            {
+                                ID = obj.Id,
+                                ClientName = obj.ClientName,
+                                PassedHeathCheck = obj.PassedHealthCheck,
+                                LastHeathCheckDate_Time = lastHeathTime,
+                                InstalledCatalog_ID = InstalledCatalog_ID,
+                                EnrolledInstanceType_ID = "Prod",
+                                Date_TimeModified = DateTimeModified
+                            }));
                         }
                         else if (obj.EnrolledInstanceType_ID.Equals(3))
                         {
-                            this.Dispatcher.Invoke(() => testClientConfigObjs.Collection.Add(new testClientConfigObj { ClientName = obj.ClientName, PassedHeathCheck = obj.PassedHealthCheck, LastHeathCheckDate_Time = lastHeathTime, InstalledCatalog_ID = InstalledCatalog_ID, EnrolledInstanceType_ID = "Test", Date_TimeModified = DateTimeModified }));
+                            this.Dispatcher.Invoke(() => testClientConfigObjs.Collection.Add(new testClientConfigObj
+                            {
+                                ClientName = obj.ClientName,
+                                PassedHeathCheck = obj.PassedHealthCheck,
+                                LastHeathCheckDate_Time = lastHeathTime,
+                                InstalledCatalog_ID = InstalledCatalog_ID,
+                                EnrolledInstanceType_ID = "Test",
+                                Date_TimeModified = DateTimeModified
+                            }));
                         }
                         else if (obj.EnrolledInstanceType_ID.Equals(4))
                         {
-                            this.Dispatcher.Invoke(() => trainClientConfigObjs.Collection.Add(new trainClientConfigObj { ClientName = obj.ClientName, PassedHeathCheck = obj.PassedHealthCheck, LastHeathCheckDate_Time = lastHeathTime, InstalledCatalog_ID = InstalledCatalog_ID, EnrolledInstanceType_ID = "Train", Date_TimeModified = DateTimeModified }));
+                            this.Dispatcher.Invoke(() => trainClientConfigObjs.Collection.Add(new trainClientConfigObj
+                            {
+                                ClientName = obj.ClientName,
+                                PassedHeathCheck = obj.PassedHealthCheck,
+                                LastHeathCheckDate_Time = lastHeathTime,
+                                InstalledCatalog_ID = InstalledCatalog_ID,
+                                EnrolledInstanceType_ID = "Train",
+                                Date_TimeModified = DateTimeModified
+                            }));
                         }
                     }
                     catch (Exception ex)
@@ -335,7 +360,46 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     foreach (var obj in objects)
                     {
+                        var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ID == obj.Id);
 
+                        if(client != null)
+                        {
+                            string machineName = client.ClientName;
+
+                            string DateTimeModified = "";
+
+                            if (!String.IsNullOrEmpty(obj.ModifiedDate_time.ToString()))
+                            {
+                                DateTimeModified = obj.ModifiedDate_time.ToString();
+                            }
+
+
+                            this.Dispatcher.Invoke(() => installedCatalogObjs.Collection.Add(new installedCatalogObj
+                            {
+                                ClientName = machineName,
+                                SQLCompact3532_Installed = obj.SQLCompact3532_Installed,
+                                SQLCompact3564_Installed = obj.SQLCompact3564_Installed,
+                                SQLCompact0464_Installed = obj.SQLCompact0464_Installed,
+                                SQLCLR200832_Installed = obj.SQLCLR200832_Installed,
+                                SQLCLR200864_Installed = obj.SQLCLR200864_Installed,
+                                SQLCLR201232_Installed = obj.SQLCLR201232_Installed,
+                                SQLCLR201264_Installed = obj.SQLCLR201264_Installed,
+                                ScenePD_Installed = obj.ScenePD_Installed,
+                                Updater_Installed = obj.Updater_Installed,
+                                GisComponents32_Installed = obj.GISComponents32_Installed,
+                                GisComponents64_Installed = obj.GISComponents64_Installed,
+                                DotNet_Installed = obj.DotNet_Installed,
+                                DBProvider_Installed = obj.DBProvider_Installed,
+                                LERMS_Installed = obj.LERMS_Installed,
+                                CAD_Installed = obj.CAD_Installed,
+                                CADObserver_Installed = obj.CADObserver_Installed,
+                                FireMobile_Installed = obj.FireMobile_Installed,
+                                LEMobile_Installed = obj.LEMobile_Installed,
+                                MobileMerge_Installed = obj.MobileMerge_Installed,
+                                MobileAgencyConfiguration = obj.MobileAgencyConfiguration,
+                                ModifiedDate_time = DateTimeModified
+                            }));
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -600,7 +664,7 @@ internal class installCatalogObj
     public bool FireMobile_Installed  {get; set;} 
     public bool LEMobile_Installed  {get; set;} 
     public bool MobileMerge_Installed  {get; set;} 
-    public string MobileAgencyConfiguration  {get; set;}  
+    public string? MobileAgencyConfiguration  {get; set;}  
     public DateTime? InitialInstallDate_Time  {get; set;}  
     public DateTime? ModifiedDate_time  {get; set;} 
 }

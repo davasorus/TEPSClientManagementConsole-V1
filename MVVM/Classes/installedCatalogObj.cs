@@ -27,7 +27,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.Classes
         private bool _leMobile_Installed { get; set; }
         private bool _mobileMerge_Installed { get; set; }
         private string _mobileAgencyConfiguration { get; set; }
-        private DateTime _modifiedDate_time { get; set; }
+        private string _modifiedDate_time { get; set; }
 
         public string ClientName
         {
@@ -260,7 +260,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.Classes
             }
         }
 
-        public DateTime ModifiedDate_time
+        public string ModifiedDate_time
         {
             get { return _modifiedDate_time; }
             set
