@@ -40,6 +40,14 @@
             <DataTemplate DataType="{x:Type viewModel:clientMaintenance_InstalledProductSubViewModel}">
                 <view:clientMaintenance_InstalledProductSubView />
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:deploymentViewModel}">
+                <view:deploymentView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:deployment_singleMachineViewModel}">
+                <view:deployment_SingleMachineView />
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

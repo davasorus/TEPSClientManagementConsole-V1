@@ -11,6 +11,8 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
         public relayCommand serverErrorLogViewCommand { get; set; }
         public relayCommand deploymentHistoryViewCommand { get; set; }
         public relayCommand clientMaintenance_InstalledProductSubViewCommand { get; set; }
+        public relayCommand deploymentViewCommand { get; set; }
+        public relayCommand deploment_SingleMachineViewCommand { get; set; }
 
         public dashboardViewModel dashboardVM { get; set; }
         public configurationViewModel configurationVM { get; set; }
@@ -19,6 +21,8 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
         public serverErrorLogViewModel serverErrorLogVM { get; set; }
         public deploymentHistoryViewModel deploymentHistoryVM { get; set; }
         public clientMaintenance_InstalledProductSubViewModel clientMaintenance_InstalledProductSubVM { get; set; }
+        public deploymentViewModel deploymentVM { get; set; }
+        public deployment_singleMachineViewModel deployment_SingleMachineVM { get; set; }
 
         private object _currentView;
 
@@ -41,6 +45,8 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             serverErrorLogVM = new serverErrorLogViewModel();
             deploymentHistoryVM = new deploymentHistoryViewModel();
             clientMaintenance_InstalledProductSubVM = new clientMaintenance_InstalledProductSubViewModel();
+            deploymentVM = new deploymentViewModel();
+            deployment_SingleMachineVM = new deployment_singleMachineViewModel();
 
             CurrentView = dashboardVM;
 
@@ -77,6 +83,16 @@ namespace TEPSClientManagementConsole_V1.MVVM.ViewModel
             clientMaintenance_InstalledProductSubViewCommand = new relayCommand(o =>
             {
                 CurrentView = clientMaintenance_InstalledProductSubVM;
+            });
+
+            deploymentViewCommand = new relayCommand(o =>
+            {
+                CurrentView = deploymentVM;
+            });
+
+            deploment_SingleMachineViewCommand = new relayCommand(o =>
+            {
+                CurrentView = deployment_SingleMachineVM;
             });
         }
     }
