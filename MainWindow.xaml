@@ -60,10 +60,10 @@
                                               ToolTipService.InitialShowDelay="450" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
-                        <Button Command="{Binding customOptionsViewCommand}"
+                        <Button Command="{Binding deploymentViewCommand}"
                         Height="50" FontSize="18" Content="Deployments"
                         ToolTip="Allows for managing software and pre reqs on remote machines"
-                        ToolTipService.InitialShowDelay="450" IsEnabled="False" />
+                        ToolTipService.InitialShowDelay="450" />
                     </materialDesign:Card>
                     <materialDesign:Card Margin="5,1,1,1">
                         <Button Command="{Binding deploymentHistoryViewCommand}"
