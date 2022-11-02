@@ -14,7 +14,9 @@ namespace TEPSClientManagementConsole_V1.Classes
     {
         private loggingClass loggingClass = new loggingClass();
 
-        public async Task<string> postInstallDotNet(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        #region pre req installs
+
+        public async Task<string> postInstallDotNet(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -50,9 +52,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed DotNet successfully", "info");
 
                 result = "true";
             }
@@ -73,7 +73,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallSQLCE35(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallSQLCE35(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -109,9 +109,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed SQL Compact 3.5 successfully", "info");
 
                 result = "true";
             }
@@ -132,7 +130,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallGIS(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallGIS(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -168,9 +166,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed GIS Components successfully", "info");
 
                 result = "true";
             }
@@ -191,7 +187,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallDBProviders(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallDBProviders(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -227,9 +223,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed DBProviders successfully", "info");
 
                 result = "true";
             }
@@ -250,7 +244,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallUpdater(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallUpdater(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -286,9 +280,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed Enterprise Updater successfully", "info");
 
                 result = "true";
             }
@@ -309,7 +301,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallScenePD(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallScenePD(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -345,9 +337,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed ScenePD successfully", "info");
 
                 result = "true";
             }
@@ -368,7 +358,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> PostInstallSQLCE40(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> PostInstallSQLCE40(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -404,9 +394,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed SQL Compact 4.0 successfully", "info");
 
                 result = "true";
             }
@@ -427,7 +415,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallVS2010(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallVS2010(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -463,9 +451,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed Visual Studio Tool 2010 successfully", "info");
 
                 result = "true";
             }
@@ -486,7 +472,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallSQLCLR2008(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallSQLCLR2008(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -522,9 +508,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed SQL CLR Types 2008 successfully", "info");
 
                 result = "true";
             }
@@ -545,7 +529,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallSQLCLR2012(int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallSQLCLR2012(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -581,9 +565,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                var json = await response.Content.ReadAsStringAsync();
-
-                loggingClass.logEntryWriter(json, "info");
+                loggingClass.logEntryWriter($"{machineName} installed SQL CLR Types 2012 successfully", "info");
 
                 result = "true";
             }
@@ -603,6 +585,69 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             return result;
         }
+
+        #endregion pre req installs
+
+        #region client installs
+
+        public async Task<string> postInstallMSP(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostInstallMSP/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance,
+                PoliceList = policeList,
+                FireList = fireList
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} installed MSP successfully","info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }
 

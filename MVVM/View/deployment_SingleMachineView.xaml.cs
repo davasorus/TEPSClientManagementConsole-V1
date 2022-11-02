@@ -326,13 +326,13 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
         //needs to be seperated
         private void installMSPCADChkBx_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("installMSPCAD"))
+            if (deploymentDataHolder.enrolledItems.Contains("installMSP"))
             {
-                deploymentDataHolder.enrolledItems.Remove("installMSPCAD");
+                deploymentDataHolder.enrolledItems.Remove("installMSP");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("installMSPCAD");
+                deploymentDataHolder.enrolledItems.Add("installMSP");
             }
         }
 

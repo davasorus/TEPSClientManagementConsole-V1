@@ -330,6 +330,31 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (enrolledItems.Contains("installMSP"))
             {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "MSP Client Install");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await installMSP(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} installed MSP Client successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to install MSP Client");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
             }
             if (enrolledItems.Contains("installCAD"))
             {
@@ -404,7 +429,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallDotNet((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallDotNet(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -470,7 +495,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -536,7 +561,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallGIS((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallGIS(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -602,7 +627,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallDBProviders((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallDBProviders(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -668,7 +693,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallUpdater((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallUpdater(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -734,7 +759,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallScenePD((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallScenePD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -800,7 +825,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.PostInstallSQLCE40((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.PostInstallSQLCE40(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -866,7 +891,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallVS2010((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallVS2010(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -932,7 +957,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2008((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2008(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -998,7 +1023,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2012((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2012(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1064,7 +1089,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallMSP(machineName,(int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1130,7 +1155,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1196,7 +1221,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1262,7 +1287,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1328,7 +1353,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1394,7 +1419,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35((int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
