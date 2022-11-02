@@ -28,7 +28,12 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
 
         private void loadDropDown()
         {
-            var message = prodClientConfigObjs.Collection.Count;
+            var message = 0;
+
+            if (prodClientConfigObjs.Collection.Count != null)
+            {
+                message = prodClientConfigObjs.Collection.Count;
+            }
 
             if (message == 0)
             {
@@ -292,6 +297,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //not needed
         private void runUpdaterConfigChkBx_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("runUpdaterConfig"))
@@ -304,6 +310,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //not needed
         private void folderPermissions1ChkBx_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("folderPermissions1"))
@@ -316,6 +323,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //needs to be seperated
         private void installMSPCADChkBx_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("installMSPCAD"))
@@ -328,6 +336,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //needs additional work
         private void installMobileChkBx_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("installMobile"))
@@ -400,6 +409,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //not needed
         private void restartMachine2ChkBx_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("restartMachine2"))
@@ -432,7 +442,13 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             {
                 if (!string.IsNullOrEmpty(deploymentDataHolder.environmentType))
                 {
-                    //deploymentDistributorClass
+                    this.Dispatcher.Invoke(() => activeDeploymentObjs.Collection.Add(new activeDeploymentObj
+                    {
+                        client_Name = deploymentDataHolder.machineName,
+                        Step = 1,
+                        Out_Of = deploymentDataHolder.totalNumber
+                    }));
+                    deploymentDistributorClass.entrance(deploymentDataHolder.machineName, deploymentDataHolder.environmentType, deploymentDataHolder.totalNumber, deploymentDataHolder.enrolledItems, 1);
                 }
                 else
                 {
@@ -454,5 +470,5 @@ internal class deploymentDataHolder
 
     public static int totalNumber { get; set; }
 
-    public static List<string> enrolledItems { get; set; }
+    public static List<string> enrolledItems = new List<string>();
 }

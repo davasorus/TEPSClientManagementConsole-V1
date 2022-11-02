@@ -231,17 +231,17 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (prodClientConfigObjs.Collection.Count > 1)
                 {
-                    prodClientConfigObjs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => prodClientConfigObjs.Collection.Clear()));
                 }
 
                 if (testClientConfigObjs.Collection.Count > 1)
                 {
-                    testClientConfigObjs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => testClientConfigObjs.Collection.Clear()));
                 }
 
                 if (prodClientConfigObjs.Collection.Count > 1)
                 {
-                    trainClientConfigObjs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => trainClientConfigObjs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -352,6 +352,11 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
+                if (installedCatalogObjs.Collection.Count > 1)
+                {
+                    this.Dispatcher.Invoke(new Action(() => installedCatalogObjs.Collection.Clear()));
+                }
+
                 var json = await response.Content.ReadAsStringAsync();
 
                 try
@@ -438,7 +443,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (ServerErrorLogs.Collection.Count > 1)
                 {
-                    ServerErrorLogs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => ServerErrorLogs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -483,7 +488,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (installHistoryLogs.Collection.Count > 1)
                 {
-                    installHistoryLogs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => installHistoryLogs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -545,7 +550,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (uninstallHistoryLogs.Collection.Count > 1)
                 {
-                    uninstallHistoryLogs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => uninstallHistoryLogs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
