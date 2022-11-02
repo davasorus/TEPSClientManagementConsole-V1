@@ -626,7 +626,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
-                loggingClass.logEntryWriter($"{machineName} installed MSP successfully","info");
+                loggingClass.logEntryWriter($"{machineName} installed MSP successfully", "info");
 
                 result = "true";
             }
@@ -647,7 +647,292 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        #endregion
+        public async Task<string> postInstallCAD(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostInstallCAD/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance,
+                PoliceList = policeList,
+                FireList = fireList
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} installed CAD successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postInstallIncidentObserver(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostInstallIncidentObserver/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance,
+                PoliceList = policeList,
+                FireList = fireList
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} installed CAD successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postLawMobile(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostLawMobile/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance,
+                PoliceList = policeList,
+                FireList = fireList
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} installed CAD successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postFireMobile(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostFireMobile/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance,
+                PoliceList = policeList,
+                FireList = fireList
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} installed CAD successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postMobileMerge(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostMobileMerge/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance,
+                PoliceList = policeList,
+                FireList = fireList
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} installed CAD successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        #endregion client installs
     }
 }
 

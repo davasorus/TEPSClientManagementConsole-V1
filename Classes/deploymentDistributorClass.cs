@@ -358,18 +358,143 @@ namespace TEPSClientManagementConsole_V1.Classes
             }
             if (enrolledItems.Contains("installCAD"))
             {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "CAD Client Install");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await installCAD(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} installed CAD Client successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to install CAD Client");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
             }
             if (enrolledItems.Contains("installLawMobile"))
             {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Configuring updater for Law Mobile");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await installLawMobile(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} is configured for Law Mobile successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to be configured for Law Mobile");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
             }
             if (enrolledItems.Contains("installFireMobile"))
             {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Configuring updater for Fire Mobile");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await installFireMobile(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} is configured for Fire Mobile successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to be configured for Fire Mobile");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
             }
             if (enrolledItems.Contains("installMobileMerge"))
             {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Configuring updater for Mobile Merge");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await installMobileMerge(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} is configured for Mobile Merge successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to be configured for Mobile Merge");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
             }
             if (enrolledItems.Contains("installCADObserver"))
             {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Incident Observer Install");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await installCADObserver(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} installed Incident Observer Client successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to install Incident Observer Client");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
             }
         }
 
@@ -1089,7 +1214,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallMSP(machineName,(int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallMSP(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1155,7 +1280,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallCAD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
@@ -1221,15 +1346,25 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
-
-            if (reply.Contains("true"))
+            if (policeList.Count! > 0)
             {
-                response = true;
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
             }
             else
             {
-                response = false;
+                var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+
+                if (reply.Contains("true"))
+                {
+                    response = true;
+                }
+                else
+                {
+                    response = false;
+                }
             }
 
             return response;
@@ -1287,15 +1422,25 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
-
-            if (reply.Contains("true"))
+            if (fireList.Count! > 0)
             {
-                response = true;
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
             }
             else
             {
-                response = false;
+                var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+
+                if (reply.Contains("true"))
+                {
+                    response = true;
+                }
+                else
+                {
+                    response = false;
+                }
             }
 
             return response;
@@ -1353,15 +1498,25 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
-
-            if (reply.Contains("true"))
+            if (policeList.Count! > 0)
             {
-                response = true;
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
             }
             else
             {
-                response = false;
+                var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+
+                if (reply.Contains("true"))
+                {
+                    response = true;
+                }
+                else
+                {
+                    response = false;
+                }
             }
 
             return response;
@@ -1419,7 +1574,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallIncidentObserver(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
 
             if (reply.Contains("true"))
             {
