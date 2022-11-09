@@ -13,11 +13,11 @@ namespace TEPSClientManagementConsole_V1.Classes
         private loggingClass loggingClass = new loggingClass();
         private masterPushInstallEndPointInteraction masterPushInstallEndPointInteraction = new masterPushInstallEndPointInteraction();
 
-        public async void entrance(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i)
+        public async void entrance(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<string> ORIs, List<string> FDIDs)
         {
             await uninstallSteps(machineName, envronmentType, totalNumber, enrolledItems, i);
 
-            await installSteps(machineName, envronmentType, totalNumber, enrolledItems, i);
+            await installSteps(machineName, envronmentType, totalNumber, enrolledItems, i, ORIs, FDIDs);
 
             await removeProcess(machineName);
         }
@@ -48,7 +48,7 @@ namespace TEPSClientManagementConsole_V1.Classes
         {
         }
 
-        public async Task installSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i)
+        public async Task installSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<string> ORIs, List<string> FDIDs)
         {
             int j = i;
             if (enrolledItems.Contains("installdotNet"))
@@ -394,7 +394,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     this.Dispatcher.Invoke(() => client.Step = j++);
 
-                    var response = await installLawMobile(machineName, envronmentType);
+                    var response = await installLawMobile(machineName, envronmentType, ORIs);
 
                     if (response.Equals(true))
                     {
@@ -422,7 +422,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     this.Dispatcher.Invoke(() => client.Step = j++);
 
-                    var response = await installFireMobile(machineName, envronmentType);
+                    var response = await installFireMobile(machineName, envronmentType, FDIDs);
 
                     if (response.Equals(true))
                     {
@@ -450,7 +450,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     this.Dispatcher.Invoke(() => client.Step = j++);
 
-                    var response = await installMobileMerge(machineName, envronmentType);
+                    var response = await installMobileMerge(machineName, envronmentType, ORIs);
 
                     if (response.Equals(true))
                     {
@@ -1294,7 +1294,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return response;
         }
 
-        public async Task<bool> installLawMobile(string machineName, string envronmentType)
+        public async Task<bool> installLawMobile(string machineName, string envronmentType, List<string> ORIs)
         {
             bool response = false;
             var ID = 0;
@@ -1332,7 +1332,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 gisServerName = configurationViewModel._prodGisServerName;
                 gisInstanceName = configurationViewModel._prodGisInstanceName;
                 mobileName = configurationViewModel._prodMobileServerName;
-                //policeList
+                policeList = ORIs;
                 //fireList
             }
             if (instance == 3)
@@ -1370,7 +1370,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return response;
         }
 
-        public async Task<bool> installFireMobile(string machineName, string envronmentType)
+        public async Task<bool> installFireMobile(string machineName, string envronmentType, List<string> FDIDs)
         {
             bool response = false;
             var ID = 0;
@@ -1408,8 +1408,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 gisServerName = configurationViewModel._prodGisServerName;
                 gisInstanceName = configurationViewModel._prodGisInstanceName;
                 mobileName = configurationViewModel._prodMobileServerName;
-                //policeList
-                //fireList
+                fireList = FDIDs;
             }
             if (instance == 3)
             {
@@ -1446,7 +1445,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return response;
         }
 
-        public async Task<bool> installMobileMerge(string machineName, string envronmentType)
+        public async Task<bool> installMobileMerge(string machineName, string envronmentType, List<string> ORIs)
         {
             bool response = false;
             var ID = 0;
@@ -1484,8 +1483,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 gisServerName = configurationViewModel._prodGisServerName;
                 gisInstanceName = configurationViewModel._prodGisInstanceName;
                 mobileName = configurationViewModel._prodMobileServerName;
-                //policeList
-                //fireList
+                policeList = ORIs;
             }
             if (instance == 3)
             {

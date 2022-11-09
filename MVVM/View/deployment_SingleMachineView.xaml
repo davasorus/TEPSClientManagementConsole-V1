@@ -44,226 +44,331 @@
             <Image HorizontalAlignment="Left" Height="59" Margin="0,6,0,0"
                    VerticalAlignment="Top" Width="47"
                    Source="/G5L9qP30_400x400.ico" />
-            <StackPanel Grid.ColumnSpan="2">
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
-                <StackPanel>
-                    <StackPanel HorizontalAlignment="Left">
-                        <Label Content="Uninstall Options" HorizontalAlignment="Left" />
-                    </StackPanel>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="1">
+                <TabControl  Style="{StaticResource MaterialDesignTabControl}">
+                    <TabItem Header="Pre-Generated Packages">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+                                <StackPanel>
+                                    <StackPanel HorizontalAlignment="Left">
+                                        <Label Content="Uninstall Options" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Visible" Height="177"
+                       HorizontalAlignment="Left" Width="293"
+                              materialDesign:RippleAssist.IsDisabled="True">
+                                        <StackPanel Orientation="Horizontal" Width="262">
+                                            <ListBox x:Name="uninstallOptionsPanel" Width="260">
+                                                <StackPanel Orientation="Vertical"
+                                        materialDesign:RippleAssist.IsDisabled="False">
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallFireClientChkBx1"
+                                  Content="Uninstall the Fire Client" Click="uninstallFireClientChkBx1_Click"
+                                              ToolTip="Checks for Fire Mobile and uninstalls if installed"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallPoliceClientChkBx1"
+                                  Content="Uninstall the Police Client" Click="uninstallPoliceClientChkBx1_Click"
+                                              ToolTip="Checks for Police Mobile and uninstalls if installed"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallMergeClientChkBx1"
+                                  Content="Uninstall the Merge Client" Click="uninstallMergeClientChkBx1_Click"
+                                              ToolTip="Checks for Mobile Merge and uninstalls if installed"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallMSPhkBx1"
+                                  Content="Uninstall MSP" Click="UninstallMSPhkBx1_Click"
+                                              ToolTip="Prompts the user to uninstall CAD and MSP and uninstalls if installed"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallCADChkBx1"
+                                  Content="Uninstall CAD" Click="UninstallCADChkBx1_Click"
+                                              ToolTip="Prompts the user to uninstall CAD and MSP and uninstalls if installed"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallCADObserverChkBx1"
+                                  Content="Uninstall CAD Incident Observer" Click="UninstallCADObserverChkBx1_Click"
+                                              ToolTip="Checks for the SQL Compact 4 and uninstalls if installed"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                </StackPanel>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                                <StackPanel Margin="40,0,0,0">
+                                    <StackPanel HorizontalAlignment="Left">
+                                        <Label Content="Install Options" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Visible"
                       Height="177" HorizontalAlignment="Left" Width="293"
                               materialDesign:RippleAssist.IsDisabled="True">
-                        <StackPanel Orientation="Horizontal" Width="262" Height="527">
-                            <ListBox x:Name="uninstallOptionsPanel" Width="260" Height="555">
-                                <StackPanel Orientation="Vertical" Height="521"
+                                        <StackPanel Orientation="Horizontal" Width="262">
+                                            <ListBox Width="260"  x:Name="installOptionsPanel1">
+                                                <StackPanel Orientation="Vertical"
                                         materialDesign:RippleAssist.IsDisabled="False">
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="uninstallFireClientChkBx"
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installMSPChkBx1"
+                                  Content="Install MSP" Click="installMSPChkBx1_Click"
+                                              ToolTip="Prompts the User if they want to install MSP and/or CAD - Installs required pre reqs for both"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installCADChkBx1"
+                                  Content="Install CAD" Click="installCADChkBx1_Click"
+                                              ToolTip="Prompts the User if they want to install MSP and/or CAD - Installs required pre reqs for both"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installLawMobileChkBx"
+                                  Content="Install Law Mobile"
+                                              ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
+                                              ToolTipService.InitialShowDelay="450" Click="installLawMobileChkBx_Click" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installFireMobileChkBx"
+                                  Content="Install Fire Mobile"
+                                              ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
+                                              ToolTipService.InitialShowDelay="450" Click="installFireMobileChkBx_Click" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installMobileMergeChkBx"
+                                  Content="Install Mobile Merge"
+                                              ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
+                                              ToolTipService.InitialShowDelay="450" Click="installMobileMergeChkBx_Click" />
+                                                    </ListBoxItem>
+                                                   
+                                                </StackPanel>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </TabItem>
+
+                    <TabItem Header="Create your own Package">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+                                <StackPanel>
+                                    <StackPanel HorizontalAlignment="Left">
+                                        <Label Content="Uninstall Options" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Visible"
+                      Height="177" HorizontalAlignment="Left" Width="293"
+                              materialDesign:RippleAssist.IsDisabled="True">
+                                        <StackPanel Orientation="Horizontal" Width="262">
+                                            <ListBox x:Name="uninstallOptionsPanel1" Width="260">
+                                                <StackPanel Orientation="Vertical"
+                                        materialDesign:RippleAssist.IsDisabled="False">
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallFireClientChkBx"
                                   Content="Uninstall the Fire Client" Click="uninstallFireClientChkBx_Click"
                                               ToolTip="Checks for Fire Mobile and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="uninstallPoliceClientChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallPoliceClientChkBx"
                                   Content="Uninstall the Police Client" Click="uninstallPoliceClientChkBx_Click"
                                               ToolTip="Checks for Police Mobile and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="uninstallMergeClientChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallMergeClientChkBx"
                                   Content="Uninstall the Merge Client" Click="uninstallMergeClientChkBx_Click"
                                               ToolTip="Checks for Mobile Merge and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="uninstalNovaPDFChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstalNovaPDFChkBx"
                                   Content="Uninstall nova PDF" Click="uninstalNovaPDFChkBx_Click"
                                               ToolTip="Checks for NOVA PDF and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="uninstallGISCompChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallGISCompChkBx"
                                   Content="Uninstall GIS Components" Click="uninstallGISCompChkBx_Click"
                                               ToolTip="Checks for GIS Components and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="uninstallSQLCE35ChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="uninstallSQLCE35ChkBx"
                                   Content="Uninstall SQL Compact 3.5" Click="uninstallSQLCE35ChkBx_Click"
                                               ToolTip="Checks for SQL Compact 3.5 and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="UninstallUpdaterChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallUpdaterChkBx"
                                   Content="Uninstall Updater" Click="UninstallUpdaterChkBx_Click"
                                               ToolTip="Checks for the Updater and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="DeleteClientFoldersChkBx"
-                                  Content="Delete Client Folders" Click="DeleteClientFoldersChkBx_Click"
-                                              ToolTip="Removes client folders if they are present"
-                                              ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="RemoveMobileUpdaterEntryChkBx"
-                                  Content="Remove Mobile Updater Entries" Click="RemoveMobileUpdaterEntryChkBx_Click"
-                                              ToolTip="Removes the Updater Config entries for Mobile"
-                                              ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="UninstallMSPCADChkBx"
-                                  Content="Uninstall MSP/CAD" Click="UninstallMSPCADChkBx_Click"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallMSPChkBx"
+                                  Content="Uninstall MSP" Click="UninstallMSPChkBx_Click"
                                               ToolTip="Prompts the user to uninstall CAD and MSP and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="UninstallSQLCE4ChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallCADChkBx"
+                                  Content="Uninstall CAD" Click="UninstallCADChkBx_Click"
+                                              ToolTip="Prompts the user to uninstall CAD and MSP and uninstalls if installed"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallSQLCE4ChkBx"
                                   Content="Uninstall SQL Compact 4.0" Click="UninstallSQLCE4ChkBx_Click"
                                               ToolTip="Checks for the SQL Compact 4 and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="UninstallScenePDChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallScenePDChkBx"
                                   Content="Uninstall Scene PD" Click="UninstallScenePDChkBx_Click"
                                               ToolTip="Checks for the ScenePD and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="UninstallCADObserverChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallCADObserverChkBx"
                                   Content="Uninstall CAD Incident Observer" Click="UninstallCADObserverChkBx_Click"
                                               ToolTip="Checks for the SQL Compact 4 and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="UninstallSQLCLRTypesChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="UninstallSQLCLRTypesChkBx"
                                      Content="Uninstall SQL CLR Types" Click="UninstallSQLCLRTypesChkBx_Click"
                                               ToolTip="Checks for the SQL CLR Types and uninstalls if installed"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="restartMachine1ChkBx"
-                                      Content="Restart Machine" Click="restartMachine1ChkBx_Click"
-                                              ToolTip="Restarts the Machine you using"
-                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
-                                    </ListBoxItem>
+                                                    </ListBoxItem>
+                                                </StackPanel>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </ScrollViewer>
                                 </StackPanel>
-                            </ListBox>
-                        </StackPanel>
-                    </ScrollViewer>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
-                <StackPanel Margin="40,0,0,0">
-                    <StackPanel HorizontalAlignment="Left">
-                        <Label Content="Install Options" HorizontalAlignment="Left" />
-                    </StackPanel>
-                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                                <StackPanel Margin="40,0,0,0">
+                                    <StackPanel HorizontalAlignment="Left">
+                                        <Label Content="Install Options" HorizontalAlignment="Left" />
+                                    </StackPanel>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Visible"
                       Height="177" HorizontalAlignment="Left" Width="293"
                               materialDesign:RippleAssist.IsDisabled="True">
-                        <StackPanel Orientation="Horizontal" Width="262" Height="535">
-                            <ListBox Width="260" Height="600" x:Name="installOptionsPanel">
-                                <StackPanel Orientation="Vertical" Height="600"
+                                        <StackPanel Orientation="Horizontal" Width="262">
+                                            <ListBox Width="260" x:Name="installOptionsPanel">
+                                                <StackPanel Orientation="Vertical"
                                         materialDesign:RippleAssist.IsDisabled="False">
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installdotNetChkBx"
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installdotNetChkBx"
                                   Content="Install .Net" Click="installdotNetChkBx_Click"
                                               ToolTip="Installs DotNet 3.5 and 4.8 - Required for all Clients"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installSQLCE35ChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installSQLCE35ChkBx"
                                   Content="Install SQL Compact 3.5" Click="installSQLCE35ChkBx_Click"
                                               ToolTip="Installs SQL Compact 3.5 - Required for all Clients"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installGISComponentsChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installGISComponentsChkBx"
                                   Content="Install GIS Components" Click="installGISComponentsChkBx_Click"
                                               ToolTip="Installs GIS Component - Required for all Clients"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installDBProvidersChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installDBProvidersChkBx"
                                   Content="Install Sync Framework" Click="installDBProvidersChkBx_Click"
                                               ToolTip="Installs Sync Framework - Required for CAD and Mobile"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installUpdaterChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installUpdaterChkBx"
                                   Content="Install Updater" Click="installUpdaterChkBx_Click"
                                               ToolTip="Installs Sync Framework - Required for All Clients"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="runUpdaterConfigChkBx"
-                                  Content="Configure the Updater" Click="runUpdaterConfigChkBx_Click"
-                                              ToolTip="Configures Updater for Mobile, please ensure Updater config tab is configured - Required for Mobile"
-                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="folderPermissions1ChkBx"
-                                  Content="Check Folder Permissions" Click="folderPermissions1ChkBx_Click"
-                                              ToolTip="Ensures User has proper permissions - Recommended for all Clients"
-                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installMSPCADChkBx"
-                                  Content="Install MSP/CAD" Click="installMSPCADChkBx_Click"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installMSPChkBx"
+                                  Content="Install MSP" Click="installMSPChkBx_Click"
                                               ToolTip="Prompts the User if they want to install MSP and/or CAD - Installs required pre reqs for both"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installMobileChkBx"
-                                  Content="Install Mobile"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installCADChkBx"
+                                  Content="Install CAD" Click="installCADChkBx_Click"
+                                              ToolTip="Prompts the User if they want to install MSP and/or CAD - Installs required pre reqs for both"
+                                              ToolTipService.InitialShowDelay="450" />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installLawMobileChkBx1"
+                                  Content="Install Law Mobile"
                                               ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
-                                              ToolTipService.InitialShowDelay="450" Click="installMobileChkBx_Click" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installCADObserverChkBx"
+                                              ToolTipService.InitialShowDelay="450" Click="installLawMobileChkBx1_Click"  />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installFireMobileChkBx1"
+                                  Content="Install Law Mobile"
+                                              ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
+                                              ToolTipService.InitialShowDelay="450" Click="installFireMobileChkBx1_Click"  />
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installMobileMergeChkBx1"
+                                  Content="Install Mobile Merge"
+                                              ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
+                                              ToolTipService.InitialShowDelay="450" Click="installMobileMergeChkBx1_Click"/>
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installCADObserverChkBx"
                                   Content="Install Incident Observer" Click="installCADObserverChkBx_Click"
                                               ToolTip="Installs CAD Incident Observer - not required, secondary client related to CAD"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installScenePDChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installScenePDChkBx"
                                   Content="Install ScenePD" Click="installScenePDChkBx_Click"
                                               ToolTip="Installs Scene PD and ActiveX component - Crash Field Reporting in Police Mobile"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installSQLCE4ChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installSQLCE4ChkBx"
                                   Content="Install SQL Compact 4.0" Click="installSQLCE4ChkBx_Click"
                                               ToolTip="Installs ScenePD - Required for CAD"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="install2010VSToolChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="install2010VSToolChkBx"
                                   Content="Install 2010 Visual Studio Tools" Click="install2010VSToolChkBx_Click"
                                               ToolTip="Installs Visual Studio Tools for Office - Recommended for CAD"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="installSQLCLRTypeChkBx"
+                                                    </ListBoxItem>
+                                                    <ListBoxItem>
+                                                        <CheckBox x:Name="installSQLCLRTypeChkBx"
                                   Content="Install SQL CLR Types" Click="installSQLCLRTypeChkBx_Click"
                                               ToolTip="Installs SQL SLR Types - Required for MSP and CAD"
                                               ToolTipService.InitialShowDelay="450" />
-                                    </ListBoxItem>
-                                    <ListBoxItem>
-                                        <CheckBox x:Name="restartMachine2ChkBx"
-                                     Content="Restart Machine" Click="restartMachine2ChkBx_Click"
-                                              ToolTip="Restarts Machine"
-                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
-                                    </ListBoxItem>
+                                                    </ListBoxItem>
+                                                </StackPanel>
+                                            </ListBox>
+                                        </StackPanel>
+                                    </ScrollViewer>
                                 </StackPanel>
-                            </ListBox>
+                            </StackPanel>
                         </StackPanel>
-                    </ScrollViewer>
-                </StackPanel>
+                    </TabItem>
+                </TabControl>
             </StackPanel>
+
             <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">
                     <TextBlock Text="Machines" Margin="1,10,1,1" HorizontalAlignment="Left" />
@@ -277,8 +382,6 @@
                         </ComboBox>
                     </materialDesign:ColorZone>
                 </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">
                     <TextBlock Text="Environment" Margin="1,10,1,1" HorizontalAlignment="Left" />
                     <materialDesign:ColorZone Mode="PrimaryLight" Margin="1,1,1,1"
@@ -289,6 +392,32 @@
                             <ComboBoxItem Content="Prod" />
                             <ComboBoxItem Content="Test" />
                             <ComboBoxItem Content="Train" />
+                        </ComboBox>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">
+                    <TextBlock Text="ORIs" Margin="1,10,1,1" HorizontalAlignment="Left" />
+                    <materialDesign:ColorZone Mode="PrimaryLight" Margin="1,1,1,1"
+                                          HorizontalAlignment="Left" FontSize="16" Height="42">
+                        <ComboBox x:Name="orisComBx" MinWidth="100" ToolTip="List of most recent ORI back ups"
+                          ToolTipService.InitialShowDelay="450"
+                          HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
+                          SelectionChanged="orisComBx_SelectionChanged">
+                            <ComboBoxItem Content="" />
+                        </ComboBox>
+                    </materialDesign:ColorZone>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">
+                    <TextBlock Text="FDIDs" Margin="1,10,1,1" HorizontalAlignment="Left" />
+                    <materialDesign:ColorZone Mode="PrimaryLight" Margin="1,1,1,1"
+                                          HorizontalAlignment="Left" FontSize="16" Height="42" >
+                        <ComboBox x:Name="fdidsComBx" MinWidth="100" ToolTip="List of most recent ORI back ups"
+                          ToolTipService.InitialShowDelay="450"
+                          HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
+                          SelectionChanged="fdidsComBx_SelectionChanged">
+                            <ComboBoxItem Content="" />
                         </ComboBox>
                     </materialDesign:ColorZone>
                 </StackPanel>

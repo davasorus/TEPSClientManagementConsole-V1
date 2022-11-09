@@ -591,6 +591,108 @@ namespace TEPSClientManagementConsole_V1.Classes
                 loggingClass.logEntryWriter(logEntry2, "error");
             }
         }
+
+        public async Task GetORIs()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetORIs";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (oriObjs.Collection.Count > 1)
+                {
+                    this.Dispatcher.Invoke(new Action(() => oriObjs.Collection.Clear()));
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<oriObj>>(json);
+
+                try
+                {
+                    foreach (var obj in objects)
+                    {
+                        this.Dispatcher.Invoke(() => oriObjs.Collection.Add(new oriObj { ORI = obj.ORI, EnrolledInstanceType_ID = obj.EnrolledInstanceType_ID }));
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
+
+        public async Task GetFDIDs()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetFDIDs";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (fdidObjs.Collection.Count > 1)
+                {
+                    this.Dispatcher.Invoke(new Action(() => uninstallHistoryLogs.Collection.Clear()));
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<fdidObj>>(json);
+
+                try
+                {
+                    foreach (var obj in objects)
+                    {
+                        this.Dispatcher.Invoke(() => fdidObjs.Collection.Add(new fdidObj { FDID = obj.FDID, EnrolledInstanceType_ID = obj.EnrolledInstanceType_ID }));
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
     }
 }
 
