@@ -146,7 +146,6 @@
                                               ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
                                               ToolTipService.InitialShowDelay="450" Click="installMobileMergeChkBx_Click" />
                                                     </ListBoxItem>
-                                                   
                                                 </StackPanel>
                                             </ListBox>
                                         </StackPanel>
@@ -314,19 +313,19 @@
                                                         <CheckBox x:Name="installLawMobileChkBx1"
                                   Content="Install Law Mobile"
                                               ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
-                                              ToolTipService.InitialShowDelay="450" Click="installLawMobileChkBx1_Click"  />
+                                              ToolTipService.InitialShowDelay="450" Click="installLawMobileChkBx1_Click" />
                                                     </ListBoxItem>
                                                     <ListBoxItem>
                                                         <CheckBox x:Name="installFireMobileChkBx1"
                                   Content="Install Law Mobile"
                                               ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
-                                              ToolTipService.InitialShowDelay="450" Click="installFireMobileChkBx1_Click"  />
+                                              ToolTipService.InitialShowDelay="450" Click="installFireMobileChkBx1_Click" />
                                                     </ListBoxItem>
                                                     <ListBoxItem>
                                                         <CheckBox x:Name="installMobileMergeChkBx1"
                                   Content="Install Mobile Merge"
                                               ToolTip="Installs Pre Reqs and configured the updater to download/install Mobile. - NOTE if the updater config tab is not filled out, the updater will not be modified."
-                                              ToolTipService.InitialShowDelay="450" Click="installMobileMergeChkBx1_Click"/>
+                                              ToolTipService.InitialShowDelay="450" Click="installMobileMergeChkBx1_Click" />
                                                     </ListBoxItem>
                                                     <ListBoxItem>
                                                         <CheckBox x:Name="installCADObserverChkBx"
@@ -412,7 +411,7 @@
                 <StackPanel Orientation="Vertical" Grid.Column="0" Grid.Row="3" Margin="5,5,5,5">
                     <TextBlock Text="FDIDs" Margin="1,10,1,1" HorizontalAlignment="Left" />
                     <materialDesign:ColorZone Mode="PrimaryLight" Margin="1,1,1,1"
-                                          HorizontalAlignment="Left" FontSize="16" Height="42" >
+                                          HorizontalAlignment="Left" FontSize="16" Height="42">
                         <ComboBox x:Name="fdidsComBx" MinWidth="100" ToolTip="List of most recent ORI back ups"
                           ToolTipService.InitialShowDelay="450"
                           HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom"
