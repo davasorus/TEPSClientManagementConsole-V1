@@ -13,7 +13,7 @@ namespace TEPSClientManagementConsole_V1.Classes
         private loggingClass loggingClass = new loggingClass();
         private masterPushInstallEndPointInteraction masterPushInstallEndPointInteraction = new masterPushInstallEndPointInteraction();
 
-        public async void entrance(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<string> ORIs, List<string> FDIDs)
+        public async void entrance(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<oriClass> ORIs, List<fdidClass> FDIDs)
         {
             await uninstallSteps(machineName, envronmentType, totalNumber, enrolledItems, i);
 
@@ -48,7 +48,7 @@ namespace TEPSClientManagementConsole_V1.Classes
         {
         }
 
-        public async Task installSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<string> ORIs, List<string> FDIDs)
+        public async Task installSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<oriClass> ORIs, List<fdidClass> FDIDs)
         {
             int j = i;
             if (enrolledItems.Contains("installdotNet"))
@@ -554,7 +554,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallDotNet(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallDotNet(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -620,7 +620,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -686,7 +686,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallGIS(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallGIS(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -752,7 +752,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallDBProviders(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallDBProviders(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -818,7 +818,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallUpdater(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallUpdater(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -884,7 +884,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallScenePD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallScenePD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -950,7 +950,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.PostInstallSQLCE40(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.PostInstallSQLCE40(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -1016,7 +1016,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallVS2010(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallVS2010(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -1082,7 +1082,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2008(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2008(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -1148,7 +1148,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2012(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallSQLCLR2012(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -1214,7 +1214,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallMSP(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallMSP(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -1280,7 +1280,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallCAD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallCAD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {
@@ -1294,7 +1294,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return response;
         }
 
-        public async Task<bool> installLawMobile(string machineName, string envronmentType, List<string> ORIs)
+        public async Task<bool> installLawMobile(string machineName, string envronmentType, List<oriClass> ORIs)
         {
             bool response = false;
             var ID = 0;
@@ -1305,8 +1305,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             var gisInstanceName = "";
             var mobileName = "";
             var instance = 0;
-            List<string> policeList = new List<string>();
-            List<string> fireList = new List<string>();
+            List<oriClass> policeList = new List<oriClass>();
 
             if (envronmentType.Contains("Prod"))
             {
@@ -1346,16 +1345,9 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            if (policeList.Count! > 0)
+            if (policeList.Count > 0)
             {
-                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
-                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
-
-                response = false;
-            }
-            else
-            {
-                var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+                var reply = await masterPushInstallEndPointInteraction.postLawMobile(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, ORIs);
 
                 if (reply.Contains("true"))
                 {
@@ -1366,11 +1358,18 @@ namespace TEPSClientManagementConsole_V1.Classes
                     response = false;
                 }
             }
+            else
+            {
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
+            }
 
             return response;
         }
 
-        public async Task<bool> installFireMobile(string machineName, string envronmentType, List<string> FDIDs)
+        public async Task<bool> installFireMobile(string machineName, string envronmentType, List<fdidClass> FDIDs)
         {
             bool response = false;
             var ID = 0;
@@ -1381,8 +1380,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             var gisInstanceName = "";
             var mobileName = "";
             var instance = 0;
-            List<string> policeList = new List<string>();
-            List<string> fireList = new List<string>();
+            List<fdidClass> fireList = new List<fdidClass>();
 
             if (envronmentType.Contains("Prod"))
             {
@@ -1421,16 +1419,9 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            if (fireList.Count! > 0)
+            if (fireList.Count > 0)
             {
-                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
-                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
-
-                response = false;
-            }
-            else
-            {
-                var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+                var reply = await masterPushInstallEndPointInteraction.postFireMobile(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, FDIDs);
 
                 if (reply.Contains("true"))
                 {
@@ -1441,11 +1432,18 @@ namespace TEPSClientManagementConsole_V1.Classes
                     response = false;
                 }
             }
+            else
+            {
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
+            }
 
             return response;
         }
 
-        public async Task<bool> installMobileMerge(string machineName, string envronmentType, List<string> ORIs)
+        public async Task<bool> installMobileMerge(string machineName, string envronmentType, List<oriClass> ORIs)
         {
             bool response = false;
             var ID = 0;
@@ -1456,8 +1454,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             var gisInstanceName = "";
             var mobileName = "";
             var instance = 0;
-            List<string> policeList = new List<string>();
-            List<string> fireList = new List<string>();
+            List<oriClass> policeList = new List<oriClass>();
 
             if (envronmentType.Contains("Prod"))
             {
@@ -1496,16 +1493,9 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            if (policeList.Count! > 0)
+            if (policeList.Count > 0)
             {
-                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
-                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
-
-                response = false;
-            }
-            else
-            {
-                var reply = await masterPushInstallEndPointInteraction.postInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+                var reply = await masterPushInstallEndPointInteraction.postMobileMerge(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList);
 
                 if (reply.Contains("true"))
                 {
@@ -1515,6 +1505,13 @@ namespace TEPSClientManagementConsole_V1.Classes
                 {
                     response = false;
                 }
+            }
+            else
+            {
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
             }
 
             return response;
@@ -1531,8 +1528,6 @@ namespace TEPSClientManagementConsole_V1.Classes
             var gisInstanceName = "";
             var mobileName = "";
             var instance = 0;
-            List<string> policeList = new List<string>();
-            List<string> fireList = new List<string>();
 
             if (envronmentType.Contains("Prod"))
             {
@@ -1558,8 +1553,6 @@ namespace TEPSClientManagementConsole_V1.Classes
                 gisServerName = configurationViewModel._prodGisServerName;
                 gisInstanceName = configurationViewModel._prodGisInstanceName;
                 mobileName = configurationViewModel._prodMobileServerName;
-                //policeList
-                //fireList
             }
             if (instance == 3)
             {
@@ -1572,7 +1565,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 //ID = client?.ID;
             }
 
-            var reply = await masterPushInstallEndPointInteraction.postInstallIncidentObserver(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList, fireList);
+            var reply = await masterPushInstallEndPointInteraction.postInstallIncidentObserver(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
 
             if (reply.Contains("true"))
             {

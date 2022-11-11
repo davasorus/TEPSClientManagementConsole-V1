@@ -148,30 +148,28 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
 
         private void orisComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (deploymentDataHolder.selectedORIs.Contains(orisComBx.SelectedValue.ToString()))
+            foreach (var item in deploymentDataHolder.selectedORIs)
             {
-                deploymentDataHolder.selectedORIs.Remove(orisComBx.SelectedValue.ToString());
+                if (item.ORI.Contains(orisComBx.SelectedValue.ToString()))
+                {
+                    deploymentDataHolder.selectedORIs.RemoveAt(item.FieldName[0]);
+                }
+            }
 
-                deploymentDataHolder.selectedORIs.Add(orisComBx.SelectedValue.ToString());
-            }
-            else
-            {
-                deploymentDataHolder.selectedORIs.Add(orisComBx.SelectedValue.ToString());
-            }
+            deploymentDataHolder.selectedORIs.Add(new oriClass { FieldName = $"ORI{orisComBx.SelectedIndex}", ORI = orisComBx.SelectedValue.ToString() });
         }
 
         private void fdidsComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (deploymentDataHolder.selectedFDIDs.Contains(fdidsComBx.SelectedValue.ToString()))
+            foreach (var item in deploymentDataHolder.selectedFDIDs)
             {
-                deploymentDataHolder.selectedORIs.Remove(fdidsComBx.SelectedValue.ToString());
+                if (item.FDID.Contains(fdidsComBx.SelectedValue.ToString()))
+                {
+                    deploymentDataHolder.selectedFDIDs.RemoveAt(item.FieldName[0]);
+                }
+            }
 
-                deploymentDataHolder.selectedORIs.Add(fdidsComBx.SelectedValue.ToString());
-            }
-            else
-            {
-                deploymentDataHolder.selectedORIs.Add(fdidsComBx.SelectedValue.ToString());
-            }
+            deploymentDataHolder.selectedFDIDs.Add(new fdidClass { FieldName = $"FDID{fdidsComBx.SelectedIndex}", FDID = fdidsComBx.SelectedValue.ToString() });
         }
 
         #endregion ui interaction
@@ -470,27 +468,59 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //pre package
         private void installMSPChkBx1_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("installMSPPackage"))
             {
                 deploymentDataHolder.enrolledItems.Remove("installMSPPackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installMSP");
             }
             else
             {
                 deploymentDataHolder.enrolledItems.Add("installMSPPackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installMSP");
             }
         }
 
+        //pre package
         private void installCADChkBx1_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("installCADPackage"))
             {
                 deploymentDataHolder.enrolledItems.Remove("installCADPackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("install2010VSTool");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCLRType");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installCAD");
             }
             else
             {
                 deploymentDataHolder.enrolledItems.Add("installCADPackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("install2010VSTool");
+                deploymentDataHolder.enrolledItems.Add("installSQLCLRType");
+
+                deploymentDataHolder.enrolledItems.Add("installCAD");
             }
         }
 
@@ -500,10 +530,24 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             if (deploymentDataHolder.enrolledItems.Contains("installLawMobilePackage"))
             {
                 deploymentDataHolder.enrolledItems.Remove("installLawMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installLawMobile");
             }
             else
             {
                 deploymentDataHolder.enrolledItems.Add("installLawMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installDBProviders");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installLawMobile");
             }
         }
 
@@ -512,10 +556,24 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             if (deploymentDataHolder.enrolledItems.Contains("installFireMobilePackage"))
             {
                 deploymentDataHolder.enrolledItems.Remove("installFireMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installFireMobile");
             }
             else
             {
                 deploymentDataHolder.enrolledItems.Add("installFireMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installDBProviders");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installFireMobile");
             }
         }
 
@@ -524,10 +582,24 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             if (deploymentDataHolder.enrolledItems.Contains("installMobileMergePackage"))
             {
                 deploymentDataHolder.enrolledItems.Remove("installMobileMergePackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installMobileMerge");
             }
             else
             {
                 deploymentDataHolder.enrolledItems.Add("installMobileMergePackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installDBProviders");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installMobileMerge");
             }
         }
 
@@ -643,11 +715,11 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
         {
             if (deploymentDataHolder.enrolledItems.Contains("installMobileMerge"))
             {
-                deploymentDataHolder.enrolledItems.Remove("installLawMobileMerge");
+                deploymentDataHolder.enrolledItems.Remove("installMobileMerge");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("installLawMobileMerge");
+                deploymentDataHolder.enrolledItems.Add("installMobileMerge");
             }
         }
 
@@ -655,7 +727,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
     }
 }
 
-internal class deploymentDataHolder
+public class deploymentDataHolder
 {
     public static string machineName { get; set; }
     public static string environmentType { get; set; }
@@ -664,7 +736,19 @@ internal class deploymentDataHolder
 
     public static List<string> enrolledItems = new List<string>();
 
-    public static List<string> selectedORIs = new List<string>();
+    public static List<oriClass> selectedORIs = new List<oriClass>();
 
-    public static List<string> selectedFDIDs = new List<string>();
+    public static List<fdidClass> selectedFDIDs = new List<fdidClass>();
+}
+
+public class oriClass
+{
+    public string FieldName { get; set; }
+    public string ORI { get; set; }
+}
+
+public class fdidClass
+{
+    public string FieldName { get; set; }
+    public string FDID { get; set; }
 }

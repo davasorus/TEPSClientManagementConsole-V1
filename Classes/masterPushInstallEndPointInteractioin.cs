@@ -16,7 +16,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
         #region pre req installs
 
-        public async Task<string> postInstallDotNet(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallDotNet(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -39,9 +39,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -73,7 +71,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallSQLCE35(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallSQLCE35(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -96,9 +94,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -130,7 +126,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallGIS(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallGIS(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -153,9 +149,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -187,7 +181,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallDBProviders(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallDBProviders(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -210,9 +204,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -244,7 +236,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallUpdater(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallUpdater(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -267,9 +259,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -301,7 +291,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallScenePD(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallScenePD(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -324,9 +314,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -358,7 +346,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> PostInstallSQLCE40(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> PostInstallSQLCE40(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -381,9 +369,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -415,7 +401,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallVS2010(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallVS2010(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -438,9 +424,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -472,7 +456,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallSQLCLR2008(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallSQLCLR2008(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -495,9 +479,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -529,7 +511,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallSQLCLR2012(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallSQLCLR2012(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -552,9 +534,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -590,7 +570,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
         #region client installs
 
-        public async Task<string> postInstallMSP(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallMSP(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -613,9 +593,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -647,7 +625,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallCAD(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallCAD(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -670,9 +648,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -704,7 +680,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postInstallIncidentObserver(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postInstallIncidentObserver(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -727,9 +703,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISServer = gisServer,
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
-                Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                Instance = instance
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -761,7 +735,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postLawMobile(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postLawMobile(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<oriClass> policeList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -785,8 +759,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
                 Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                PoliceList = policeList
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -818,7 +791,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postFireMobile(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postFireMobile(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<fdidClass> fireList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -842,7 +815,6 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
                 Instance = instance,
-                PoliceList = policeList,
                 FireList = fireList
             };
 
@@ -875,7 +847,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             return result;
         }
 
-        public async Task<string> postMobileMerge(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<string> policeList, List<string> fireList)
+        public async Task<string> postMobileMerge(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance, List<oriClass> policeList)
         {
             string result = "";
             var httpClient = new HttpClient();
@@ -899,8 +871,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 GISInstance = gisInstance,
                 MobileServer = mobileServer,
                 Instance = instance,
-                PoliceList = policeList,
-                FireList = fireList
+                PoliceList = policeList
             };
 
             var package = JsonConvert.SerializeObject(Obj);
@@ -952,7 +923,7 @@ internal class apiObj
 
     public int Instance { get; set; }
 
-    public List<string> PoliceList = new List<string>();
+    public List<oriClass> PoliceList = new List<oriClass>();
 
-    public List<string> FireList = new List<string>();
+    public List<fdidClass> FireList = new List<fdidClass>();
 }
