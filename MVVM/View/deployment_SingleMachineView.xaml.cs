@@ -23,16 +23,25 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
 
         private void Deployment_SingleMachineView_Loaded(object sender, RoutedEventArgs e)
         {
-            loadDropDown();
+            loadClientDropDown();
+            loadORIDropDown();
+            loadFireDropDown();
         }
 
-        private void loadDropDown()
+        #region functions
+
+        private void loadClientDropDown()
         {
-            var message = prodClientConfigObjs.Collection.Count;
+            var message = 0;
+
+            if (prodClientConfigObjs.Collection.Count != null)
+            {
+                message = prodClientConfigObjs.Collection.Count;
+            }
 
             if (message == 0)
             {
-                loadDropDown();
+                loadClientDropDown();
             }
             else
             {
@@ -45,6 +54,125 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
                 }
             }
         }
+
+        private void loadORIDropDown()
+        {
+            var message = 0;
+
+            if (oriObjs.Collection.Count != null)
+            {
+                message = oriObjs.Collection.Count;
+            }
+
+            if (message == 0)
+            {
+                loadORIDropDown();
+            }
+            else
+            {
+                foreach (var name in oriObjs.Collection)
+                {
+                    if (!clientsComBx.Items.Contains(name.ORI))
+                    {
+                        this.Dispatcher.Invoke(new Action(() => orisComBx.Items.Add(name.ORI)));
+                    }
+                }
+            }
+        }
+
+        private void loadFireDropDown()
+        {
+            var message = 0;
+
+            if (fdidObjs.Collection.Count != null)
+            {
+                message = fdidObjs.Collection.Count;
+            }
+
+            if (message == 0)
+            {
+                loadFireDropDown();
+            }
+            else
+            {
+                foreach (var name in fdidObjs.Collection)
+                {
+                    if (!clientsComBx.Items.Contains(name.FDID))
+                    {
+                        this.Dispatcher.Invoke(new Action(() => fdidsComBx.Items.Add(name.FDID)));
+                    }
+                }
+            }
+        }
+
+        #endregion functions
+
+        #region ui interaction
+
+        private void clientsComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            deploymentDataHolder.machineName = clientsComBx.SelectedValue.ToString();
+        }
+
+        private void environmentComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            deploymentDataHolder.environmentType = environmentComBx.SelectedValue.ToString();
+        }
+
+        private void kickOffClientInstall_Click(object sender, RoutedEventArgs e)
+        {
+            deploymentDataHolder.totalNumber = deploymentDataHolder.enrolledItems.Count;
+
+            if (!string.IsNullOrEmpty(deploymentDataHolder.machineName))
+            {
+                if (!string.IsNullOrEmpty(deploymentDataHolder.environmentType))
+                {
+                    this.Dispatcher.Invoke(() => activeDeploymentObjs.Collection.Add(new activeDeploymentObj
+                    {
+                        client_Name = deploymentDataHolder.machineName,
+                        Step = 1,
+                        Out_Of = deploymentDataHolder.totalNumber
+                    }));
+                    deploymentDistributorClass.entrance(deploymentDataHolder.machineName, deploymentDataHolder.environmentType, deploymentDataHolder.totalNumber, deploymentDataHolder.enrolledItems, 1, deploymentDataHolder.selectedORIs, deploymentDataHolder.selectedFDIDs);
+                }
+                else
+                {
+                    loggingClass.queEntrywriter("Deployment Error: Please select an environment");
+                }
+            }
+            else
+            {
+                loggingClass.queEntrywriter("Deployment ERROR: Please select a client");
+            }
+        }
+
+        private void orisComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in deploymentDataHolder.selectedORIs)
+            {
+                if (item.ORI.Contains(orisComBx.SelectedValue.ToString()))
+                {
+                    deploymentDataHolder.selectedORIs.RemoveAt(item.FieldName[0]);
+                }
+            }
+
+            deploymentDataHolder.selectedORIs.Add(new oriClass { FieldName = $"ORI{orisComBx.SelectedIndex}", ORI = orisComBx.SelectedValue.ToString() });
+        }
+
+        private void fdidsComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in deploymentDataHolder.selectedFDIDs)
+            {
+                if (item.FDID.Contains(fdidsComBx.SelectedValue.ToString()))
+                {
+                    deploymentDataHolder.selectedFDIDs.RemoveAt(item.FieldName[0]);
+                }
+            }
+
+            deploymentDataHolder.selectedFDIDs.Add(new fdidClass { FieldName = $"FDID{fdidsComBx.SelectedIndex}", FDID = fdidsComBx.SelectedValue.ToString() });
+        }
+
+        #endregion ui interaction
 
         #region uninstall Steps
 
@@ -132,39 +260,27 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
-        private void DeleteClientFoldersChkBx_Click(object sender, RoutedEventArgs e)
+        private void UninstallMSPChkBx_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("DeleteClientFolders"))
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallMSP"))
             {
-                deploymentDataHolder.enrolledItems.Remove("DeleteClientFolders");
+                deploymentDataHolder.enrolledItems.Remove("UninstallMSP");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("uninstallFireClient");
+                deploymentDataHolder.enrolledItems.Add("UninstallMSP");
             }
         }
 
-        private void RemoveMobileUpdaterEntryChkBx_Click(object sender, RoutedEventArgs e)
+        private void UninstallCADChkBx_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("RemoveMobileUpdaterEntry"))
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallCAD"))
             {
-                deploymentDataHolder.enrolledItems.Remove("RemoveMobileUpdaterEntry");
+                deploymentDataHolder.enrolledItems.Remove("UninstallCAD");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("RemoveMobileUpdaterEntry");
-            }
-        }
-
-        private void UninstallMSPCADChkBx_Click(object sender, RoutedEventArgs e)
-        {
-            if (deploymentDataHolder.enrolledItems.Contains("UninstallMSPCAD"))
-            {
-                deploymentDataHolder.enrolledItems.Remove("UninstallMSPCAD");
-            }
-            else
-            {
-                deploymentDataHolder.enrolledItems.Add("UninstallMSPCAD");
+                deploymentDataHolder.enrolledItems.Add("UninstallCAD");
             }
         }
 
@@ -216,15 +332,75 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
-        private void restartMachine1ChkBx_Click(object sender, RoutedEventArgs e)
+        private void uninstallFireClientChkBx1_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("restartMachine1"))
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallFireMobile"))
             {
-                deploymentDataHolder.enrolledItems.Remove("restartMachine1");
+                deploymentDataHolder.enrolledItems.Remove("UninstallFireMobile");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("restartMachine1");
+                deploymentDataHolder.enrolledItems.Add("UninstallFireMobile");
+            }
+        }
+
+        private void uninstallPoliceClientChkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallLawMobile"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("UninstallLawMobile");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("UninstallLawMobile");
+            }
+        }
+
+        private void uninstallMergeClientChkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallMobileMerge"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("UninstallMobileMerge");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("UninstallMobileMerge");
+            }
+        }
+
+        private void UninstallMSPhkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallMSP1"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("UninstallMSP1");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("UninstallMSP1");
+            }
+        }
+
+        private void UninstallCADChkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallCAD1"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("UninstallCAD1");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("UninstallCAD1");
+            }
+        }
+
+        private void UninstallCADObserverChkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallCADObserver1"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("UninstallCADObserver1");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("UninstallCADObserver1");
             }
         }
 
@@ -292,51 +468,138 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
-        private void runUpdaterConfigChkBx_Click(object sender, RoutedEventArgs e)
+        //pre package
+        private void installMSPChkBx1_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("runUpdaterConfig"))
+            if (deploymentDataHolder.enrolledItems.Contains("installMSPPackage"))
             {
-                deploymentDataHolder.enrolledItems.Remove("runUpdaterConfig");
+                deploymentDataHolder.enrolledItems.Remove("installMSPPackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installMSP");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("runUpdaterConfig");
+                deploymentDataHolder.enrolledItems.Add("installMSPPackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installMSP");
             }
         }
 
-        private void folderPermissions1ChkBx_Click(object sender, RoutedEventArgs e)
+        //pre package
+        private void installCADChkBx1_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("folderPermissions1"))
+            if (deploymentDataHolder.enrolledItems.Contains("installCADPackage"))
             {
-                deploymentDataHolder.enrolledItems.Remove("folderPermissions1");
+                deploymentDataHolder.enrolledItems.Remove("installCADPackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("install2010VSTool");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCLRType");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installCAD");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("folderPermissions1");
+                deploymentDataHolder.enrolledItems.Add("installCADPackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("install2010VSTool");
+                deploymentDataHolder.enrolledItems.Add("installSQLCLRType");
+
+                deploymentDataHolder.enrolledItems.Add("installCAD");
             }
         }
 
-        private void installMSPCADChkBx_Click(object sender, RoutedEventArgs e)
+        private void installLawMobileChkBx_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("installMSPCAD"))
+            //prepackage
+            if (deploymentDataHolder.enrolledItems.Contains("installLawMobilePackage"))
             {
-                deploymentDataHolder.enrolledItems.Remove("installMSPCAD");
+                deploymentDataHolder.enrolledItems.Remove("installLawMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installLawMobile");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("installMSPCAD");
+                deploymentDataHolder.enrolledItems.Add("installLawMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installDBProviders");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installLawMobile");
             }
         }
 
-        private void installMobileChkBx_Click(object sender, RoutedEventArgs e)
+        private void installFireMobileChkBx_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("installMobile"))
+            if (deploymentDataHolder.enrolledItems.Contains("installFireMobilePackage"))
             {
-                deploymentDataHolder.enrolledItems.Remove("installMobile");
+                deploymentDataHolder.enrolledItems.Remove("installFireMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installFireMobile");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("installMobile");
+                deploymentDataHolder.enrolledItems.Add("installFireMobilePackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installDBProviders");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installFireMobile");
+            }
+        }
+
+        private void installMobileMergeChkBx_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("installMobileMergePackage"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("installMobileMergePackage");
+
+                deploymentDataHolder.enrolledItems.Remove("installdotNet");
+                deploymentDataHolder.enrolledItems.Remove("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Remove("installGISComponents");
+                deploymentDataHolder.enrolledItems.Remove("installUpdater");
+                deploymentDataHolder.enrolledItems.Remove("installDBProviders");
+                deploymentDataHolder.enrolledItems.Remove("installMobileMerge");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("installMobileMergePackage");
+
+                deploymentDataHolder.enrolledItems.Add("installdotNet");
+                deploymentDataHolder.enrolledItems.Add("installSQLCE35");
+                deploymentDataHolder.enrolledItems.Add("installGISComponents");
+                deploymentDataHolder.enrolledItems.Add("installDBProviders");
+                deploymentDataHolder.enrolledItems.Add("installUpdater");
+                deploymentDataHolder.enrolledItems.Add("installMobileMerge");
             }
         }
 
@@ -400,59 +663,92 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
-        private void restartMachine2ChkBx_Click(object sender, RoutedEventArgs e)
+        private void installMSPChkBx_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("restartMachine2"))
+            if (deploymentDataHolder.enrolledItems.Contains("installMSP"))
             {
-                deploymentDataHolder.enrolledItems.Remove("restartMachine2");
+                deploymentDataHolder.enrolledItems.Remove("installMSP");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("restartMachine2");
+                deploymentDataHolder.enrolledItems.Add("installMSP");
+            }
+        }
+
+        private void installCADChkBx_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("installCAD"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("installCAD");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("installCAD");
+            }
+        }
+
+        private void installLawMobileChkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("installLawMobile"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("installLawMobile");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("installLawMobile");
+            }
+        }
+
+        private void installFireMobileChkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("installFireMobile"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("installFireMobile");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("installFireMobile");
+            }
+        }
+
+        private void installMobileMergeChkBx1_Click(object sender, RoutedEventArgs e)
+        {
+            if (deploymentDataHolder.enrolledItems.Contains("installMobileMerge"))
+            {
+                deploymentDataHolder.enrolledItems.Remove("installMobileMerge");
+            }
+            else
+            {
+                deploymentDataHolder.enrolledItems.Add("installMobileMerge");
             }
         }
 
         #endregion install steps
-
-        private void clientsComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            deploymentDataHolder.machineName = clientsComBx.SelectedValue.ToString();
-        }
-
-        private void environmentComBx_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            deploymentDataHolder.environmentType = environmentComBx.SelectedValue.ToString();
-        }
-
-        private void kickOffClientInstall_Click(object sender, RoutedEventArgs e)
-        {
-            deploymentDataHolder.totalNumber = deploymentDataHolder.enrolledItems.Count;
-
-            if (!string.IsNullOrEmpty(deploymentDataHolder.machineName))
-            {
-                if (!string.IsNullOrEmpty(deploymentDataHolder.environmentType))
-                {
-                    //deploymentDistributorClass
-                }
-                else
-                {
-                    loggingClass.queEntrywriter("Deployment Error: Please select an environment");
-                }
-            }
-            else
-            {
-                loggingClass.queEntrywriter("Deployment ERROR: Please select a client");
-            }
-        }
     }
 }
 
-internal class deploymentDataHolder
+public class deploymentDataHolder
 {
     public static string machineName { get; set; }
     public static string environmentType { get; set; }
 
     public static int totalNumber { get; set; }
 
-    public static List<string> enrolledItems { get; set; }
+    public static List<string> enrolledItems = new List<string>();
+
+    public static List<oriClass> selectedORIs = new List<oriClass>();
+
+    public static List<fdidClass> selectedFDIDs = new List<fdidClass>();
+}
+
+public class oriClass
+{
+    public string FieldName { get; set; }
+    public string ORI { get; set; }
+}
+
+public class fdidClass
+{
+    public string FieldName { get; set; }
+    public string FDID { get; set; }
 }

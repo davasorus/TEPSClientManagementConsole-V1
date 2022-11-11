@@ -231,17 +231,17 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (prodClientConfigObjs.Collection.Count > 1)
                 {
-                    prodClientConfigObjs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => prodClientConfigObjs.Collection.Clear()));
                 }
 
                 if (testClientConfigObjs.Collection.Count > 1)
                 {
-                    testClientConfigObjs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => testClientConfigObjs.Collection.Clear()));
                 }
 
                 if (prodClientConfigObjs.Collection.Count > 1)
                 {
-                    trainClientConfigObjs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => trainClientConfigObjs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -352,6 +352,11 @@ namespace TEPSClientManagementConsole_V1.Classes
 
             if (response.IsSuccessStatusCode)
             {
+                if (installedCatalogObjs.Collection.Count > 1)
+                {
+                    this.Dispatcher.Invoke(new Action(() => installedCatalogObjs.Collection.Clear()));
+                }
+
                 var json = await response.Content.ReadAsStringAsync();
 
                 try
@@ -438,7 +443,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (ServerErrorLogs.Collection.Count > 1)
                 {
-                    ServerErrorLogs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => ServerErrorLogs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -483,7 +488,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (installHistoryLogs.Collection.Count > 1)
                 {
-                    installHistoryLogs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => installHistoryLogs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -545,7 +550,7 @@ namespace TEPSClientManagementConsole_V1.Classes
             {
                 if (uninstallHistoryLogs.Collection.Count > 1)
                 {
-                    uninstallHistoryLogs.Collection.Clear();
+                    this.Dispatcher.Invoke(new Action(() => uninstallHistoryLogs.Collection.Clear()));
                 }
 
                 var json = await response.Content.ReadAsStringAsync();
@@ -568,6 +573,108 @@ namespace TEPSClientManagementConsole_V1.Classes
                         {
                             this.Dispatcher.Invoke(() => uninstallHistoryLogs.Collection.Add(new uninstallHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Train", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
                         }
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
+
+        public async Task GetORIs()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetORIs";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (oriObjs.Collection.Count > 1)
+                {
+                    this.Dispatcher.Invoke(new Action(() => oriObjs.Collection.Clear()));
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<oriObj>>(json);
+
+                try
+                {
+                    foreach (var obj in objects)
+                    {
+                        this.Dispatcher.Invoke(() => oriObjs.Collection.Add(new oriObj { ORI = obj.ORI, EnrolledInstanceType_ID = obj.EnrolledInstanceType_ID }));
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+            }
+        }
+
+        public async Task GetFDIDs()
+        {
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/manage/GetFDIDs";
+
+            HttpResponseMessage response = await httpClient.GetAsync(endPoint);
+
+            if (response.IsSuccessStatusCode)
+            {
+                if (fdidObjs.Collection.Count > 1)
+                {
+                    this.Dispatcher.Invoke(new Action(() => uninstallHistoryLogs.Collection.Clear()));
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var objects = JsonConvert.DeserializeObject<List<fdidObj>>(json);
+
+                try
+                {
+                    foreach (var obj in objects)
+                    {
+                        this.Dispatcher.Invoke(() => fdidObjs.Collection.Add(new fdidObj { FDID = obj.FDID, EnrolledInstanceType_ID = obj.EnrolledInstanceType_ID }));
                     }
                 }
                 catch (Exception ex)
