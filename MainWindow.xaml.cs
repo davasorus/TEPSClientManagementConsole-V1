@@ -76,6 +76,10 @@ namespace TEPSClientManagementConsole_V1
                 await masterMangeEndPointInteractionClass.GetInstallLogs();
 
                 await masterMangeEndPointInteractionClass.GetuninstallLogs();
+
+                await masterMangeEndPointInteractionClass.GetORIs();
+
+                await masterMangeEndPointInteractionClass.GetFDIDs();
             }
         }
 

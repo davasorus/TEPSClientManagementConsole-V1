@@ -35,6 +35,10 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
                 masterMangeEndPointInteractionClass.GetInstallLogs();
 
                 masterMangeEndPointInteractionClass.GetuninstallLogs();
+
+                masterMangeEndPointInteractionClass.GetORIs();
+
+                masterMangeEndPointInteractionClass.GetFDIDs();
             }
         }
 
