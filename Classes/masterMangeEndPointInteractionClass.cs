@@ -320,6 +320,24 @@ namespace TEPSClientManagementConsole_V1.Classes
                         loggingClass.logEntryWriter(ex.ToString(), "error");
                     }
                 }
+
+                if (prodClientConfigObjs.Collection.Count > 1)
+                {
+                    loggingClass.logEntryWriter("Prod Client Data Received", "info");
+                    loggingClass.queEntrywriter("Prod Client Data Received");
+                }
+
+                if (testClientConfigObjs.Collection.Count > 1)
+                {
+                    loggingClass.logEntryWriter("Test Client Data Received", "info");
+                    loggingClass.queEntrywriter("Test Client Data Received");
+                }
+
+                if (prodClientConfigObjs.Collection.Count > 1)
+                {
+                    loggingClass.logEntryWriter("Train Client Data Received", "info");
+                    loggingClass.queEntrywriter("Train Client Data Received");
+                }
             }
             else
             {
@@ -405,9 +423,17 @@ namespace TEPSClientManagementConsole_V1.Classes
                             }));
                         }
                     }
+
+                    if (installedCatalogObjs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("Installed Catalog Data Received", "info");
+                        loggingClass.queEntrywriter("Installed Catalog Data Received");
+                    }
                 }
                 catch (Exception ex)
                 {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
                 }
             }
             else
@@ -453,6 +479,12 @@ namespace TEPSClientManagementConsole_V1.Classes
                 foreach (var obj in objects)
                 {
                     this.Dispatcher.Invoke(() => ServerErrorLogs.Collection.Add(new serverErrorObj { ClientName = obj.ClientName, ErrorMessage = obj.ErrorMessage, ErrorDate_Time = obj.ErrorDate_Time }));
+                }
+
+                if (ServerErrorLogs.Collection.Count > 1)
+                {
+                    loggingClass.logEntryWriter("Server Error Data Received", "info");
+                    loggingClass.queEntrywriter("Server Error Data Received");
                 }
             }
             else
@@ -512,9 +544,29 @@ namespace TEPSClientManagementConsole_V1.Classes
                             this.Dispatcher.Invoke(() => installHistoryLogs.Collection.Add(new installHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Train", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
                         }
                     }
+
+                    if (installHistoryLogs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("Prod Install History Data Received", "info");
+                        loggingClass.queEntrywriter("Prod Install History Data Received");
+                    }
+
+                    if (installHistoryLogs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("Test Install History Data Received", "info");
+                        loggingClass.queEntrywriter("Test Install History Data Received");
+                    }
+
+                    if (installHistoryLogs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("Train Install History Data Received", "info");
+                        loggingClass.queEntrywriter("Train Install History Data Received");
+                    }
                 }
                 catch (Exception ex)
                 {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
                 }
             }
             else
@@ -574,9 +626,29 @@ namespace TEPSClientManagementConsole_V1.Classes
                             this.Dispatcher.Invoke(() => uninstallHistoryLogs.Collection.Add(new uninstallHistoryObj { ClientName = obj.ClientName, EnrolledInstanceType = "Train", ErrorMessage = obj.Action, TransactionDate_Time = obj.TransactionDate_Time }));
                         }
                     }
+
+                    if (uninstallHistoryLogs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("Prod UnInstall History Data Received", "info");
+                        loggingClass.queEntrywriter("Prod UnInstall History Data Received");
+                    }
+
+                    if (uninstallHistoryLogs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("Test UnInstall History Data Received", "info");
+                        loggingClass.queEntrywriter("Test UnInstall History Data Received");
+                    }
+
+                    if (uninstallHistoryLogs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("Train UnInstall History Data Received", "info");
+                        loggingClass.queEntrywriter("Train UnInstall History Data Received");
+                    }
                 }
                 catch (Exception ex)
                 {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
                 }
             }
             else
@@ -625,9 +697,17 @@ namespace TEPSClientManagementConsole_V1.Classes
                     {
                         this.Dispatcher.Invoke(() => oriObjs.Collection.Add(new oriObj { ORI = obj.ORI, EnrolledInstanceType_ID = obj.EnrolledInstanceType_ID }));
                     }
+
+                    if (oriObjs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("ORI Data Received", "info");
+                        loggingClass.queEntrywriter("ORI Data Received");
+                    }
                 }
                 catch (Exception ex)
                 {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
                 }
             }
             else
@@ -676,9 +756,17 @@ namespace TEPSClientManagementConsole_V1.Classes
                     {
                         this.Dispatcher.Invoke(() => fdidObjs.Collection.Add(new fdidObj { FDID = obj.FDID, EnrolledInstanceType_ID = obj.EnrolledInstanceType_ID }));
                     }
+
+                    if (fdidObjs.Collection.Count > 1)
+                    {
+                        loggingClass.logEntryWriter("FDID Data Received", "info");
+                        loggingClass.queEntrywriter("FDID Data Received");
+                    }
                 }
                 catch (Exception ex)
                 {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
                 }
             }
             else

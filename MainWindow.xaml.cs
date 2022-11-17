@@ -28,8 +28,6 @@ namespace TEPSClientManagementConsole_V1
             Loaded += MainWindow_Loaded;
 
             snackbarQues.Collection.CollectionChanged += Collection_CollectionChanged;
-
-            updateSnackBar("snackbar Testing");
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
