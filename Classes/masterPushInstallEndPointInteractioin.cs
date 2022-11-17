@@ -904,6 +904,395 @@ namespace TEPSClientManagementConsole_V1.Classes
         }
 
         #endregion client installs
+
+        #region pre Req Uninstalls
+
+        public async Task<string> postUnInstallSQLCE35(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostUnInstallSQLCE35/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} uninstalled SQL Compact 3.5 successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postunInstallGIS(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostunInstallGIS/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} uninstalled GIS Components successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postunInstallUpdater(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostunInstallUpdater/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} uninstalled Enterprise Updater successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postunInstallScenePD(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostunInstallScenePD/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} uninstalled ScenePD successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> PostunInstallSQLCE40(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostunInstallSQLCE40/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} uninstalled SQL Compact 4.0 successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postunInstallSQLCLR2008(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostunInstallSQLCLR2008/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} uninstalled SQL CLR Types 2008 successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        public async Task<string> postunInstallSQLCLR2012(string machineName, int ID, string essServer, string mspServer, string cadServer, string gisServer, string gisInstance, string mobileServer, int instance)
+        {
+            string result = "";
+            var httpClient = new HttpClient();
+            var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
+
+            if (defaultRequestHeaders.Accept == null ||
+               !defaultRequestHeaders.Accept.Any(m => m.MediaType == "application/json"))
+            {
+                httpClient.DefaultRequestHeaders.Accept.Add(new
+                  MediaTypeWithQualityHeaderValue("application/json"));
+            }
+
+            var endPoint = $"http://{configurationViewModel._prodMasterServiceServer}:8081/Push/PostunInstallSQLCLR2012/{ID}";
+
+            apiObj Obj = new apiObj()
+            {
+                ESSServer = essServer,
+                MSPServer = mspServer,
+                CADServer = cadServer,
+                GISServer = gisServer,
+                GISInstance = gisInstance,
+                MobileServer = mobileServer,
+                Instance = instance
+            };
+
+            var package = JsonConvert.SerializeObject(Obj);
+
+            var stringContent = new StringContent(package, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await httpClient.PostAsync(endPoint, stringContent);
+
+            if (response.IsSuccessStatusCode)
+            {
+                loggingClass.logEntryWriter($"{machineName} uninstalled SQL CLR Types 2012 successfully", "info");
+
+                result = "true";
+            }
+            else
+            {
+                string logEntry1 = $" Failed to call the Web Api: {response.StatusCode}";
+
+                loggingClass.logEntryWriter(logEntry1, "error");
+
+                string content = await response.Content.ReadAsStringAsync();
+                string logEntry2 = $" Content: {content}";
+
+                loggingClass.logEntryWriter(logEntry2, "error");
+
+                result = "false";
+            }
+
+            return result;
+        }
+
+        #endregion pre Req Uninstalls
     }
 }
 
