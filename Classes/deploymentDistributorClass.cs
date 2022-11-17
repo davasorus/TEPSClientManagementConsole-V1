@@ -15,7 +15,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
         public async void entrance(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<oriClass> ORIs, List<fdidClass> FDIDs)
         {
-            await uninstallSteps(machineName, envronmentType, totalNumber, enrolledItems, i);
+            await uninstallSteps(machineName, envronmentType, totalNumber, enrolledItems, i, ORIs, FDIDs);
 
             await installSteps(machineName, envronmentType, totalNumber, enrolledItems, i, ORIs, FDIDs);
 
@@ -44,9 +44,371 @@ namespace TEPSClientManagementConsole_V1.Classes
 
         #region distribution logic and parameter building
 
-        public async Task uninstallSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i)
+        public async Task uninstallSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<oriClass> ORIs, List<fdidClass> FDIDs)
         {
             int j = i;
+
+            if (enrolledItems.Contains("uninstallSQLCE35"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "SQL Compact 3.5 UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstall35SQLCompact(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} Uninstalled SQL Compact 3.5 successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall SQL Compact 3.5");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("uninstallGISComp"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "GIS Components UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallGISComponents(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled GIS Components successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall GIS Components");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("UninstallUpdater"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Enterprise Updater UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallUpdater(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled Enterprise Updater successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall Enterprise Updater");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("UninstallScenePD"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "ScenePD UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallScenePD(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled ScenePD successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall ScenePD");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("UninstallSQLCE4"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "SQL Compact 4.0 UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstall40SqlCompact(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled SQL Compact 4.0 successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall SQL Compact 4.0");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("UninstallSQLCLRTypes"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "SQL CLR 2008 UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallSQLCLR08Types(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled SQL CLR 2008 successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall SQL CLR 2008");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "SQL CLR 2012 UnInstall");
+
+                    var response = await uninstallSQLCLR12Types(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled SQL CLR 2012 successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall SQL CLR 2012");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+
+            if (enrolledItems.Contains("UninstallMSP"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "MSP Client UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallMSP(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled MSP Client successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall MSP Client");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("UninstallCAD"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "CAD Client UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallCAD(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled CAD Client successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall CAD Client");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("UninstallLawMobile"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Uninstalling Mobile");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallLawMobile(machineName, envronmentType, ORIs);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled Mobile successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall Mobile");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("installFireMobile -- NOT IMPLEMENTED"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Configuring updater for Fire Mobile");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallFireMobile(machineName, envronmentType, FDIDs);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled Fire Mobile successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall Fire Mobile");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("installMobileMerge -- NOT IMPLEMENTED"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Configuring updater for Mobile Merge");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallMobileMerge(machineName, envronmentType, ORIs);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled Mobile Merge successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall Mobile Merge");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
+            if (enrolledItems.Contains("UninstallCADObserver"))
+            {
+                try
+                {
+                    var client = activeDeploymentObjs.Collection.FirstOrDefault(o => o.client_Name == machineName);
+
+                    this.Dispatcher.Invoke(() => client.Currently_Running = "Incident Observer UnInstall");
+
+                    this.Dispatcher.Invoke(() => client.Step = j++);
+
+                    var response = await uninstallCADObserver(machineName, envronmentType);
+
+                    if (response.Equals(true))
+                    {
+                        loggingClass.queEntrywriter($"{machineName} uninstalled Incident Observer Client successfully");
+                    }
+                    else
+                    {
+                        client.Errors_Found = true;
+
+                        loggingClass.queEntrywriter($"{machineName} failed to uninstall Incident Observer Client");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    loggingClass.logEntryWriter(ex.ToString(), "error");
+                }
+            }
         }
 
         public async Task installSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<oriClass> ORIs, List<fdidClass> FDIDs)
@@ -1581,5 +1943,888 @@ namespace TEPSClientManagementConsole_V1.Classes
         }
 
         #endregion install code
+
+        #region uninstall code
+
+        public async Task<bool> uninstall35SQLCompact(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallSQLCE35(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallGISComponents(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallGIS(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallUpdater(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallUpdater(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallScenePD(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallScenePD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstall40SqlCompact(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallSQLCE40(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallSQLCLR08Types(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallSQLCLR2008(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallSQLCLR12Types(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallSQLCLR2012(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallMSP(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallMSP(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallCAD(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<string> policeList = new List<string>();
+            List<string> fireList = new List<string>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                //policeList
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallCAD(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallLawMobile(string machineName, string envronmentType, List<oriClass> ORIs)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<oriClass> policeList = new List<oriClass>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                policeList = ORIs;
+                //fireList
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            if (policeList.Count > 0)
+            {
+                var reply = await masterPushInstallEndPointInteraction.postUninstallLawMobile(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, ORIs);
+
+                if (reply.Contains("true"))
+                {
+                    response = true;
+                }
+                else
+                {
+                    response = false;
+                }
+            }
+            else
+            {
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallFireMobile(string machineName, string envronmentType, List<fdidClass> FDIDs)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<fdidClass> fireList = new List<fdidClass>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                fireList = FDIDs;
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            if (fireList.Count > 0)
+            {
+                var reply = await masterPushInstallEndPointInteraction.postUninstallFireMobile(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, FDIDs);
+
+                if (reply.Contains("true"))
+                {
+                    response = true;
+                }
+                else
+                {
+                    response = false;
+                }
+            }
+            else
+            {
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallMobileMerge(string machineName, string envronmentType, List<oriClass> ORIs)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+            List<oriClass> policeList = new List<oriClass>();
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+                policeList = ORIs;
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            if (policeList.Count > 0)
+            {
+                var reply = await masterPushInstallEndPointInteraction.postUnInstallMobileMerge(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance, policeList);
+
+                if (reply.Contains("true"))
+                {
+                    response = true;
+                }
+                else
+                {
+                    response = false;
+                }
+            }
+            else
+            {
+                loggingClass.logEntryWriter($"Error: no ORI selected, {machineName} was not configured", "error");
+                loggingClass.queEntrywriter($"Error: no ORI selected, {machineName} was not configured");
+
+                response = false;
+            }
+
+            return response;
+        }
+
+        public async Task<bool> uninstallCADObserver(string machineName, string envronmentType)
+        {
+            bool response = false;
+            var ID = 0;
+            var essName = "";
+            var mspName = "";
+            var cadName = "";
+            var gisServerName = "";
+            var gisInstanceName = "";
+            var mobileName = "";
+            var instance = 0;
+
+            if (envronmentType.Contains("Prod"))
+            {
+                instance = 2;
+            }
+            if (envronmentType.Contains("test"))
+            {
+                instance = 3;
+            }
+            if (envronmentType.Contains("Train"))
+            {
+                instance = 4;
+            }
+
+            if (instance == 2)
+            {
+                var client = prodClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+
+                ID = (int)(client?.ID);
+                essName = configurationViewModel._prodEssServerName;
+                mspName = configurationViewModel._prodAppServerName;
+                cadName = configurationViewModel._prodCadServerName;
+                gisServerName = configurationViewModel._prodGisServerName;
+                gisInstanceName = configurationViewModel._prodGisInstanceName;
+                mobileName = configurationViewModel._prodMobileServerName;
+            }
+            if (instance == 3)
+            {
+                var client = testClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+            if (instance == 4)
+            {
+                var client = trainClientConfigObjs.Collection.FirstOrDefault(o => o.ClientName == machineName);
+                //ID = client?.ID;
+            }
+
+            var reply = await masterPushInstallEndPointInteraction.postUnInstallIncidentObserver(machineName, (int)ID, essName, mspName, cadName, gisServerName, gisInstanceName, mobileName, instance);
+
+            if (reply.Contains("true"))
+            {
+                response = true;
+            }
+            else
+            {
+                response = false;
+            }
+
+            return response;
+        }
+
+        #endregion uninstall code
     }
 }
