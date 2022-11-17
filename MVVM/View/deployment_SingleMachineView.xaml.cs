@@ -72,7 +72,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             {
                 foreach (var name in oriObjs.Collection)
                 {
-                    if (!clientsComBx.Items.Contains(name.ORI))
+                    if (!orisComBx.Items.Contains(name.ORI))
                     {
                         this.Dispatcher.Invoke(new Action(() => orisComBx.Items.Add(name.ORI)));
                     }
@@ -97,7 +97,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             {
                 foreach (var name in fdidObjs.Collection)
                 {
-                    if (!clientsComBx.Items.Contains(name.FDID))
+                    if (!fdidsComBx.Items.Contains(name.FDID))
                     {
                         this.Dispatcher.Invoke(new Action(() => fdidsComBx.Items.Add(name.FDID)));
                     }
@@ -176,6 +176,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
 
         #region uninstall Steps
 
+        //not implemented
         private void uninstallFireClientChkBx_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("uninstallFireClient"))
@@ -200,6 +201,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //not implemented
         private void uninstallMergeClientChkBx_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("uninstallMergeClient"))
@@ -209,18 +211,6 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             else
             {
                 deploymentDataHolder.enrolledItems.Add("uninstallFireClient");
-            }
-        }
-
-        private void uninstalNovaPDFChkBx_Click(object sender, RoutedEventArgs e)
-        {
-            if (deploymentDataHolder.enrolledItems.Contains("uninstalNovaPDF"))
-            {
-                deploymentDataHolder.enrolledItems.Remove("uninstalNovaPDF");
-            }
-            else
-            {
-                deploymentDataHolder.enrolledItems.Add("uninstalNovaPDF");
             }
         }
 
@@ -332,6 +322,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //not implemented
         private void uninstallFireClientChkBx1_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("UninstallFireMobile"))
@@ -356,6 +347,7 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
             }
         }
 
+        //not implemented
         private void uninstallMergeClientChkBx1_Click(object sender, RoutedEventArgs e)
         {
             if (deploymentDataHolder.enrolledItems.Contains("UninstallMobileMerge"))
@@ -370,37 +362,37 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
 
         private void UninstallMSPhkBx1_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("UninstallMSP1"))
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallMSP"))
             {
-                deploymentDataHolder.enrolledItems.Remove("UninstallMSP1");
+                deploymentDataHolder.enrolledItems.Remove("UninstallMSP");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("UninstallMSP1");
+                deploymentDataHolder.enrolledItems.Add("UninstallMSP");
             }
         }
 
         private void UninstallCADChkBx1_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("UninstallCAD1"))
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallCAD"))
             {
-                deploymentDataHolder.enrolledItems.Remove("UninstallCAD1");
+                deploymentDataHolder.enrolledItems.Remove("UninstallCAD");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("UninstallCAD1");
+                deploymentDataHolder.enrolledItems.Add("UninstallCAD");
             }
         }
 
         private void UninstallCADObserverChkBx1_Click(object sender, RoutedEventArgs e)
         {
-            if (deploymentDataHolder.enrolledItems.Contains("UninstallCADObserver1"))
+            if (deploymentDataHolder.enrolledItems.Contains("UninstallCADObserver"))
             {
-                deploymentDataHolder.enrolledItems.Remove("UninstallCADObserver1");
+                deploymentDataHolder.enrolledItems.Remove("UninstallCADObserver");
             }
             else
             {
-                deploymentDataHolder.enrolledItems.Add("UninstallCADObserver1");
+                deploymentDataHolder.enrolledItems.Add("UninstallCADObserver");
             }
         }
 
