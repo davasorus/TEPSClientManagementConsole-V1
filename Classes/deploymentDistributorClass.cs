@@ -46,6 +46,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
         public async Task uninstallSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i)
         {
+            int j = i;
         }
 
         public async Task installSteps(string machineName, string envronmentType, int totalNumber, List<string> enrolledItems, int i, List<oriClass> ORIs, List<fdidClass> FDIDs)
