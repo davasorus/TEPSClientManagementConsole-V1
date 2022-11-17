@@ -329,14 +329,14 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                 if (testClientConfigObjs.Collection.Count > 1)
                 {
-                    loggingClass.logEntryWriter("Test Client Data Received", "info");
-                    loggingClass.queEntrywriter("Test Client Data Received");
+                    //loggingClass.logEntryWriter("Test Client Data Received", "info");
+                    //loggingClass.queEntrywriter("Test Client Data Received");
                 }
 
                 if (prodClientConfigObjs.Collection.Count > 1)
                 {
-                    loggingClass.logEntryWriter("Train Client Data Received", "info");
-                    loggingClass.queEntrywriter("Train Client Data Received");
+                    //loggingClass.logEntryWriter("Train Client Data Received", "info");
+                    //loggingClass.queEntrywriter("Train Client Data Received");
                 }
             }
             else
@@ -553,14 +553,14 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     if (installHistoryLogs.Collection.Count > 1)
                     {
-                        loggingClass.logEntryWriter("Test Install History Data Received", "info");
-                        loggingClass.queEntrywriter("Test Install History Data Received");
+                        //loggingClass.logEntryWriter("Test Install History Data Received", "info");
+                        //loggingClass.queEntrywriter("Test Install History Data Received");
                     }
 
                     if (installHistoryLogs.Collection.Count > 1)
                     {
-                        loggingClass.logEntryWriter("Train Install History Data Received", "info");
-                        loggingClass.queEntrywriter("Train Install History Data Received");
+                        //loggingClass.logEntryWriter("Train Install History Data Received", "info");
+                        //loggingClass.queEntrywriter("Train Install History Data Received");
                     }
                 }
                 catch (Exception ex)
@@ -635,14 +635,14 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                     if (uninstallHistoryLogs.Collection.Count > 1)
                     {
-                        loggingClass.logEntryWriter("Test UnInstall History Data Received", "info");
-                        loggingClass.queEntrywriter("Test UnInstall History Data Received");
+                        //loggingClass.logEntryWriter("Test UnInstall History Data Received", "info");
+                        //loggingClass.queEntrywriter("Test UnInstall History Data Received");
                     }
 
                     if (uninstallHistoryLogs.Collection.Count > 1)
                     {
-                        loggingClass.logEntryWriter("Train UnInstall History Data Received", "info");
-                        loggingClass.queEntrywriter("Train UnInstall History Data Received");
+                        //loggingClass.logEntryWriter("Train UnInstall History Data Received", "info");
+                        //loggingClass.queEntrywriter("Train UnInstall History Data Received");
                     }
                 }
                 catch (Exception ex)
