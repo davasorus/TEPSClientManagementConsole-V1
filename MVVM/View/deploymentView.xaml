@@ -44,7 +44,7 @@
                     </materialDesign:Card>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                    <Label Content="Currently Active Deployment Deployments" HorizontalAlignment="Center"/>
+                    <Label Content="Currently Active Deployment Deployments" HorizontalAlignment="Center" />
                     <Grid DataContext="{Binding Source={StaticResource activeDeploymentsModelWindow}}">
                         <ScrollViewer HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto">

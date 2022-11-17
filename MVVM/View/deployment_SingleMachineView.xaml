@@ -65,7 +65,7 @@
                                                         <CheckBox x:Name="uninstallFireClientChkBx1"
                                   Content="Uninstall the Fire Client" Click="uninstallFireClientChkBx1_Click"
                                               ToolTip="Checks for Fire Mobile and uninstalls if installed"
-                                              ToolTipService.InitialShowDelay="450" />
+                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                                                     </ListBoxItem>
                                                     <ListBoxItem>
                                                         <CheckBox x:Name="uninstallPoliceClientChkBx1"
@@ -77,7 +77,7 @@
                                                         <CheckBox x:Name="uninstallMergeClientChkBx1"
                                   Content="Uninstall the Merge Client" Click="uninstallMergeClientChkBx1_Click"
                                               ToolTip="Checks for Mobile Merge and uninstalls if installed"
-                                              ToolTipService.InitialShowDelay="450" />
+                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                                                     </ListBoxItem>
                                                     <ListBoxItem>
                                                         <CheckBox x:Name="UninstallMSPhkBx1"
@@ -174,7 +174,7 @@
                                                         <CheckBox x:Name="uninstallFireClientChkBx"
                                   Content="Uninstall the Fire Client" Click="uninstallFireClientChkBx_Click"
                                               ToolTip="Checks for Fire Mobile and uninstalls if installed"
-                                              ToolTipService.InitialShowDelay="450" />
+                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                                                     </ListBoxItem>
                                                     <ListBoxItem>
                                                         <CheckBox x:Name="uninstallPoliceClientChkBx"
@@ -186,13 +186,7 @@
                                                         <CheckBox x:Name="uninstallMergeClientChkBx"
                                   Content="Uninstall the Merge Client" Click="uninstallMergeClientChkBx_Click"
                                               ToolTip="Checks for Mobile Merge and uninstalls if installed"
-                                              ToolTipService.InitialShowDelay="450" />
-                                                    </ListBoxItem>
-                                                    <ListBoxItem>
-                                                        <CheckBox x:Name="uninstalNovaPDFChkBx"
-                                  Content="Uninstall nova PDF" Click="uninstalNovaPDFChkBx_Click"
-                                              ToolTip="Checks for NOVA PDF and uninstalls if installed"
-                                              ToolTipService.InitialShowDelay="450" />
+                                              ToolTipService.InitialShowDelay="450" IsEnabled="False" />
                                                     </ListBoxItem>
                                                     <ListBoxItem>
                                                         <CheckBox x:Name="uninstallGISCompChkBx"
