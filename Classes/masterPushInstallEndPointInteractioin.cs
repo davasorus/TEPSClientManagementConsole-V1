@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -20,6 +21,7 @@ namespace TEPSClientManagementConsole_V1.Classes
         {
             string result = "";
             var httpClient = new HttpClient();
+            httpClient.Timeout = TimeSpan.FromMinutes(10);
             var defaultRequestHeaders = httpClient.DefaultRequestHeaders;
 
             if (defaultRequestHeaders.Accept == null ||

@@ -24,7 +24,7 @@ namespace TEPSClientManagementConsole_V1.Classes
 
         #region functions
 
-        public async Task removeProcess(string machineName)
+        public Task removeProcess(string machineName)
         {
             try
             {
@@ -32,12 +32,14 @@ namespace TEPSClientManagementConsole_V1.Classes
 
                 int index = activeDeploymentObjs.Collection.IndexOf(client);
 
-                this.Dispatcher.Invoke(() => activeDeploymentObjs.Collection.RemoveAt(index));
+                Dispatcher.Invoke(() => activeDeploymentObjs.Collection.RemoveAt(index));
             }
             catch (Exception ex)
             {
                 loggingClass.logEntryWriter(ex.ToString(), "error");
             }
+
+            return Task.CompletedTask;
         }
 
         #endregion functions
