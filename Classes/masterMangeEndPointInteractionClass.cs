@@ -432,8 +432,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 }
                 catch (Exception ex)
                 {
-                    loggingClass.logEntryWriter(ex.ToString(), "error");
-                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
+                    
                 }
             }
             else
@@ -565,8 +564,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 }
                 catch (Exception ex)
                 {
-                    loggingClass.logEntryWriter(ex.ToString(), "error");
-                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
+                   
                 }
             }
             else
@@ -647,8 +645,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 }
                 catch (Exception ex)
                 {
-                    loggingClass.logEntryWriter(ex.ToString(), "error");
-                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
+                    
                 }
             }
             else
@@ -706,8 +703,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 }
                 catch (Exception ex)
                 {
-                    loggingClass.logEntryWriter(ex.ToString(), "error");
-                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
+                   
                 }
             }
             else
@@ -765,8 +761,7 @@ namespace TEPSClientManagementConsole_V1.Classes
                 }
                 catch (Exception ex)
                 {
-                    loggingClass.logEntryWriter(ex.ToString(), "error");
-                    loggingClass.queEntrywriter("Error converting DB Response, please check log.");
+                    
                 }
             }
             else
