@@ -32,76 +32,97 @@ namespace TEPSClientManagementConsole_V1.MVVM.View
 
         private void loadClientDropDown()
         {
-            var message = 0;
+            try
+            {
+                var message = 0;
 
-            if (prodClientConfigObjs.Collection.Count != null)
-            {
-                message = prodClientConfigObjs.Collection.Count;
-            }
-
-            if (message == 0)
-            {
-                loadClientDropDown();
-            }
-            else
-            {
-                foreach (var name in prodClientConfigObjs.Collection)
+                if (prodClientConfigObjs.Collection.Count != null)
                 {
-                    if (!clientsComBx.Items.Contains(name.ClientName))
+                    message = prodClientConfigObjs.Collection.Count;
+                }
+
+                if (message == 0)
+                {
+                    loadClientDropDown();
+                }
+                else
+                {
+                    foreach (var name in prodClientConfigObjs.Collection)
                     {
-                        this.Dispatcher.Invoke(new Action(() => clientsComBx.Items.Add(name.ClientName)));
+                        if (!clientsComBx.Items.Contains(name.ClientName))
+                        {
+                            this.Dispatcher.Invoke(new Action(() => clientsComBx.Items.Add(name.ClientName)));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
             }
         }
 
         private void loadORIDropDown()
         {
-            var message = 0;
+            try
+            {
+                var message = 0;
 
-            if (oriObjs.Collection.Count != null)
-            {
-                message = oriObjs.Collection.Count;
-            }
-
-            if (message == 0)
-            {
-                loadORIDropDown();
-            }
-            else
-            {
-                foreach (var name in oriObjs.Collection)
+                if (oriObjs.Collection.Count != null)
                 {
-                    if (!orisComBx.Items.Contains(name.ORI))
+                    message = oriObjs.Collection.Count;
+                }
+
+                if (message == 0)
+                {
+                    loadORIDropDown();
+                }
+                else
+                {
+                    foreach (var name in oriObjs.Collection)
                     {
-                        this.Dispatcher.Invoke(new Action(() => orisComBx.Items.Add(name.ORI)));
+                        if (!orisComBx.Items.Contains(name.ORI))
+                        {
+                            this.Dispatcher.Invoke(new Action(() => orisComBx.Items.Add(name.ORI)));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
             }
         }
 
         private void loadFireDropDown()
         {
-            var message = 0;
+            try
+            {
+                var message = 0;
 
-            if (fdidObjs.Collection.Count != null)
-            {
-                message = fdidObjs.Collection.Count;
-            }
-
-            if (message == 0)
-            {
-                loadFireDropDown();
-            }
-            else
-            {
-                foreach (var name in fdidObjs.Collection)
+                if (fdidObjs.Collection.Count != null)
                 {
-                    if (!fdidsComBx.Items.Contains(name.FDID))
+                    message = fdidObjs.Collection.Count;
+                }
+
+                if (message == 0)
+                {
+                    loadFireDropDown();
+                }
+                else
+                {
+                    foreach (var name in fdidObjs.Collection)
                     {
-                        this.Dispatcher.Invoke(new Action(() => fdidsComBx.Items.Add(name.FDID)));
+                        if (!fdidsComBx.Items.Contains(name.FDID))
+                        {
+                            this.Dispatcher.Invoke(new Action(() => fdidsComBx.Items.Add(name.FDID)));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                loggingClass.logEntryWriter(ex.ToString(), "error");
             }
         }
 
